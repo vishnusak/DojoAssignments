@@ -1,0 +1,61 @@
+body{
+  background: rgb(200,200,200);
+}
+
+h1{
+  text-align: center;
+}
+
+em{
+  font-size: 24px;
+  display: inline-block;
+}
+
+strong{
+  font-size: 24px;
+  font-weight: bold;
+  font-style: italic;
+  display: block;
+}
+
+#q1{
+  display: inline-block;
+}
+
+span{
+  display: inline-block;
+  width: 580px;
+}
+
+pre{
+  font-weight: bold;
+  margin-right: 20px;
+  vertical-align: middle;
+  background: green;
+  color: yellow;
+}
+
+form{
+  display: inline-block;
+}
+
+button{
+  display: inline;
+}
+
+#pq1in, #pq1out{
+  text-align: center;
+  color: white;
+}
+
+#pq1in{
+  background: blue;
+}
+
+#pq1out{
+  background: green;
+}
+
+#pq2out{
+  display: inline-block;
+}

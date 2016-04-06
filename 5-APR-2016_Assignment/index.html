@@ -1,0 +1,197 @@
+<!doctype <!DOCTYPE html>
+<html>
+<head>
+  <title>05-Apr-2016_Slack_Assignment</title>
+  <meta charset="utf-8">
+  <meta name="description" content="This page contains the answers to the 5th april assignments and also attempts to show that assignment in a browser">
+  <meta name="author" content="vishnu">
+  <script type="text/javascript" src="assign.js"></script>
+  <link rel="stylesheet" type="text/css" href="assign.css">
+</head>
+<body>
+  <h1>05-APR-2016 Slack Assignment</h1>
+  <hr>
+  <!-- Question 1 -->
+  <h3><em>Q1</em> > Set variable myNumber equal to the value 42. Then set variable myName equal to your name. Now swap values – put the value of myNumber into myName, and vice versa.</h3>
+  <div id="q1">
+    <strong>Soln:</strong>
+    <span>
+      <pre>
+
+        var myNumber = 42;
+        var myName   = "vishnu";
+        var temp;
+
+        temp     = myNumber;
+        myNumber = myName;
+        myName   = temp;
+      </pre>
+    </span>
+    <form id="q1form">
+      <p id="pq1in">Input:</p>
+      <label>
+        myNumber: <input type="text" id="swap1">
+      </label>
+      <label>
+        myName: <input type="text" id="swap2">
+      </label>
+      <p id="pq1out">Output:</p>
+      <label id="lswap3">
+        myNumber: <input type="text" id="swap3">
+      </label>
+      <label id="lswap4">
+        myName: <input type="text" id="swap4">
+      </label>
+      </label>
+    </form>
+    <button id="b_q1" onclick="swap()">Swap</button>
+  </div>
+  <hr>
+  <!-- Question 2 -->
+  <h3><em>Q2</em> > Create a function named beCheerful(). Within this function, console.log “good morning!” Call this function 84 times.</h3>
+  <div id="q2">
+    <strong>Soln:</strong>
+    <span>
+      <pre>
+
+        function beCheerful(){
+          for (var i = 1; i <= 84; i++) {
+            console.log("good morning");
+          }
+        }
+      </pre>
+    </span>
+    <button id="b_q2" onclick="beCheerful()">Be Cheerful</button>
+    <p id="pq2out"></p>
+  </div>
+  <hr>
+  <!-- Question 3 -->
+  <h3><em>Q3</em> > Print all integers from -52 to 1066, with FOR loop.</h3>
+  <div id="q3">
+    <strong>Soln:</strong>
+    <span>
+      <pre>
+
+        function printInt(){
+          var numArr = [];
+          
+          for (var i = -52; i <= 1066; i++) {
+            numArr.push(i);
+          }  
+        }
+      </pre>
+    </span>
+    <button class="b_q3" onclick="printInt()">Print'em</button>
+    <button class="b_q3" onclick="document.getElementById('pq3out').innerHTML = ''">Clear</button>
+    <p id="pq3out"></p>
+  </div>
+  <hr>
+  <!-- Question 4 -->
+  <h3><em>Q4</em> > For [1,3,5,7,9,13], print values that are greater than 2nd value.</h3>
+  <div id="q4">
+    <strong>Soln:</strong>
+    <span>
+      <pre>
+
+        function printGreater(){
+          var numArr = [1,3,5,7,9,13];
+          var secEle = numArr[1];
+          var result = [];
+
+          for (var i = 0; i < numArr.length; i++){
+            if (numArr[i] > secEle) {
+              result.push(numArr[i]);
+            }
+          }
+        }
+      </pre>
+    </span>
+    <button class="b_q4" onclick="printGreater()">Print'em</button>
+    <button class="b_q4" onclick="document.getElementById('pq4out').innerHTML = ''">Clear</button>
+    <p id="pq4out"></p>
+  </div>
+  <hr>
+  <!-- Question 5 -->
+  <h3><em>Q5</em> > Given an array, return a new array with just values that are greater than the array’s second value (arr[1]). Pay attention to the input. What if the array is too short?</h3>
+  <div id="q5">
+    <strong>Soln:</strong>
+    <span>
+      <pre>
+
+        function returnGreater(){
+          var inArr     = [];
+          var inArrSize = Math.floor(Math.random() * 10) + 1;
+          var secEle;
+          var result    = [];
+
+          for (var i = 0; i <= inArrSize; i++){
+            inArr.push(Math.floor(Math.random() * 100));
+          }
+
+          if (inArr.length > 1){
+            secEle = inArr[1];
+            for (var i = 0; i < inArr.length; i++){
+              if (inArr[i] > secEle) {
+                result.push(numArr[i]);
+              }
+            }
+          } else {
+            "Input Array is not long enough";
+          }
+        }
+      </pre>
+    </span>
+    <button class="b_q5" onclick="returnGreater()">Print'em</button>
+    <button class="b_q5" onclick="document.getElementById('pq5out').innerHTML = '';document.getElementById('pq5in').innerHTML = ''">Clear</button>
+    <p id="pq5in"></p>
+    <p id="pq5out"></p>
+  </div>
+  <hr>
+  <!-- Question 6 -->
+  <h3><em>Q6</em> > Print integers 2000-5280 inclusive, with WHILE.</h3>
+  <div id="q6">
+    <strong>Soln:</strong>
+    <span>
+      <pre>
+
+        function whilePrint(){
+          var i      = 2000;
+          var numArr = [];
+
+          while (i <= 5280) {
+            numArr.push(i);
+            i++;
+          }
+        }
+      </pre>
+    </span>
+    <button class="b_q6" onclick="whilePrint()">Print'em</button>
+    <button class="b_q6" onclick="document.getElementById('pq6out').innerHTML = ''">Clear</button>
+    <p id="pq6out"></p>
+  </div>
+  <hr>
+  <!-- Question 7 -->
+  <h3><em>Q7</em> > Print all multiples of 3 from 6 to 60,000. Do this using a WHILE loop.</h3>
+  <div id="q7">
+    <strong>Soln:</strong>
+    <span>
+      <pre>
+
+        function multiple(){
+          var i      = 1;
+          var numArr = [];
+
+          while ((i*3) <= 60000){
+            numArr.push(i*3);
+            i++;
+          }
+        }
+      </pre>
+    </span>
+    <button class="b_q7" onclick="multiple()">Print'em</button>
+    <button class="b_q7" onclick="document.getElementById('pq7out').innerHTML = ''">Clear</button>
+    <p id="pq7out"></p>
+  </div>
+  <hr>
+</body>
+</html>
