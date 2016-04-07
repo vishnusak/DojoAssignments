@@ -1,0 +1,78 @@
+html, body{
+  height: 100%;
+}
+
+#clear{
+  clear: both;
+}
+
+#header{
+  text-align: center;
+  padding: 0.5%;
+  margin-bottom: 1%;
+  background-color: rgb(0,100,0);
+  color: yellow;
+}
+
+#challenges{
+  width: 30%;
+  max-width: 35%;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+#q1, #q2, #q3, #q4, #q5, #q6, #q7, #q8{
+  display: inline-block;
+  background-color: rgb(175,175,175);
+  color: black;
+  font-weight: lighter;
+  font-style: oblique;
+  border: 1px solid black;
+  margin: 0;
+  padding: 2%;
+  cursor: pointer;
+}
+
+em{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#solutions{
+  float: right;
+  width: 68%;
+  position: relative;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.soln{
+  padding: 0;
+  width: 100%;
+  visibility: hidden;
+  position: absolute; /*This is controlled by the 'position' attrib of the parent. Also affects the height and width*/
+}
+
+.code{
+  margin: 0;
+  border: 1px solid yellow;
+  background-color: black;
+  color: white;
+}
+
+.result{
+  border: 2px solid green;
+  background-color: black;
+  color: white;
+  padding: 2%;
+}
+
+label, input, button{
+  margin-top: 3%;
+  display: inline-block;
+}
+
+label{
+  font-weight: bold;
+}

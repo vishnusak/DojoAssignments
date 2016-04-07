@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>06-Apr-2016_Slack_Assignment</title>
+  <meta charset="utf-8">
+  <meta name="description" content="This is the assignment page with the solutions to the questions sent on 6th April">
+  <meta name="author" content="vishnu">
+  <script type="text/javascript" src="assign.js"></script>
+  <link rel="stylesheet" type="text/css" href="assign.css">
+</head>
+<body>
+  <div id="header">
+    <h1>06-APR-2016 Slack Assignment</h1>
+  </div>
+  <div id="challenges">
+    <!-- Question 1 -->
+    <p id="q1" onmouseover="mo('q1')" onmouseout="mout('q1')" onclick="oc('q1')"><em>Q1</em> > Using a FOR loop, print the multiples of 3 from -300 to 0. Skip numbers -3 and -6.</p>
+    <p id="q2" onmouseover="mo('q2')" onmouseout="mout('q2')" onclick="oc('q2')"><em>Q2</em> > Log positive numbers starting at 2016, counting down by fours (exclude 0), without a FOR loop.</p>
+    <p id="q3" onmouseover="mo('q3')" onmouseout="mout('q3')" onclick="oc('q3')"><em>Q3</em> > Print all integer multiples of 5, from 512 to 4096. Afterward, also log how many there were.</p>
+    <p id="q4" onmouseover="mo('q4')" onmouseout="mout('q4')" onclick="oc('q4')"><em>Q4</em> > Print out all integers from 1 to 100. If the number is evenly divisible by 5, print "Coding" instead of the number. If the number is evenly divisible by 10, also print " Dojo".</p>
+    <p id="q5" onmouseover="mo('q5')" onmouseout="mout('q5')" onclick="oc('q5')"><em>Q5</em> > Your function will be given an input parameter incoming. Console.log the value of incoming.</p>
+    <p id="q6" onmouseover="mo('q6')" onmouseout="mout('q6')" onclick="oc('q6')"><em>Q6</em> > Make a function that accepts three parameters: first, second and last. Print all the multiples of last, from second to first. Do this using a FOR loop.</p>
+    <p id="q7" onmouseover="mo('q7')" onmouseout="mout('q7')" onclick="oc('q7')"><em>Q7</em> > Write a function that determines whether a given year is a leap year. If a year is divisible by four, it is a leap year, unless it is divisible by 100. However, if it is divisible by 400, then it is.</p>
+    <p id="q8" onmouseover="mo('q8')" onmouseout="mout('q8')" onclick="oc('q8')"><em>Q8</em> > Print all the odd integers from -300 to 300. What is the sum of all these numbers?</p>
+  </div>
+  <div id="solutions">
+    <div class="soln" id="1">
+      <pre class="code" id="c1">
+
+        function multiples(i){
+          console.log(i*3);
+        }
+
+        function q1(){
+          for (var i = -100; i <= 0; i++){
+            if ((i != -1) && (i != -2)){
+              multiples(i);
+            }
+          }
+        }
+      </pre>
+      <p class="result" id="r1"></p>
+    </div>
+    <div class="soln" id="2">
+      <pre class="code" id="c2">
+
+        function positive(i){
+          console.log(i);
+        }
+
+        function q2(){
+          var i = 2016;
+          while (i > 0){
+            positive(i);
+            i -= 4;
+          }
+        }
+      </pre>
+      <p class="result" id="r2"></p>
+    </div>
+    <div class="soln" id="3">
+      <pre class="code" id="c3">
+
+        function print5(i){
+          console.log(i*5);
+        }
+
+        function q3(){
+          var count = 0;
+          for (var i = 1; i < 1000; i++){
+            if ((i*5) > 512){
+              print5(i);
+              count++;
+            }
+          }
+          console.log(count);
+        }
+      </pre>
+      <p class="result" id="r3"></p>
+    </div>
+    <div class="soln" id="4">
+      <pre class="code" id="c4">
+
+        function codingdojo(i){
+          console.log(i);
+        }
+
+        function q4(){
+          for (var i = 1; i <= 100; i++){
+            if ((i%5) == 0){
+              if ((i%10) == 0){
+                codingdojo('Coding Dojo');
+              } else {
+                codingdojo('Coding');
+              }
+            } else {
+              codingdojo(i);
+            }
+          }
+        }
+      </pre>
+      <p class="result" id="r4"></p>
+    </div>
+    <div class="soln" id="5">
+      <pre class="code" id="c5">
+
+        function print(incoming){
+          console.log(incoming);
+        }
+
+        function q5(){
+          var inc = 'SomeValue';
+          print(inc);
+        }
+      </pre>
+      <label for="incoming">Enter the value of "incoming": </label>
+      <input type="text" id="incoming">
+      <button onclick="q5()">Print Incoming</button>
+      <p class="result" id="r5"></p>
+    </div>
+    <div class="soln" id="6">
+      <pre class="code" id="c6">
+
+        function print3(num, i){
+          console.log(num * i);
+        }
+
+        function q6(first, second, last){
+          if (first > second){
+            for (var i = second; i <= first; i++){
+              print3(last, i);  
+            }
+          } else {
+            for (var i = second; i >= first; i--){
+              print3(last, i);
+            }
+          }
+        }
+      </pre>
+      <label for="first">First: </label>
+      <input type="number" id="first" style="width: 20%">
+      <label for="second">Second: </label>
+      <input type="number" id="second" style="width: 20%">
+      <label for="last">Last: </label>
+      <input type="number" id="last" style="width: 20%">
+      <button onclick="q6()">Print</button>
+      <p class="result" id="r6"></p>
+    </div>
+    <div class="soln" id="7">
+      <pre class="code" id="c7">
+
+        function leap(i){
+          console.log(i);
+        }
+
+        function q7(year){
+          var msg1 = " is a Leap Year";
+          var msg2 = " is not a Leap Year";
+       
+          if (year != ''){
+            if ((year % 4) == 0){
+              if ((year % 100) == 0){
+                if ((year % 4) == 0){
+                  leap(year + msg1);
+                } else {
+                  leap(year + msg2);
+                }
+              } else {
+                leap(year + msg1);
+              }
+            } else {
+              leap(year + msg2);
+            }
+          } else {
+            leap("Please enter the year");
+          }
+        }
+      </pre>
+      <label for="yr">Enter the year: </label>
+      <input type="number" id="yr">
+      <button onclick="q7()">Check Leap</button>
+      <p class="result" id="r7"></p>
+    </div>
+    <div class="soln" id="8">
+      <pre class="code" id="c8">
+
+        function odd(i){
+          console.log(i);
+        }
+
+        function q8(){
+          var sum = 0;
+          for (var i = -300; i <= 300; i++){
+            if ((i % 2) != 0){
+              odd(i);
+              sum += i;
+            }
+          }
+          console.log(sum);
+        }
+      </pre>
+      <p class="result" id="r8"></p>
+    </div>
+  </div>
+  <div id="clear"></div>
+</body>
+</html>
