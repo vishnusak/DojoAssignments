@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>8-Apr-2016 Slack Assignment</title>
+  </head>
+  <body>
+    <script>
+    // Fit the First Value
+    // Your function should accept an array. If value at [0] is greater than array’s length, print "Too big!"; if value at [0] is less than array’s length, print "Too small!"; otherwise print "Just right!".
+
+    // Using the ternary operator to do the simple comparison. Highly "not readable" according to me. But wanted to do this to wrap my head around the use of the operator.
+    function q1(arr){
+      var out = (arr[0] == arr.length) ? "Just right!" : ((arr[0] < arr.length) ? "Too small!" : "Too Big!");
+      console.log(out);
+    }
+
+    // q1([10,3,4,2,1]); //Uncomment to test
+
+    //// Fahrenheit To Celsius
+    // Create a function named fahrenheitToCelsius(fDegrees) that accepts a number of degrees in Fahrenheit, and returns the equivalent temperature as expressed in Celsius degrees. For review, Fahrenheit = (9/5 * Celsius) + 32.
+
+    // Doing it in single line. Not ideal for readability.
+    function fahrenheitToCelsius(fDegrees){
+      console.log(fDegrees + " F = " + ((fDegrees - 32) * 5)/9 + " C");
+      return (((fDegrees - 32) * 5)/9);
+    }
+
+    // fahrenheitToCelsius(68); //Uncomment to test
+
+    //// Celsius to Fahrenheit
+    // Create a celsiusToFahrenheit(cDegrees) function that accepts a number of degrees in Celsius, and returns the equivalent temperature as expressed in Fahrenheit degrees.
+    function celsiusToFahrenheit(cDegrees){
+      console.log(cDegrees + " C = " + ((cDegrees * 9/5) + 32) + " F");
+      return (((cDegrees * 9/5) + 32));
+    }
+
+    // celsiusToFahrenheit(20); //Uncomment to test
+
+    //// Fahrenheit IS Celsius
+    // Is there an integer that is the same temperature in both Fahrenheit and Calsius scales? Use your two functions above to find this value (if it exists at all!).  
+
+    // - The answer is -40. -40 C = -40 F. Tried initially from -1000 to +1000. reduced it to -100 - +100 after finding the answer.
+    function feqc(){
+      var ll = -100;
+      var ul = 100;
+      var ret = [];
+      for (var i = ll; i <= ul; i++){
+        if (fahrenheitToCelsius(i) == celsiusToFahrenheit(i)){
+          console.log(i + " F = " + i + " C");
+          ret.push(i);
+        }
+      }
+      if ((ret.length) > 0){
+        console.log("The integer(s) that is(are) the same temperature in F and C between " + ll + " & " + ul + " is(are) " + ret);
+      } else {
+        console.log("There are no integers between " + ll + " & " + ul + " that are the same temperature in F and C.");
+      }
+    }
+
+    // feqc(); //Uncomment to test.
+
+    //// Biggie Size
+    // Given an array, write a function that changes all positive numbers in the array to “big”. Example: makeItBig([-1,3,5,-5]) returns that same array, changed to [-1,"big","big",-5].
+    function makeItBig(arr){
+      for (var i = 0; i < arr.length; i++){
+        if (arr[i] > 0){
+          arr[i] = 'big';
+        }
+      }
+      return arr;
+    }
+
+    // console.log(makeItBig([-1,3,5,-5])); //uncomment to test
+
+    //// Print Low, Return High
+    // Create a function that takes array of numbers. The function should print the lowest value in the array, and return the highest value in the array.
+    function search(arr){
+      var high = arr[0], low = arr[0];
+      for (var i = 0; i < arr.length; i++){
+        high = (arr[i] > high) ? arr[i] : high;
+        low = (arr[i] < low) ? arr[i] : low;
+      }
+      console.log("The lowest is: " + low);
+      return high;
+    }
+
+    // console.log("The highest is: " + search([99, 430, 746, 112, 982, 918, 87, 0])); //uncomment to test
+    </script>
+  </body>
+</html>
