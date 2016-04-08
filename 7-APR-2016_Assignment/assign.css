@@ -1,0 +1,133 @@
+html, body{
+  font-family: 'roboto mono', calibri, verdana, san-serif;
+  background-color: #888888;
+}
+
+body{
+  box-sizing: border-box;
+  width: 75%;
+  margin: auto;
+  background-color: #888888;
+}
+
+#first-page>header{
+  background-color: #000000;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 0.3%;
+}
+
+/*NAV section begin*/
+nav{
+  width: 80%;
+  margin: auto;
+}
+
+nav ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li{
+  box-sizing: border-box;
+  width: 12.5%;
+  display: inline-block;
+  border: 1px solid #999999;
+  background-color: #000075;
+  margin: 0;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+/*
+nav ul li:hover{
+  position: relative;
+  bottom: 1px;
+}
+
+nav ul li:active{
+  position: relative;
+  top: 1px;
+}*/
+/*NAV section end*/
+
+#q1, #q2, #q3, #q4, #q5, #q6, #q7, #q8{
+  display: none;
+  /*this and probably other properties wont translate as is into the DOM object attributes accessible by javascript. This comes in as "style.display = ''. So check for the actual values in the DOM on the browser and use accordingly. Wasted a day trying to figure this out!! :("*/
+}
+
+.top{
+  padding: 0 2%;
+  margin: 0;
+  text-align: center;
+  color: #FFFFFF;
+  text-shadow: 3px 3px 15px #000075;
+}
+
+em{
+  font-size: 125%;
+  color: #000075;
+  text-shadow: 3px 3px 15px #FFFFFF;
+  text-align: center;
+}
+
+.left{
+  display: inline-block;
+  width: 49.8%;
+  background-color: #000075;
+  color: #FFFFFF;
+}
+
+.left pre{
+  white-space: pre-wrap; /*Allows the text inside <pre></pre> to wrap when it hits the sides of the box inside of just spilling over into the adjacent elements. The wrapped text looks odd but it is contained. This option can be replaced with the overflow: hide or overflow: auto property but that puts a scroll bar at the bottom of the container. Choices!!! Devil or Deep Sea*/
+}
+.right{
+  float: right;
+  display: inline-block;
+  padding-left: .2%;
+  width: 50%;
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.right p{
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+/*Remove spinner controls that appear on number fields*/
+/*for mozilla/firefox*/
+input[type='number']{
+  -moz-appearance: textfield;
+}
+/*for chrome, opera, safari*/
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#fq1{
+  margin: auto;
+  display: inline-block;
+}
+
+#fq1 input{
+  width: 5%;
+}
+
+label{
+  font-size: 75%;
+  margin-left: 1%;
+}
+
+button{
+  background-color: orange;
+  border-style: hidden;
+  margin-left: 2%;
+}
+
+#pq1, #pq2, #pq3, #pq4, #pq5, #pq6, #pq7, #pq8{
+  margin-top: 5%;
+  width: inherit;
+}

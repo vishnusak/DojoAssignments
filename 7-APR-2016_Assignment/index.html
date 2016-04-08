@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>7-APR-2016 Slack Assignment</title>
+  <meta charset="utf-8">
+  <meta name="description" content="This is for showcasing the solutions os assignment W1D3. Gonna use float, horizontal nav, links, positioning, fonts and multiple pages">
+  <meta name="author" content="vishnu">
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="assign.css">
+  <script type="text/javascript" src="assign.js"></script>
+</head>
+<body>
+  <div id="first-page">
+    <header>
+      <h1>7-APR-2016 Slack Assignment</h1>
+    </header>
+    <nav>
+      <ul>
+        <!-- typing the list elements end to end instead of putting them 1 per line so as to eliminate the spaces between them when applying "display: inline-block" style -->
+        <li onclick="oc('q1')">&#11000; 1 &#10999;</li><li onclick="oc('q2')">&#11000; 2 &#10999;</li><li onclick="oc('q3')">&#11000; 3 &#10999;</li><li onclick="oc('q4')">&#11000; 4 &#10999;</li><li onclick="oc('q5')">&#11000; 5 &#10999;</li><li onclick="oc('q6')">&#11000; 6 &#10999;</li><li onclick="oc('q7')">&#11000; 7 &#10999;</li><li onclick="oc('q8')">&#11000; 8 &#10999;</li>
+      </ul>
+    </nav>
+  </div>
+  <div class="soln" id="q1">
+    <header class="top" id="tq1">
+      <h3><em>Q1</em> Construct a function to accept four parameters. Print all multiples of param1 from param2 to param3 inclusive unless multiple is equal to param4. Use a WHILE loop.</h3>
+    </header>
+    <main class="bottom" id="bq1">
+      <div class="left" id="lq1">
+        <pre>
+          function q1(num, ll, ul, ex){
+            if ((ll < num) && (ul < num)){
+              console.log("The range limits must be > Number");
+            } else if (ll > ul){
+              for (var i = ll; i >= ul; i--){
+                if (((i % num) === 0) && (i !== ex)){
+                  console.log(i);
+                }
+              }
+            } else if (ul >= ll){
+              for (var i = ll; i <= ul; i++){
+                if (((i % num) === 0) && (i !== ex)){
+                  console.log(i);
+                }
+              }
+            }
+          }
+        </pre>
+      </div>
+      <div class="right" id="rq1">
+        <div id="fq1">
+          <label>Number: <input type="number" autofocus id="num"></label>
+          <label>LowerLimit: <input type="number" id="ll"></label>
+          <label>UpperLimit: <input type="number" id="ul"></label>
+          <label>Exception: <input type="number" id="ex"></label>
+          <button id="q1b" onclick="q1()">Print</button>
+        </div>
+        <p id="pq1"></p>
+      </div>
+    </main>
+  </div>
+  <div class="soln" id="q2">
+    <header class="top" id="tq2">
+      <h3><em>Q2</em> Build a function that accepts two numbers. If they represent the month and day you were born – in either order – log "How did you know?" Otherwise, log "Just another day...."</h3>
+    </header>
+    <main class="bottom" id="bq2">
+      <div class="left" id="lq2">
+        <pre>
+          function q2(num1, num2){
+            if (num1 === 3){
+              if (num2 === 6){
+                console.log("How did you know?!");
+              } else {
+                console.log("Just another day....");
+              }
+            } else if (num1 === 6){
+              if (num2 === 3){
+                console.log("How did you know?!");
+              } else {
+                console.log("Just another day....");
+              }
+            } else {
+              console.log("Just another day....");
+            }
+          }
+        </pre>
+      </div>
+      <div class="right" id="rq2">
+        <div id="fq2">
+          <label>Number1: <input type="number" id="num1"autofocus></label>
+          <label>Number2: <input type="number" id="num2"></label>
+          <button id="q2b" onclick="q2()">Check</button>
+        </div>
+        <p id="pq2"></p>
+      </div>
+    </main>
+  </div>
+  <div class="soln" id="q3">
+    <header class="top" id="tq3">
+      <h3><em>Q3</em> Create a function that accepts a number as an input. Return an array that counts down by one, from the number (as array’s ‘zero’th element) down to 0 (as the last element). How long is this array?</h3>
+    </header>
+    <main class="bottom" id="bq3">
+      <div class="left" id="lq3">
+        <pre>
+          function q3arr(num){
+            var arr = [];
+            for (var i = num; i >= 0; i--){
+              arr.push(i);
+            }
+            return arr;
+          }
+
+          function q3(){
+            var i = 10;
+            var ret = q3arr(i);
+
+            console.log(ret);
+            console.log(ret.length);
+          }
+        </pre>
+      </div>
+      <div class="right" id="rq3">
+        <div id="fq3">
+          <label>Number: <input type="number" id="num3" autofocus></label>
+          <button id="q3b" onclick="q3()">See Array</button>
+        </div>
+        <p id="pq3"></p>
+      </div>
+    </main>
+  </div>
+  <div class="soln" id="q4">
+    <header class="top" id="tq4">
+      <h3><em>Q4</em> Your function will receive an array with two numbers. Print the first value, and return the second.</h3>
+    </header>
+    <main class="bottom" id="bq4">
+      <div class="left" id="lq4">
+        <pre>
+          function q4pnr(num_arr){
+            console.log(num_arr[0]);
+            return num_arr[1];
+          }
+
+          function q4(){
+            var i = [85, 67];
+            var ret = q4pnr(i);
+            console.log(ret);
+          }
+        </pre>
+      </div>
+      <div class="right" id="rq4">
+        <div id="fq4">
+          <label>NumberArray: <input type="number" id="num41" autofocus><input type="number" id="num42"></label>
+          <button id="q4b" onclick="q4()">Print</button>
+        </div>
+        <p id="pq4"></p>
+      </div>
+    </main>
+  </div>
+  <div class="soln" id="q5">
+    <header class="top" id="tq5">
+      <h3><em>Q5</em> Given an array, return the sum of the first value in the array, plus the array’s length. What happens if the array’s first value is not a number, but a string (like "what?") or a boolean (like false).</h3>
+    </header>
+    <main class="bottom" id="bq5">
+      <div class="left" id="lq5">
+        <pre>
+          function q5arrsum(arr){
+            return arr[0] + arr.length;
+          }
+
+          function q5(){
+            var i = [1,2,3,4,5,6,7,8,9];
+            var ret = q5arrsum(i);
+            console.log(ret);
+          }
+        </pre>
+      </div>
+      <div class="right" id="rq5">
+        <div id="fq5">
+          <button id="q51b" onclick="q5(1)">Number Array</button>
+          <button id="q52b" onclick="q5(2)">String in Array</button>
+          <button id="q53b" onclick="q5(3)">Boolean in Array</button>
+        </div>
+        <p id="pq5"></p>
+      </div>
+    </main>
+  </div>
+  <div class="soln" id="q6">
+    <header class="top" id="tq6">
+      <h3><em>Q6</em> For array [1,3,5,7,9,13], print the numbers that are greater than its 2nd value. Return how many values this is.</h3>
+    </header>
+    <main class="bottom" id="bq6">
+      <div class="left" id="lq6">
+        <pre>
+          function q6greater(numArr){
+            var secEle = numArr[1];
+            var result = [];
+            for (var i = 0; i < numArr.length; i++){
+              if (numArr[i] > secEle) {
+                result.push(numArr[i]);
+              }
+            }
+            console.log(result);
+            return result.length;
+          }
+
+          function q6(){
+            var i = [1,3,5,7,9,13];
+            var ret = q6greater(i);
+            console.log(ret);
+          }
+        </pre>
+      </div>
+      <div class="right" id="rq6">
+        <p id="pq6"></p>
+      </div>
+    </main>
+  </div>
+  <div class="soln" id="q7">
+    <header class="top" id="tq7">
+      <h3><em>Q7</em> Write a function that accepts any array, and returns a new array with the array values that are greater than its 2nd value. Print how many values this is. What will you do if the array is only one element long?</h3>
+    </header>
+    <main class="bottom" id="bq7">
+      <div class="left" id="lq7">
+        <pre>
+          function q7retGreat(inArr){
+            var secEle;
+            var result    = [];
+
+            if (inArr.length > 1){
+              secEle = inArr[1];
+
+              for (var i = 0; i < inArr.length; i++){
+                if (inArr[i] > secEle) {
+                  result.push(inArr[i]);
+                }
+              }
+            }
+            return result;
+          }
+
+          function q7(){
+            var i = [];
+            var iSize = Math.floor(Math.random() * 10) + 1;
+            var ret = [];
+
+            for (var x = 0; x <= iSize; x++){
+              i.push(Math.floor(Math.random() * 100));
+            }
+            console.log("Input: Array = [" + i + "]  Length = " + i.length);
+            ret = q7retGreat(i);
+            console.log(ret.length);
+          }
+        </pre>
+      </div>
+      <div class="right" id="rq7">
+        <div id="fq7">
+          <button id="q7b" onclick="q7()">Try It</button>
+        </div>
+        <p id="pq7"></p>
+      </div>
+    </main>
+  </div>
+  <div class="soln" id="q8">
+    <header class="top" id="tq8">
+      <h3><em>Q8</em> Build a function that takes two numbers num1 and num2. It should return an array of length num1, where each value is num2. Print "Jinx!" if the numbers are the same.</h3>
+    </header>
+    <main class="bottom" id="bq8">
+      <div class="left" id="lq8">
+        <pre>
+          function q8jinx(num1, num2){
+            var arr = [];
+            if (num1 === num2){
+              console.log("Jinx!");
+            }
+
+            for (var i = 0; i < num1; i++){
+              arr.push(num2);
+            }
+            return arr;
+          }
+
+          function q8(){
+            var x = 4;
+            var y = 2;
+            var ret = q8jinx(x,y);
+            console.log(ret);
+          }
+        </pre>
+      </div>
+      <div class="right" id="rq8">
+        <div id="fq8">
+          <label>Number1: <input type="number" id="num81" autofocus></label>
+          <label>Number2: <input type="number" id="num82"></label>
+          <button id="q8b" onclick="q8()">Print</button>
+        </div>
+        <p id="pq8"></p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
