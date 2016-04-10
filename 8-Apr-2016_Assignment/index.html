@@ -1,91 +1,205 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>8-Apr-2016 Slack Assignment</title>
-  </head>
-  <body>
-    <script>
-    // Fit the First Value
-    // Your function should accept an array. If value at [0] is greater than array’s length, print "Too big!"; if value at [0] is less than array’s length, print "Too small!"; otherwise print "Just right!".
+<head>
+  <title>8-Apr-2016 Slack Assignment</title>
+  <meta name="description" content="page for the 8-april assignment solutions. playing with DIV links and pagination">
+  <meta name="author" content="vishnu">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="assign.js"></script>
+  <link rel="stylesheet" type="text/css" href="assign.css">
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=IM+Fell+Great+Primer:400,400italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <header>
+    <h1>08-APR-2016 Slack Assignment</h1>
+  </header>
+  <main>
+    <div id="page">
+      <div id="bck" onclick="pg(-1)"> < < < </div>
+      <div id="fwd" onclick="pg(1)"> > > > </div>
+    </div>
+    <div id="start" onclick="start()">Start</div>
+    <div id="q1" class="assgn">
+      <h3><em>Fit the First Value</em></h3>
+      <h3>Your function should accept an array. If value at [0] is greater than array’s length, print "Too big!"; if value at [0] is less than array’s length, print "Too small!"; otherwise print "Just right!".</h3>
+      <div id="soln1">
+        <div id="top1">
+          <pre>
+            function q1(arr){
+              var out = (arr[0] == arr.length) ? "Just right!" : ((arr[0] < arr.length) ? "Too small!" : "Too Big!");
+              console.log(out);
+            }
+          </pre>
+        </div>
+        <div id="mid1">
+          <label>
+            Enter Array: <input type="number" id="q10" autofocus><input type="number" id="q11"><input type="number" id="q12"><input type="number" id="q13"><input type="number" id="q14"><input type="number" id="q15"><input type="number" id="q16"><input type="number" id="q17"><input type="number" id="q18"><input type="number" id="q19">
+          </label>
+          <button id="q1b" onclick="q1()">Fit It</button>
+        </div>
+        <div id="bottom1">
+          <p id="pq1"></p>
+        </div>
+      </div>
+    </div>
+    <div id="q2" class="assgn">
+      <h3><em>Fahrenheit To Celsius</em></h3>
+      <h3>Create a function named fahrenheitToCelsius(fDegrees) that accepts a number of degrees in Fahrenheit, and returns the equivalent temperature as expressed in Celsius degrees. For review, Fahrenheit = (9/5 * Celsius) + 32.</h3>
+      <div id="soln2">
+        <div id="top2">
+          <pre>
+            function fahrenheitToCelsius(fDegrees){
+                  console.log(fDegrees + " F = " + ((fDegrees - 32) * 5)/9 + " C");
+                  return (((fDegrees - 32) * 5)/9);
+            }
 
-    // Using the ternary operator to do the simple comparison. Highly "not readable" according to me. But wanted to do this to wrap my head around the use of the operator.
-    function q1(arr){
-      var out = (arr[0] == arr.length) ? "Just right!" : ((arr[0] < arr.length) ? "Too small!" : "Too Big!");
-      console.log(out);
-    }
+            function q2(){
+              fahrenheitToCelsius(68);
+            }
+          </pre>
+        </div>
+        <div id="mid2">
+          <label>
+            Enter Temperature (&#176;F): <input type="number" id="q20" autofocus>
+          </label>
+          <button id="q2b" onclick="q2()">Convert It</button>
+        </div>
+        <div id="bottom2">
+          <p id="pq2"></p>
+        </div>
+      </div>
+    </div>
+    <div id="q3" class="assgn">
+      <h3><em>Celsius to Fahrenheit</em></h3>
+      <h3>Create a celsiusToFahrenheit(cDegrees) function that accepts a number of degrees in Celsius, and returns the equivalent temperature as expressed in Fahrenheit degrees.</h3>
+      <div id="soln3">
+        <div id="top3">
+          <pre>
+            function celsiusToFahrenheit(cDegrees){
+              console.log(cDegrees + " C = " + ((cDegrees * 9/5) + 32) + " F");
+              return (((cDegrees * 9/5) + 32));
+            }
 
-    // q1([10,3,4,2,1]); //Uncomment to test
+            function q3(){
+              celsiusToFahrenheit(20);
+            }
+          </pre>
+        </div>
+        <div id="mid3">
+          <label>
+            Enter Temperature (&#176;C): <input type="number" id="q30" autofocus>
+          </label>
+          <button id="q3b" onclick="q3()">Convert It</button>
+        </div>
+        <div id="bottom3">
+          <p id="pq3"></p>
+        </div>
+      </div>
+    </div>
+    <div id="q4" class="assgn">
+      <h3><em>Fahrenheit IS Celsius</em></h3>
+      <h3>Is there an integer that is the same temperature in both Fahrenheit and Calsius scales? Use your two functions above to find this value (if it exists at all!).</h3>
+      <div id="soln4">
+        <div id="top4">
+          <pre>
+            function feqc(){
+              var ll = -100;
+              var ul = 100;
+              var ret = [];
+              for (var i = ll; i <= ul; i++){
+                if (fahrenheitToCelsius(i) == celsiusToFahrenheit(i)){
+                  console.log(i + " F = " + i + " C");
+                  ret.push(i);
+                }
+              }
+              if ((ret.length) > 0){
+                console.log("The integer(s) that is(are) the same temperature in F and C is(are) " + ret);
+              } else {
+                console.log("There are no integers between " + ll + " & " + ul + " that are the same temperature in F and C.");
+              }
+            }
 
-    //// Fahrenheit To Celsius
-    // Create a function named fahrenheitToCelsius(fDegrees) that accepts a number of degrees in Fahrenheit, and returns the equivalent temperature as expressed in Celsius degrees. For review, Fahrenheit = (9/5 * Celsius) + 32.
+            function q4(){
+              feqc();
+            }
+          </pre>
+        </div>
+        <div id="mid4">
+          <label>
+          </label>
+          <button id="q4b" onclick="q4()">Find It</button>
+        </div>
+        <div id="bottom4">
+          <p id="pq4"></p>
+        </div>
+      </div>
+    </div>
+    <div id="q5" class="assgn">
+      <h3><em>Biggie Size</em></h3>
+      <h3>Given an array, write a function that changes all positive numbers in the array to “big”. Example: makeItBig([-1,3,5,-5]) returns that same array, changed to [-1,"big","big",-5].</h3>
+      <div id="soln5">
+        <div id="top5">
+          <pre>
+            function makeItBig(arr){
+              for (var i = 0; i < arr.length; i++){
+                if (arr[i] > 0){
+                  arr[i] = 'big';
+                }
+              }
+              return arr;
+            }
 
-    // Doing it in single line. Not ideal for readability.
-    function fahrenheitToCelsius(fDegrees){
-      console.log(fDegrees + " F = " + ((fDegrees - 32) * 5)/9 + " C");
-      return (((fDegrees - 32) * 5)/9);
-    }
+            function q5(){
+              console.log(makeItBig([-1,3,5,-5]));
+            }
+          </pre>
+        </div>
+        <div id="mid5">
+          <label>
+            Enter Array: <input type="number" id="q50" autofocus><input type="number" id="q51"><input type="number" id="q52"><input type="number" id="q53"><input type="number" id="q54"><input type="number" id="q55"><input type="number" id="q56"><input type="number" id="q57"><input type="number" id="q58"><input type="number" id="q59">
+          </label>
+          <button id="q5b" onclick="q5()">Biggie It</button>
+        </div>
+        <div id="bottom5">
+          <p id="pq5"></p>
+        </div>
+      </div>
+    </div>
+    <div id="q6" class="assgn">
+      <h3><em>Print Low, Return High</em></h3>
+      <h3>Create a function that takes array of numbers. The function should print the lowest value in the array, and return the highest value in the array.</h3>
+      <div id="soln6">
+        <div id="top6">
+          <pre>
+            function search(arr){
+              var high = arr[0], low = arr[0];
+              for (var i = 0; i < arr.length; i++){
+                high = (arr[i] > high) ? arr[i] : high;
+                low = (arr[i] < low) ? arr[i] : low;
+              }
+              console.log("The lowest is: " + low);
+              return high;
+            }
 
-    // fahrenheitToCelsius(68); //Uncomment to test
-
-    //// Celsius to Fahrenheit
-    // Create a celsiusToFahrenheit(cDegrees) function that accepts a number of degrees in Celsius, and returns the equivalent temperature as expressed in Fahrenheit degrees.
-    function celsiusToFahrenheit(cDegrees){
-      console.log(cDegrees + " C = " + ((cDegrees * 9/5) + 32) + " F");
-      return (((cDegrees * 9/5) + 32));
-    }
-
-    // celsiusToFahrenheit(20); //Uncomment to test
-
-    //// Fahrenheit IS Celsius
-    // Is there an integer that is the same temperature in both Fahrenheit and Calsius scales? Use your two functions above to find this value (if it exists at all!).  
-
-    // - The answer is -40. -40 C = -40 F. Tried initially from -1000 to +1000. reduced it to -100 - +100 after finding the answer.
-    function feqc(){
-      var ll = -100;
-      var ul = 100;
-      var ret = [];
-      for (var i = ll; i <= ul; i++){
-        if (fahrenheitToCelsius(i) == celsiusToFahrenheit(i)){
-          console.log(i + " F = " + i + " C");
-          ret.push(i);
-        }
-      }
-      if ((ret.length) > 0){
-        console.log("The integer(s) that is(are) the same temperature in F and C between " + ll + " & " + ul + " is(are) " + ret);
-      } else {
-        console.log("There are no integers between " + ll + " & " + ul + " that are the same temperature in F and C.");
-      }
-    }
-
-    // feqc(); //Uncomment to test.
-
-    //// Biggie Size
-    // Given an array, write a function that changes all positive numbers in the array to “big”. Example: makeItBig([-1,3,5,-5]) returns that same array, changed to [-1,"big","big",-5].
-    function makeItBig(arr){
-      for (var i = 0; i < arr.length; i++){
-        if (arr[i] > 0){
-          arr[i] = 'big';
-        }
-      }
-      return arr;
-    }
-
-    // console.log(makeItBig([-1,3,5,-5])); //uncomment to test
-
-    //// Print Low, Return High
-    // Create a function that takes array of numbers. The function should print the lowest value in the array, and return the highest value in the array.
-    function search(arr){
-      var high = arr[0], low = arr[0];
-      for (var i = 0; i < arr.length; i++){
-        high = (arr[i] > high) ? arr[i] : high;
-        low = (arr[i] < low) ? arr[i] : low;
-      }
-      console.log("The lowest is: " + low);
-      return high;
-    }
-
-    // console.log("The highest is: " + search([99, 430, 746, 112, 982, 918, 87, 0])); //uncomment to test
-    </script>
-  </body>
+            function q6(){
+              console.log(search([99,430,746,112,982,918,87,0]));
+            }
+          </pre>
+        </div>
+        <div id="mid6">
+          <label>
+            Enter Array: <input type="number" id="q60" autofocus><input type="number" id="q61"><input type="number" id="q62"><input type="number" id="q63"><input type="number" id="q64"><input type="number" id="q65"><input type="number" id="q66"><input type="number" id="q67"><input type="number" id="q68"><input type="number" id="q69">
+          </label>
+          <button id="q6b" onclick="q6()">Print It</button>
+        </div>
+        <div id="bottom6">
+          <p id="pq6"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
 </html>
