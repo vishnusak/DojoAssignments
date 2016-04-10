@@ -1,0 +1,596 @@
+html{
+  background-color: #A9A9A9; /*Dark Gray*/
+}
+
+body{
+  box-sizing: border-box;
+  width: 90vw; /* vw - viewport width*/
+  height: 100vh; /* vh - viewport height*/
+  border: 1px solid transparent;
+  margin: auto;
+  font-family: electrolize, raleway, verdana, sans-serif;
+}
+
+/*Header with Animation**************************/
+header{
+
+  box-sizing: border-box;
+  text-align: center;
+  -moz-animation-name: headerblur;
+  -moz-animation-duration: 1s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-fill-mode: forwards;
+  -webkit-animation-name: headerblur;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+  animation-name: headerblur;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@-moz-keyframes headerblur{
+  from{
+    letter-spacing: 1.75vw;
+    word-spacing: 1.75vw;
+    color: transparent;
+    text-shadow: 10px 10px 26px cyan;
+  }
+  20%{
+    letter-spacing: 1.6vw;
+    word-spacing: 1.6vw;
+    color: transparent;
+    text-shadow: 8px 8px 22px cyan;
+  }
+  40%{
+    letter-spacing: 1.45vw;
+    word-spacing: 1.45vw;
+    color: transparent;
+    text-shadow: 6px 6px 18px cyan;
+  }
+  60%{
+    letter-spacing: 1.3vw;
+    word-spacing: 1.3vw;
+    color: transparent;
+    text-shadow: 4px 4px 14px cyan;
+  }  
+  80%{
+    letter-spacing: 1.15vw;
+    word-spacing: 1.15vw;
+    color: transparent;
+    text-shadow: 2px 2px 10px cyan;
+  }  
+  to{
+    letter-spacing: 1vw;
+    word-spacing: 1vw;
+    color: cyan;
+    text-shadow: 0px 0px 6px cyan;
+  }
+}
+
+@-webkit-keyframes headerblur{
+  from{
+    letter-spacing: 1.75vw;
+    word-spacing: 1.75vw;
+    color: transparent;
+    text-shadow: 10px 10px 26px cyan;
+  }
+  20%{
+    letter-spacing: 1.6vw;
+    word-spacing: 1.6vw;
+    color: transparent;
+    text-shadow: 8px 8px 22px cyan;
+  }
+  40%{
+    letter-spacing: 1.45vw;
+    word-spacing: 1.45vw;
+    color: transparent;
+    text-shadow: 6px 6px 18px cyan;
+  }
+  60%{
+    letter-spacing: 1.3vw;
+    word-spacing: 1.3vw;
+    color: transparent;
+    text-shadow: 4px 4px 14px cyan;
+  }  
+  80%{
+    letter-spacing: 1.15vw;
+    word-spacing: 1.15vw;
+    color: transparent;
+    text-shadow: 2px 2px 10px cyan;
+  }  
+  to{
+    letter-spacing: 1vw;
+    word-spacing: 1vw;
+    color: cyan;
+    text-shadow: 0px 0px 6px cyan;
+  }
+}
+
+@keyframes headerblur{
+  from{
+    letter-spacing: 1.75vw;
+    word-spacing: 1.75vw;
+    color: transparent;
+    text-shadow: 10px 10px 26px cyan;
+  }
+  20%{
+    letter-spacing: 1.6vw;
+    word-spacing: 1.6vw;
+    color: transparent;
+    text-shadow: 8px 8px 22px cyan;
+  }
+  40%{
+    letter-spacing: 1.45vw;
+    word-spacing: 1.45vw;
+    color: transparent;
+    text-shadow: 6px 6px 18px cyan;
+  }
+  60%{
+    letter-spacing: 1.3vw;
+    word-spacing: 1.3vw;
+    color: transparent;
+    text-shadow: 4px 4px 14px cyan;
+  }  
+  80%{
+    letter-spacing: 1.15vw;
+    word-spacing: 1.15vw;
+    color: transparent;
+    text-shadow: 2px 2px 10px cyan;
+  }  
+  to{
+    letter-spacing: 1vw;
+    word-spacing: 1vw;
+    color: cyan;
+    text-shadow: 0px 0px 6px cyan;
+  }
+}
+/*Header END****************************************/
+
+/*Start button animation****************************/
+@-moz-keyframes startbtn{
+  from{
+    opacity: 0.1;
+    width: 2vw;
+    font-size: 30%;
+    padding: 0.9% 0;
+  }
+  25%{
+    opacity: 0.25;
+    width: 4vw;
+    font-size: 60%;
+    padding: 1.8% 0;
+  }
+  50%{
+    opacity: 0.5;
+    width: 6vw;
+    font-size: 90%;
+    padding: 2.7% 0;
+  }
+  75%{
+    opacity: 0.75;
+    width: 8vw;
+    font-size: 120%;
+    padding: 3.6% 0;
+  }
+  to{
+    opacity: 1;
+    width: 10vw;
+    font-size: 150%;
+    padding: 4.5% 0;
+    /*text-shadow: 1px 1px 10px cyan;*/
+  }
+}
+
+@-webkit-keyframes startbtn{
+  from{
+    opacity: 0.1;
+    width: 2vw;
+    font-size: 30%;
+    padding: 0.9% 0;
+  }
+  25%{
+    opacity: 0.25;
+    width: 4vw;
+    font-size: 60%;
+    padding: 1.8% 0;
+  }
+  50%{
+    opacity: 0.5;
+    width: 6vw;
+    font-size: 90%;
+    padding: 2.7% 0;
+  }
+  75%{
+    opacity: 0.75;
+    width: 8vw;
+    font-size: 120%;
+    padding: 3.6% 0;
+  }
+  to{
+    opacity: 1;
+    width: 10vw;
+    font-size: 150%;
+    padding: 4.5% 0;
+  }
+}
+
+@keyframes startbtn{
+  from{
+    opacity: 0.1;
+    width: 2vw;
+    font-size: 30%;
+    padding: 0.9% 0;
+  }
+  25%{
+    opacity: 0.25;
+    width: 4vw;
+    font-size: 60%;
+    padding: 1.8% 0;
+  }
+  50%{
+    opacity: 0.5;
+    width: 6vw;
+    font-size: 90%;
+    padding: 2.7% 0;
+  }
+  75%{
+    opacity: 0.75;
+    width: 8vw;
+    font-size: 120%;
+    padding: 3.6% 0;
+  }
+  to{
+    opacity: 1;
+    width: 10vw;
+    font-size: 150%;
+    padding: 4.5% 0;
+  }
+}
+
+#start{
+  margin: auto;
+  margin-top: 15%;
+  background-color: #696969; /*Dim Gray*/
+  border-radius: 50%;
+  box-shadow: 0px 0px 100px cyan;
+  color: cyan;
+  text-align: center;
+  opacity: 0;
+  cursor: pointer;
+  -moz-animation-delay: 1s;
+  -moz-animation-duration: 0.5s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-fill-mode: forwards;
+  -moz-animation-name: startbtn;
+  -webkit-animation-delay: 1s;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-name: startbtn;
+  animation-delay: 1s;  
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-name: startbtn;
+}
+
+#start:hover{
+    text-shadow: 1px 1px 10px cyan;
+}
+/*Start animation end*****************************/
+
+/*Pagination buttons*/
+#page{
+  display: none;
+}
+
+#page>#bck, #page>#fwd{
+  background-color: #696969;
+  display: inline-block;
+  width: 7vw;
+  font-size: 200%;
+  text-align: center;
+  color: cyan;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+#page>#bck:hover, #page>#fwd:hover{
+  text-shadow: 1px 1px 10px cyan;
+  box-shadow: 0 0 20px cyan;
+  opacity: 1;
+}
+
+#page>#fwd{
+  float: right;
+}
+/*Pagination end*/
+
+/*Assignment pages*/
+/*Remove spinner controls that appear on number fields*/
+/*for mozilla/firefox*/
+input[type='number']{
+  -moz-appearance: textfield;
+}
+/*for chrome, opera, safari*/
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input{
+  text-align: center;
+}
+
+button{
+  border-color: transparent;
+  background-color: #696969;
+  color: cyan;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.assgn>h3>em{
+  font-family: 'IM Fell Great Primer', serif;
+  font-size: 200%;
+  text-align: center;
+  color: #696969;
+  text-shadow: 1px 1px 10px cyan;
+}
+
+.assgn p{
+  padding: 3% 3%;
+  background-color: cyan;
+  border-radius: 40px;
+  word-wrap: break-word;
+}
+
+pre{
+  box-sizing: border-box;
+  font-size: 125%;
+  white-space: pre-wrap;
+  background-color: #696969;
+  color: cyan;
+  padding: 1% 0;
+  margin: 2% auto;
+  border-radius: 40px;
+}
+
+#q1, #q2, #q3, #q4, #q5, #q6, #q7, #q8{
+  width: 75vw;
+  margin: auto;
+  display: none;
+}
+
+#q1 input{
+  width: 4vw;
+}
+
+#q1 #mid1{
+  box-sizing: border-box;
+  width: 60vw;
+  margin: 2% auto;
+}
+
+#q2 #mid2{
+  box-sizing: border-box;
+  width: 30vw;
+  margin: 2% auto;
+}
+
+#q3 #mid3{
+  box-sizing: border-box;
+  width: 30vw;
+  margin: 2% auto;  
+}
+
+#q4 #mid4{
+  box-sizing: border-box;
+  width: 4vw;
+  margin: 2% auto;  
+}
+
+#q5 input{
+  width: 4vw;
+}
+
+#q5 #mid5{
+  box-sizing: border-box;
+  width: 60vw;
+  margin: 2% auto;  
+}
+
+#q6 input{
+  width: 4vw;
+}
+
+#q6 #mid6{
+  box-sizing: border-box;
+  width: 60vw;
+  margin: 2% auto;  
+}
+
+.qstart{
+  -moz-animation: qsanim 3s linear forwards;
+  -webkit-animation: qsanim 3s linear forwards;
+  animation: qsanim 3s linear forwards;
+}
+
+@-moz-keyframes qsanim{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes qsanim{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes qsanim{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+.qend{
+  -moz-animation: qeanim 3s linear forwards;
+  -webkit-animation: qeanim 3s linear forwards;
+  animation: qeanim 3s linear forwards;
+}
+
+@-moz-keyframes qeanim{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes qeanim{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+
+@keyframes qeanim{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+/*Testing*/
+#container{
+  display: inline-block;
+  width: 10%;
+  height: 10vw;
+  border: 1px solid black;
+  margin:auto;
+  display: none;
+}
+
+#test1{
+  box-sizing: border-box;
+  width: 10vw;
+  height: 10vw;
+  /*border: 1px solid red;*/
+  font-size: 100%;
+  -moz-animation: test1 5s linear 1s forwards paused;
+  -webkit-animation: test1 5s linear 1s forwards paused;
+  animation: test1 5s linear 1s forwards paused;  
+}
+
+#test2{
+  box-sizing: border-box;
+  width: 10vw;
+  height: 0vw;
+  /*border: 1px solid red;*/
+  font-size: 0;
+  -moz-animation: test2 5s linear 1s forwards paused;
+  -webkit-animation: test2 5s linear 1s forwards paused;
+  animation: test2 5s linear 1s forwards paused;
+}
+
+@-moz-keyframes test1{
+  from{
+    height: 10vw;
+    font-size: 100%;
+  }
+  to{
+    height: 0vw;
+    font-size: 0;
+  }
+}
+
+@-webkit-keyframes test1{
+  from{
+    height: 10vw;
+    font-size: 100%
+  }
+  to{
+    height: 0vw;
+    font-size: 0;
+  }
+}
+
+@keyframes test1{
+  from{
+    height: 10vw;
+    font-size: 100%;
+  }
+  to{
+    height: 0vw;
+    font-size: 0;
+  }
+}
+
+@-moz-keyframes test2{
+  from{
+    height: 0vw;
+    font-size: 0;
+  }
+  to{
+    height: 10vw;
+    font-size: 100%;
+  }
+}
+
+@-webkit-keyframes test2{
+  from{
+    height: 0vw;
+    font-size: 0;
+  }
+  to{
+    height: 10vw;
+    font-size: 100%;
+  }
+}
+
+@keyframes test2{
+  from{
+    height: 0vw;
+    font-size: 0;
+  }
+  to{
+    height: 10vw;
+    font-size: 100%;
+  }
+}
+
+#test3, #test4{
+  box-sizing: border-box;
+  text-align: center;
+  width: 10%;
+  /*height: 60;*/
+  border: 1px solid red;
+  display: inline-block;
+  vertical-align: top;
+}
