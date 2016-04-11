@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>11-April-2016 Slack Assignment</title>
+  <meta charset="utf-8">
+</head>
+<body>
+<script type="text/javascript">
+//// Twelve-Bar Blues
+// Write a function that console.logs the number 1, then "chick", then "boom", 
+// then "chick", then 2, then "chick", then "boom", then "chick" – continuing 
+// the same cycle for each number up to (including) 12.
+function chickBoom(){
+  for (var i = 1; i <= 12; i++){
+    console.log(i + " chick " + " boom " + " chick ");
+  }
+}
+
+//chickBoom();
+
+//// Sigma
+// Implement function sigma(num)* that given a number,
+// returns the sum of all positive integers up to number
+// (inclusive). Examples: sigma(3) = 6 (or 1 + 2 + 3); 
+// sigma(5) = 15 (or 1 + 2 + 3 + 4 + 5).
+function sigma(num){
+  if (num === 1){
+    return 1;
+  } else {
+    return num + sigma(num - 1);
+  }
+}
+
+//console.log(sigma(5));
+
+//// Factorial
+// Write a function factorial(num) that, given a number,
+// returns the product (multiplication) of all positive
+// integers from 1 up to number (inclusive). For example,
+// calling factorial(3) shoudl return 6 (or 1 x 2 x 3); 
+// factorial(5) = 120 (or 1 x 2 x 3 x 4 x 5).
+function fact(num){
+  if (num === 1){
+    return 1;
+  } else {
+    return num * fact(num - 1);
+  }
+}
+
+//console.log(fact(5));
+
+//// Star Art
+// Assume that you have a text field 75 characters long. You want to fill it with spaces and asterisks ('*'). 
+// 1) Write a function drawLeftStars(num) that accepts a number and prints that many asterisks. 
+// 2) Write a function drawRightStars(num) that prints 75 characters total. The stars should build from the right side. The last ‘num' characters should be asterisks; the rest of the 75 should be spaces. 
+// 3) Write a function drawCenteredStars(num) that prints 75 characters total. The stars should be centered in the 75. The middle num characters should be asterisks; the rest spaces.
+function drawLeftStars(num){
+  var stars = '';
+  for (i = 1; i <= num; i++){
+    stars += '*';
+  }
+  return stars;
+}
+
+function drawRightStars(num){
+  var stars = '';
+  for (i = 1; i <= 75-num; i++){
+    stars += '-';
+  }
+
+  for (var i = stars.length; i <= 75; i++){
+    stars += '*';
+  }
+  return stars;
+}
+
+function drawCenteredStars(num){
+  var stars = '';
+  for (var i = 1; i <= 37-(num/2); i++){
+    stars += '-';
+  }
+
+  for (var i = 1; i <= num; i++){
+    stars += '*';
+  }
+
+  for (var i = stars.length; i <= 75; i++){
+    stars += '-';
+  }
+
+  return stars;
+}
+
+// console.log(drawLeftStars(10));
+// console.log(drawRightStars(10));
+// console.log(drawCenteredStars(23));
+
+//// Character Art
+// Building on the above, derive the following functions that accept and draw the ​_given character_​, not just asterisks:
+// 4) drawLeftChars(num,char) 
+// 5) drawRightChars(num,char)
+// 6) drawCenteredChars(num,char)
+function drawLeftChars(num, char){
+  var stars = '';
+  for (i = 1; i <= num; i++){
+    stars += char;
+  }
+  return stars;
+}
+
+function drawRightChars(num, char){
+  var stars = '';
+  for (i = 1; i <= 75-num; i++){
+    stars += '-';
+  }
+
+  for (var i = stars.length; i <= 75; i++){
+    stars += char;
+  }
+  return stars;
+}
+
+function drawCenteredChars(num, char){
+  var stars = '';
+  for (var i = 1; i <= 37-(num/2); i++){
+    stars += '-';
+  }
+
+  for (var i = 1; i <= num; i++){
+    stars += char;
+  }
+
+  for (var i = stars.length; i <= 75; i++){
+    stars += '-';
+  }
+
+  return stars;
+}
+
+console.log(drawLeftChars(10, '@'));
+console.log(drawRightChars(10, '#'));
+console.log(drawCenteredChars(23, '!'));
+</script>
+</body>
+</html>
