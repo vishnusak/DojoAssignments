@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>13-APR-2016 Slack Assignment</title>
+</head>
+<body>
+<script type="text/javascript">
+  /// Soaring IQ
+// Your time with us will definitely make you smarter! Let’s say a new Dojo student entered with a modest IQ of 101. How smart would that person be at the end of the bootcamp, if his IQ rose by .01 on the first day, then went up by an additional .02 on the second day, up by .03 more on the third day, etc…. all the way until increasing by .98 on his 98th day (the end of 14 full weeks)?
+
+function soaringIQ(){
+  var num = 1;
+  var iq = 101;
+  while (num <= 98){
+    iq += (num / 100);
+    num++;
+  }
+  console.log(iq);
+}
+
+// soaringIQ();
+
+
+//// Letter Grade
+// Mr. Cerise teaches high school math. Write a function that assigns and prints a letter grade, given integer representing a score from 0 to 100? Those getting 90+ get an ‘A’, 80-89 earn ‘B’, 70-79 is a ‘C’, 60-69 should get a ‘D’, and lower than 60 receive ‘F’. For example, given 88, you should log "Score: 88. Grade: B". Given the score 61, log the string "Score: 61. Grade: D".
+
+function ceriseGrade(score){
+  switch (true){
+    case (score >= 90):
+      console.log("Score: " + score + ". Grade: A");
+      break;
+    case ((score >= 80) && (score < 90)):
+      console.log("Score: " + score + ". Grade: B");
+      break;
+    case ((score >= 70) && (score < 80)):
+      console.log("Score: " + score + ". Grade: C");
+      break;
+    case ((score >= 60) && (score < 70)):
+      console.log("Score: " + score + ". Grade: D");
+      break;
+    default:
+      console.log("Score: " + score + ". Grade: F");
+  }
+}
+
+// ceriseGrade(99);
+
+
+//// Letter Grade 2
+// For an additional challenge, add ‘-’ signs to scores in the bottom two percent of A, B, C and D scores, and “+” signs to the top two percent of B, C and D scores (sorry, Mr. Cerise never gives an A+). Given 88, console.log "Score: 88. Grade: B+". Given 61, log "Score: 61. Grade: D-“ .
+
+function ceriseGrade2(score){
+  switch (true){
+    case (score >= 90):
+      if (score > 92){
+        console.log("Score: " + score + ". Grade: A+");
+      } else {
+        console.log("Score: " + score + ". Grade: A-");
+      }
+      break;
+    case ((score >= 80) && (score < 90)):
+      if (score > 82){
+        console.log("Score: " + score + ". Grade: B+");
+      } else {
+        console.log("Score: " + score + ". Grade: B-");
+      }
+      break;
+    case ((score >= 70) && (score < 80)):
+      if (score > 72){
+        console.log("Score: " + score + ". Grade: C+");
+      } else {
+        console.log("Score: " + score + ". Grade: C-");
+      }
+      break;
+    case ((score >= 60) && (score < 70)):
+      if (score > 62){
+        console.log("Score: " + score + ". Grade: D+");
+      } else {
+        console.log("Score: " + score + ". Grade: D-");
+      }
+      break;
+    default:
+      console.log("Score: " + score + ". Grade: F");
+  }  
+}
+
+// ceriseGrade2(70);
+
+
+//// Threes and Fives
+// Create ThreesFives() that adds values from 100 and 4000000 (inclusive) if that value is evenly divisible by 3 or 5 but not both. Display the final sum in the console.
+//// Better Threes and Fives
+// Second: customize start and end values, with BetterThreesFives(start,end).Think of your above ThreesFives() function as BetterThreesFives(100,4000000).
+
+// Interesting excercise. I almost went into it blindly using a for loop!!! :) 
+// The idea is to be able to handle huge ranges like the one given (close to 4 million). As we saw previously (assignment given on 6th april - print all odd integers from -300000 to 300000 and sum all of them), going at it using a regular loop and checking each number to see if it satisfies the conditions would have take exponentially longer time to complete based on the range over which it is acting.
+// So using summation formula to get the intended results, it becomes much simpler to handle the huge ranges.
+
+// 1. within the given range, find the smallest multiple and largest multiple of 3, 5 and 15. (example: in range of 100 to 4million, smallest multiples of 3, 5 15 are 102, 100, 105 respectively; largest multiples are 3,999,999, 4,000,000, 3,999,990 respectively.). These will be the end points for each of the numbers.
+
+// 2. For each number (3, 5 and 15), individually find out sum of their multiples between these end points. for example, i did this as follows: sum of 3 multiples between 100 and 4million = sum of 3 multiples from 1 to 4 million - sum of 3 multiples from 1 to 100). There could also be other ways to do this.
+
+// 3. Now the final result will be = sum of 3 multiples + sum of 5 multiples - twice the sum of 15 multiples
+
+//This function finds the sum of first n integers
+function sigma(num){ 
+  return (num * (num + 1)/2);
+}
+
+
+function threeFives(start, end){
+  var bgn3 = start;
+  var end3 = end;
+  // find the least multiple of 3 greater than the start point. call it "begin"
+  for (var i = start; i <= start + 3;){
+    if ((i % 3) === 0){
+      bgn3 = i;
+      i = start+4;
+    } else {
+      i++
+    }
+  }
+
+  // find the greatest multiple of 3 less than the end point. call it "end"
+  for (var i = end; i >= end - 3;){
+    if ((i % 3) === 0){
+      end3 = i;
+      i = end - 4;
+    } else {
+      i--;
+    }
+  }
+
+  // find number of multiples of 3 from 1 till "begin"
+  var n3tostart = (bgn3 / 3) - 1;
+  
+  // find the sum of multiples of 3 from 1 till "begin"
+  var sum3tostart = 3 * sigma(n3tostart);
+  
+  // find number of multiples of 3 from 1 till "end"
+  var n3toend = (end3 / 3);
+
+  // find the sum of multiple of 3 from 1 till "end"
+  var sum3toend = 3 * sigma(n3toend);
+
+  // find the sum of multiples of 3 within given range.
+  var sum3 = sum3toend - sum3tostart;
+
+  var bgn5 = start;
+  var end5 = end;
+  for (var i = start; i <= start + 5;){
+    if ((i % 5) === 0){
+      bgn5 = i;
+      i = start+6;
+    } else {
+      i++
+    }
+  }
+  for (var i = end; i >= end - 5;){
+    if ((i % 5) === 0){
+      end5 = i;
+      i = end - 6;
+    } else {
+      i--;
+    }
+  }
+
+  var n5tostart = (bgn5 / 5) - 1;
+  var sum5tostart = 5 * sigma(n5tostart);
+  var n5toend = (end5 / 5);
+  var sum5toend = 5 * sigma(n5toend);
+  var sum5 = sum5toend - sum5tostart;
+
+  var bgn15 = start;
+  var end15 = end;
+  for (var i = start; i <= start + 15;){
+    if ((i % 15) === 0){
+      bgn15 = i;
+      i = start+16;
+    } else {
+      i++
+    }
+  }
+  for (var i = end; i >= end - 15;){
+    if ((i % 15) === 0){
+      end15 = i;
+      i = end - 16;
+    } else {
+      i--;
+    }
+  }
+
+  var n15tostart = (bgn15 / 15) - 1;
+  var sum15tostart = 15 * sigma(n15tostart);
+  var n15toend = (end15 / 15);
+  var sum15toend = 15 * sigma(n15toend);
+  var sum15 = sum15toend - sum15tostart;
+
+  console.log((sum3 + sum5) - (2*sum15));
+}
+
+// threeFives(100, 4000000);
+
+
+//// Generate Coin Change
+// Change is inevitable (especially when you break a twenty!). Fortunately for us, you will implement generateCoinChange(cents) that accepts a parameter for the number of cents, computes how to represent that amount with the smallest number of coins, and prints out the result. You can use a JavaScript object (associative array, created like “var myObj = { }; “) to store and return the solution.
+
+//// Generate Coin Change 2
+// Second: can you simplify/shorten your code, so that it is very inexpensive (so to speak…) to add a new coin into your system?
+
+var coins = {
+              25: ['quarter',0],
+              10: ['dime',0],
+               5: ['nickel',0],
+               1: ['penny',0]
+            };
+
+function generateCoinChange(change, cents, action, name){
+  if ((cents === undefined) || (typeof cents !== "number")){
+    console.log("the number of cents must be an integer");
+    return;
+  } else if ((action === undefined) || (typeof action !== "string") || (action !== 'a')){
+    action = "change";
+    name = "";
+    console.log("Generating Coin Change");
+  }
+
+  if (action === 'a'){
+    if (name === undefined){
+      console.log("Please provide a name for this coin you want to add");
+      return;
+    } else {
+      change[cents] = [name,0];
+      console.log("New coin '" + name + "' added. Value is '" + cents + "' cents");
+    }
+  } else {
+    var inp = cents;
+    var denom = Object.keys(change).sort(function(a,b){return b-a});
+    var only_penny = false;
+    var sumofcoins = 0;
+    while (! only_penny){
+      for (var i = 0; i < denom.length; i++){
+        if (denom[i] <= inp){
+          if (denom[i] == 1){
+            change[denom[i]][1] = inp;
+            only_penny = true;
+          } else {
+            change[denom[i]][1]++;
+            inp -= denom[i];
+            i = denom.length;
+          }
+        }
+      }
+    }
+    for (var i = 0; i < denom.length; i++){
+      sumofcoins += change[denom[i]][1];
+    }
+    console.log("The coin change for " + cents + " cents:");
+    console.log("Number of coins in change: " + sumofcoins);
+    for (var i = 0; i < denom.length; i++){
+      if (change[denom[i]][1] != 0){
+        console.log(change[denom[i]][0] + " (" + denom[i] + " cents): " + change[denom[i]][1]);
+      }
+    }
+  }
+}
+
+generateCoinChange(coins, 73);
+</script>
+</body>
+</html>
