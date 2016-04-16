@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>15-Apr-2016 Slack Assignment</title>
+    <meta name="description" content="This page has the javascript solutions for todays challenges">
+    <meta name="author" content="vishnu"/>
+  </head>
+  <body>
+    <script type="text/javascript">
+    //// Messy Math:
+    // Create a function messyMath(num) that will return the following sum: add all integers from 0 up to given number, except for the following special cases of our 'count' value:
+    // 1.  If current count (not num) is evenly divisible by 3, skip (don’t include in sum).
+    // 2.  Otherwise, if current count is evenly divisible by 7, include it twice.
+    // 3.  Regardless of the above, if count is exactly 1/3 of num, return -1 immediately.
+    // Example: given num is 4, return 7. Given 8, return 34. Given 15, return -1.
+    function sigma(n){
+      return (n * (n + 1)/2);
+    }
+
+    function messyMath(num){
+      switch (true){
+        case (num <= 0):
+          console.log("Range is not positive. Please enter a positive integer");
+          break;
+        case (num === 1):
+          console.log("The SUM is: 1");
+          break;
+        case (num === 2):
+          console.log("The SUM is: 3");
+          break;
+        case ((num % 3) === 0):
+          console.log("The SUM is: -1");
+          break;
+        default:
+          var sumAll = sigma(num);
+          var i      = 0;
+
+          if (num >= 7){
+            for (i = num; (i % 7) !== 0; i--){}
+            sumAll += 7 * (sigma(i / 7));
+          }
+
+          console.log("The SUM is: " + sumAll);
+      }
+    }
+
+    // messyMath();
+
+    //// Rockin' the Dojo Sweatshirt
+    // Ever since you arrived at the Dojo, you wanted one of those cool Coding Dojo sweatshirts – maybe even more than one. Let’s say they cost $20 (including tax), but friendly Josh will give a 9% discount if you buy two, or a nice 19% discount if you buy three, or a sweet 35% discount if you buy four or more. He only accepts cash and doesn’t have coins, so you have to round up to the nearest dollar. Build a function sweatshirtPricing(num) that, given how many sweatshirts you want, returns the cost.
+    function sweatshirtPricing(num){
+      var cost = 20;
+      switch (true){
+        case (num === 1):
+          break;
+        case (num === 2):
+          cost *= num * 0.91;
+          break;
+        case (num === 3):
+          cost *= num * 0.81;
+          break;
+        default:
+          cost *= num * 0.65;
+      }
+      if ((cost - Math.floor(cost)) >= 0.5){
+        console.log("The cost of " + num + " tee-shirts is $"+ Math.ceil(cost));
+      } else {
+        console.log("The cost of " + num + " tee-shirts is $"+ Math.floor(cost));
+      }
+    }
+
+    // sweatshirtPricing(4);
+
+
+    //// Statistics Until Doubles
+    // Implement a ’20-sided die’ that randomly returns integers between 1 and 20 inclusive. Roll these, tracking statistics until you get a value twice in a row. Display number of rolls, min, max, and average.
+    function dieStats(){
+      var done = false;
+      var prev = 0;
+      var min = 1;
+      var max = 0;
+      var count = 0;
+      var total = 0;
+      var roll = 0;
+      while (!done){
+        roll = Math.floor((Math.random() * 20) + 1);
+        total += roll;
+        min = ((roll < min) ? roll : min);
+        max = ((roll > max) ? roll : max);
+        count++;
+        if (roll === prev){
+          done = true;
+        } else {
+          prev = roll;
+        }
+      }
+      console.log("Got a value twice: " + roll);
+      console.log("Statistics:");
+      console.log("Number of rolls: " + count);
+      console.log("            Min: " + min);
+      console.log("            Max: " + max);
+      console.log("        Average: " + (total/count));
+    }
+
+    // dieStats();
+
+
+    //// Num Is Prime
+    // Given an integer, return whether it is a prime number. Prime numbers are only evenly divisible by themselves and 1. For this challenge, please write a naive straightforward implementation. More optimized versions are not as easy to understand. If you do want to pursue more optimized versions as well, then include the code and tests that you used to quantify the performance improvements.
+
+    // If 'n' is the number we are checking, the straight forward method is to use a for loop from 2 to (n-1) and check ( n % counter) = 0 for all values of the loop. While this will work for absolutely all cases, we can also see that for large numbers, it will keep going on for some time before it finishes.
+    // So the other method to check for prime is to cut the number of comparisons. This we do by finding the square root of the given number and testing until the closest lower integer to that square root. For example, if we are checking 47, its square root is 6.856. We also know that 6x6 = 36 and 7x7 = 49, so if we check 47 with 2 thru 6, we will get our answer.
+    function isPrime(num){
+      var prime = true;
+      for (var i = 2; i <= Math.floor(Math.sqrt(num)); i++){
+        if ((num % i) === 0){
+          prime = false;
+          break;
+        }
+      }
+      if (prime){
+        console.log(num + " is Prime");
+      } else {
+        console.log(num + " is NOT Prime");
+      }
+    }
+
+    // isPrime(241);
+
+
+    //// Fibonacci (iterative)
+    // Implement the Fibonacci function, a sequence where each number is sum of previous two. The Fibonacci numbers at indices 0 and 1, coincidentally, have values of 0 and 1. Your function should accept one argument, the index into the Fibonacci sequence (0 means the first number in the sequence, 4 means the fifth number in the sequence, etc). Examples: fibonacci(2) = 1 (0+1), fibonacci(3) = 2 (1+1), fibonacci(4) = 3 (1+2).
+
+    // this uses the recursive function call to generate the fibonacci number at a given index. Based on tests, by the time the index we want starts approaching 50, the computer starts getting fits. My last successful completion: num = 50: Fibonacci number =  12586269025; number of times the function was called recursively = 40730022147
+    var count = 0;
+    function fibonacci(num){
+      count++;
+      switch (num){
+        case 0:
+          return 0;
+          break;
+        case 1:
+          return 1;
+          break;
+        default:
+          return fibonacci(num-1) + fibonacci(num-2);
+      }
+    }
+    // var idx = 50;
+    // console.log("Fibonacci number at index " + idx + ": " + fibonacci(idx));
+    // console.log("Number of times recursed: " + count);
+
+    // The easier way of doing this: generate the array of fibonacci numbers till the required index and display the last element of the array. Much faster!!! So much faster - like walking vs teleporting!!!
+    function fib(num){
+      var fibArr = [];
+      for (var i = 0; i <= num; i++){
+        if (i === 0){
+          fibArr.push(0);
+        } else if (i === 1){
+          fibArr.push(1);
+        } else {
+          fibArr.push(fibArr[i-1] + fibArr[i-2]);
+        }
+      }
+      console.log("Fibonacci number at index " + num + ": " + fibArr[num]);
+    }
+
+    // fib(50);
+
+    //// Extract-o-matic
+    // Create the extractDigit(num,digitNum) function that given a number and a digit number, returns the numeral value of that digit. 0 represents the ones digit, 1 represents the tens digit, etc. Given (1824,2), return 8. Given (1824,0), return 4. Given (1824,7), return 0.
+
+    // Optional: also handle negative digits, where -1 represents tenths (0.x), -2 represents hundredths (0.0x), etc. Given (123.45,-1), return 4.
+
+    // Optional part 2: handle negative 'num', doing what you think is appropriate.
+    function extractDigit(num, digNum){
+      console.log("The Number is " + num);
+      console.log("The Digit is " + digNum);
+
+      if (num < 0){
+        num *= -1;
+      }
+      var numArr = ("" + num).split('.');
+      var numArr1 = [];
+
+      if (numArr.length === 1){
+        numArr = (''+num).split('');
+      } else {
+        numArr = (''+numArr[0]).split('');
+        numArr1 = (''+numArr[1]).split('');
+      }
+
+      if (digNum < 0){
+        if (numArr1.length === 0){
+          console.log("The digit asked for is 0");
+        } else {
+          if ((digNum*(-1)) > numArr1.length){
+            console.log("The digit asked for is 0");
+          } else {
+            console.log("The digit asked for is " + Number(numArr1[(digNum + 1)*(-1)]));
+          }
+        }
+      } else {
+        if (Number(numArr[numArr.length - 1 - digNum])){
+          console.log("The digit asked for is " + Number(numArr[numArr.length - 1 - digNum]));
+        } else {
+          console.log("The digit asked for is 0");
+        }
+      }
+    }
+
+    // extractDigit(-1827.29814237, 2);
+
+    //// Clock Hand Angles
+    // Analog clocks have rotating hands of hours, minutes and seconds. Create function clockHandAngles(secs) that, given number of seconds since 12:00:00, will print the angles (in degrees) of the hour, minute minute and second hands. As quick review, there are 360 degs in a full arc rotation.
+    //
+    // Optional: If there were a "week hand" that fully rotated once each week, what would its relation to the hour hand be? Add this to what you print, as well.
+
+    //1 week = 7 days = 7*24 hrs = 7*24*60 mins = 7*24*60*60 secs
+    //Sec Hand - 60 sec = 360 deg => 1sec = 6 deg
+    //Min Hand - 60 mins = 360 deg => 1min = 6 deg => 1sec = 1/10 deg
+    //Hr Hand - 12 hrs = 360 deg => 1hr = 30 deg => 1min = 1/2 deg => 1sec = 1/120 deg
+    //Week Hand - 7 days = 360 deg => 1day = 360/7 deg => 1hr = 360/(7*24) deg => 1min = 360/(7*24*60) deg => 1sec = 360/(7*24*60*60) deg
+
+    function clockHandAngles(secs){
+      var hrs = Math.floor(secs / 3600);
+      var mins = Math.floor((secs % 3600)/60);
+      var seconds = Math.floor((secs % 3600) % 60);
+      var days = 0;
+
+      console.log("The time is: "+ hrs +"hr:"+mins+"min:"+seconds+"sec");
+      console.log("The angle of Seconds hand: "+(seconds * 6));
+      console.log("The angle of Minutes hand: "+((mins * 6) + (seconds/10)));
+      if (hrs > 12){
+        hrs = Math.floor(hrs % 12);
+        if (hrs > 24){
+          days = Math.floor(hrs/24)
+        }
+      }
+      console.log("The angle of Hours hand: "+((hrs * 30) + (mins/2) + (seconds/120)));
+      console.log("The angle of Weeks hand: "+((days * 360/7) + (hrs * 360/(7*24)) + (mins * 360/(7*24*60)) + (seconds*360/(7*24*60))));
+    }
+
+    // clockHandAngles(8000);
+
+
+    //// Most Significant Digit
+    // Given a number of any size, return the most significant digit. Don't use strings. Hint: use WHILE to bring most significant digit into range to use modulus (%).
+
+  function mostSig(num){
+    var div = Math.floor(num / 10);
+    var mod = Math.floor(num % 10);
+
+    while (div >= 10){
+      [div, mod] = [Math.floor(div/10), Math.floor(div%10)];
+    }
+
+    if (div === 0){
+      console.log("The Most Significant Digit of " + num + " is " + mod);
+    } else {
+      console.log("The Most Significant Digit of " + num + " is " + div);
+    }
+  }
+
+  // mostSig(100000000);
+  //// Sum to One Digit
+  // Kaitlin sees beauty in numbers, but also believes that less is more. Implement sumToOne(num) that sums a given integer’s digits repeatedly until the sum is only one digit. Return that one-digit result. Example: sumToOne(928) returns 1, because 9+2+8 = 19, then 1+9 = 10, then 1+0 = 1.
+  //
+  // Optional: what will you do in the case of negative numbers?
+  //
+  // Optional part 2: what will you do (if anything!) in the case of fractional values?
+  function sumToOne(num){
+    if (num < 0){
+      num *= -1;
+    }
+
+    var sumAll = 0;
+    var numArr = (''+num).split('.');
+
+    if (numArr.length === 2){
+      numArr = numArr[0].split('').concat(numArr[1].split(''));
+    } else {
+      numArr = numArr[0].split('');
+    }
+
+    for (var i = 0; i < numArr.length; i++){
+      sumAll += Number(numArr[i]);
+    }
+
+    if (sumAll < 10){
+      console.log("The sum of all digits is " + sumAll);
+    } else {
+      sumToOne(sumAll);
+    }
+  }
+
+  // sumToOne(-9567438.123456);
+
+
+  //// Where is Claire?
+  // For this challenge we will create four functions (reset, move, xDistance and yDistance) to track the travels of Claire, a wanderer. Calling reset() will return Claire home to the origin at (0,0). The move(xDistance,yDistance) function moves her by that amount. Finally, xDistance() and yDistance() will return how far Claire is from home, in X and Y directions respectively. After the three calls of reset(), move(1,-2), and move(3,1), calling xDistance() should return 4, and yDistance() should return -1.
+  //
+  // Optional: create a totalDistance function that incorporates both x and y.
+  // With this, assume Claire moves diagonally to get home (perhaps rescued
+  // by a “helicopter mom”?).
+
+  //I am writing this using sessionStorage.setItem and sessionStorage.getItem methods to access Claire's location info. These are used to store data within the browser so that a little bit of data persistance can be achieved across page refreshes. Once the tab/browser window is closed, the data is lost. From what I can gather, these methods are fairly new and might not be supported across browsers and browser versions
+  function get(item){
+    return sessionStorage.getItem(item);
+  }
+
+  function set(item,num){
+    return sessionStorage.setItem(item,num);
+  }
+
+  function reset(){
+    var totalX = get('totX');
+    if (totalX === null){
+      set('totX',0);
+    } else {
+      totalX += get('curx');
+      set('totX', totalX);
+    }
+
+    var totalY = get('totY');
+    if (totalY === null){
+      set('totY',0);
+    } else {
+      totalY += get('curY');
+      set('totY', totalY);
+    }
+
+    set('homeX',0);
+    set('homeY',0);
+
+    set('curX',0);
+    set('curY',0);
+  }
+
+  function move(x, y){
+    set('curX',x);
+    set('curY',y);
+  }
+
+  // reset();
+
+  // console.log("Claire's position now is (" + get('curX') + "," + get('curY') + ")");
+
+    </script>
+  </body>
+</html>
