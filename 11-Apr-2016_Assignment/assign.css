@@ -1,0 +1,204 @@
+html{
+  margin: 0;
+  padding: 0;
+  font-family: tahoma, sans-serif;
+  /*font-size: 16px;*/
+  font-size: 1vw;
+  background-color: #4D4D4D;
+}
+
+body{
+  box-sizing: border-box;
+  position: absolute;
+  left: 4vw;
+  top: 4vh;
+  width: 90vw;
+  /*height: 90vh;*/
+  /*height: 50vh;*/
+  border-radius: 1vw;
+  background-color: linen;
+}
+
+header{
+  box-sizing: inherit;
+  height: 8vh;
+  margin: auto;
+  font-size: 2vw;
+  font-weight: bold;
+  text-align: center;
+  line-height: 8vh;
+  color: navy;
+  /*border-bottom: 0.0625vw solid darkgray;*/
+}
+
+main{
+  position: absolute;
+  box-sizing: border-box;
+  /*top: 0vh;*/
+  left: 0vw; /*change to 18.5vw*/
+  /*box-sizing: border-box;*/
+  /*border: 1px solid black;*/
+  width: 90vw; /*change to 70vw*/
+  /*border: .25vw double white;*/
+}
+
+.challenge{
+  display: inline-block;
+}
+
+.card{
+  margin: 4vh 1vw;
+  width: 15.73vw;
+  height: 30vh;
+  cursor: pointer;
+}
+  .card p{
+    margin: 1vw 0;
+    padding: 0;
+    line-height: 26vh;
+    background-color: linen;
+    text-align: center;
+    font-weight: bold;
+  }
+
+.fullpage{
+  display: none;
+  box-sizing: border-box;
+  padding: 1vh 1vw;
+  border-width: 0.5vw;
+  border-style: double;
+}
+
+  .fullpage h2{
+    color: navy;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .fullpage pre{
+    display: block;
+    margin: auto;
+    width: 60%;
+    overflow-wrap: break-word;
+  }
+
+  .fullpage p{
+    box-sizing: border-box;
+    background-color: black;
+    height: 10vh;
+    padding: 3vh 1vw;
+    color: white;
+    text-align: center;
+
+  }
+
+  .fullpage button{
+    border-radius: 1vw;
+    padding: 1vh 1vw;
+    color: linen;
+  }
+
+.menu{
+  box-sizing: border-box;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  width: 0vw; /* change it to 17vw */
+  height: 82vh; /* change it to 82vh */
+  border-radius: 0 0 0 1vw;
+  font-size: 0vw; /* change it to 1.2vw */
+  display: table;
+}
+
+.menu li{
+  line-height: 5vh;
+  margin: 3.5vh 0;
+  text-align: right;
+  padding: 0 1vw;
+  color: linen;
+  width: 0vw;
+  border-radius: 0 50% 50% 0;
+  display: none;
+}
+
+/*#cd1{
+  background-color: orange;
+  box-shadow: 0vw 0.2vh 1.75vw orange;
+  margin-left: 2.8vw;
+}
+
+#cd2{
+  background-color: blue;
+  box-shadow: 0vw 0.2vh 1.75vw blue;
+}
+#cd3{
+  background-color: red;
+  box-shadow: 0vw 0.2vh 1.75vw red;
+}
+#cd4{
+  background-color: green;
+  box-shadow: 0vw 0.2vh 1.75vw green;
+}
+
+#cd5{
+  background-color: purple;
+  box-shadow: 0vw 0.2vh 1.75vw purple;
+}
+*/
+
+/*.menu li span{
+  position: absolute;
+  color: linen;
+  font-size: 0.75vw;
+  margin-left: auto;
+  text-align: left;
+  line-height: 5vh;
+  vertical-align: middle;
+  background-color: black;
+  width: 5vw;
+}
+*/
+/*ul{
+  box-sizing: inherit;
+  width: 0;
+  height: 30em;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 11em;
+  text-align: center;
+  color: transparent;
+  background-color: green;
+  cursor: pointer;
+}
+
+ul:hover{
+  text-shadow: 1em 1em 2em navy;
+}
+
+.back{
+  border-radius: 0 0 0 0.3125em;
+  position: absolute;
+  top: 3.75em;
+}
+
+.fwd{
+  border-radius: 0 0 0.3125em 0;
+  position: absolute;
+  top: 3.75em;
+  right: 3.2em;
+}
+
+ul li{
+  margin: 0;
+  padding: 0;
+  font-size: 3.5em;
+  font-weight: bold;
+}
+
+hr{
+  border-color: steelblue;
+}
+
+*/

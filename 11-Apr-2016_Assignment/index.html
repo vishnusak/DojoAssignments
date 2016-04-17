@@ -3,143 +3,288 @@
 <head>
   <title>11-April-2016 Slack Assignment</title>
   <meta charset="utf-8">
+  <meta name="description" content="Page for algorithm assignment on 11 april. first time using jQuery">
+  <meta name="author" content="vishnu">
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script> <!-- This is the jQuery CDN -->
+  <script type="text/javascript" src="assign.js"></script>
+  <link rel="stylesheet" type="text/css" href="assign.css">
 </head>
 <body>
-<script type="text/javascript">
-//// Twelve-Bar Blues
-// Write a function that console.logs the number 1, then "chick", then "boom", 
-// then "chick", then 2, then "chick", then "boom", then "chick" – continuing 
-// the same cycle for each number up to (including) 12.
-function chickBoom(){
-  for (var i = 1; i <= 12; i++){
-    console.log(i + " chick " + " boom " + " chick ");
-  }
-}
+  <header>11-APRIL-2016 Slack Assignment</header>
+  <main>
+    <div class="challenge" id="c1">
+      <div class="card" id="cd1">
+        <p>"Twelve-Bar Blues"</p>
+      </div>
+      <div class="fullpage">
+        <h2>Twelve-Bar Blues</h2>
+        <h3>Write a function that console.logs the number 1, then "chick", then "boom", then "chick", then 2, then "chick", then "boom", then "chick" – continuing the same cycle for each number up to (including) 12.</h3>
+        <hr>
+        <pre>
+          function chickBoom(){
+            for (var i = 1; i <= 12; i++){
+              console.log(i + " chick " + " boom " + " chick ");
+            }
+          }
+        </pre>
+        <hr>
+        <label class="btnlbl"><button id="b1">Play Twelve-Bar Blues</button></label>
+        <p id="p1"></p>
+      </div>
+    </div>
+    <div class="challenge" id="c2">
+      <div class="card" id="cd2">
+        <p>"Sigma"</p>
+      </div>
+      <div class="fullpage">
+        <h2>Sigma</h2>
+        <h3>Implement function sigma(num)* that given a number, returns the sum of all positive integers up to number (inclusive). Examples: sigma(3) = 6 (or 1 + 2 + 3); sigma(5) = 15 (or 1 + 2 + 3 + 4 + 5).</h3>
+        <hr>
+        <pre>
 
-//chickBoom();
+          function sigma(num){
+            if (num === 1){
+              return 1;
+            } else {
+              return num + sigma(num - 1);
+            }
+          }
+        </pre>
+        <hr>
+        <label>
+          Enter Number: <input type="number" id="inp2" autofocus required>
+        </label>
+        <label class="btnlbl"><button id="b2">Sigma</button></label>
+        <p id="p2"></p>
+      </div>
+    </div>
+    <div class="challenge" id="c3">
+      <div class="card" id="cd3">
+        <p>"Factorial"</p>
+      </div>
+      <div class="fullpage"> 
+        <h2>Factorial</h2>
+        <h3>Write a function factorial(num) that, given a number, returns the product (multiplication) of all positive integers from 1 up to number (inclusive). For example, calling factorial(3) shoudl return 6 (or 1 x 2 x 3); factorial(5) = 120 (or 1 x 2 x 3 x 4 x 5).</h3>
+        <hr>
+        <pre>
 
-//// Sigma
-// Implement function sigma(num)* that given a number,
-// returns the sum of all positive integers up to number
-// (inclusive). Examples: sigma(3) = 6 (or 1 + 2 + 3); 
-// sigma(5) = 15 (or 1 + 2 + 3 + 4 + 5).
-function sigma(num){
-  if (num === 1){
-    return 1;
-  } else {
-    return num + sigma(num - 1);
-  }
-}
+          function factorial(num){
+            if (num === 1){
+              return 1;
+            } else {
+              return num * factorial(num - 1);
+            }
+          }
+        </pre>
+        <hr>
+        <label>
+          Enter Number: <input type="number" id="inp3" autofocus required>
+        </label>      
+        <label class="btnlbl"><button id="b3">Factorial</button></label>
+        <p id="p3"></p>
+      </div>  
+    </div>
+    <div class="challenge" id="c4">
+      <div class="card" id="cd4">
+        <p>"Left Stars"</p>
+      </div>
+      <div class="fullpage">
+        <h2>StarArt - 1</h2>
+        <h3>Write a function drawLeftStars(num) that accepts a number and prints that many asterisks.</h3>
+        <hr>
+        <pre>
 
-//console.log(sigma(5));
+          function drawLeftStars(num){
+            var stars = '';
+            for (i = 1; i <= num; i++){
+              stars += '*';
+            }
+            console.log(stars);
+          }
+        </pre>
+        <hr>
+        <label>
+          Enter Number of Stars: <input type="number" id="inp4" autofocus required>
+        </label>              
+        <label class="btnlbl"><button id="b4">Left Stars</button></label>
+        <p id="p4"></p>
+      </div>
+    </div>
+    <div class="challenge" id="c5">
+      <div class="card" id="cd5">
+        <p>"Right Stars"</p>
+      </div>
+      <div class="fullpage">
+        <h2>StarArt-2</h2>
+        <h3>Write a function drawRightStars(num) that prints 75 characters total. The stars should build from the right side. The last ‘num' characters should be asterisks; the rest of the 75 should be spaces.</h3>
+        <hr>
+        <pre>
 
-//// Factorial
-// Write a function factorial(num) that, given a number,
-// returns the product (multiplication) of all positive
-// integers from 1 up to number (inclusive). For example,
-// calling factorial(3) shoudl return 6 (or 1 x 2 x 3); 
-// factorial(5) = 120 (or 1 x 2 x 3 x 4 x 5).
-function fact(num){
-  if (num === 1){
-    return 1;
-  } else {
-    return num * fact(num - 1);
-  }
-}
+          function drawRightStars(num){
+            var stars = '';
+            for (i = 1; i <= 75-num; i++){
+              stars += '-';
+            }
 
-//console.log(fact(5));
+            for (var i = stars.length; i <= 75; i++){
+              stars += '*';
+            }
+            console.log(stars);
+          }
+        </pre>
+        <hr>
+        <label>
+          Enter Number of Stars: <input type="number" id="inp5" autofocus required>
+        </label>              
+        <label class="btnlbl"><button id="b5">Right Stars</button></label>
+        <p id="p5"></p>
+      </div>
+    </div>
+    <div class="challenge" id="c6">
+      <div class="card" id="cd6">
+        <p>"Center Stars"</p>
+      </div>
+      <div class="fullpage">
+        <h2>StarArt-3</h2>
+        <h3>Write a function drawCenteredStars(num) that prints 75 characters total. The stars should be centered in the 75. The middle num characters should be asterisks; the rest spaces.</h3>
+        <hr>
+        <pre>
 
-//// Star Art
-// Assume that you have a text field 75 characters long. You want to fill it with spaces and asterisks ('*'). 
-// 1) Write a function drawLeftStars(num) that accepts a number and prints that many asterisks. 
-// 2) Write a function drawRightStars(num) that prints 75 characters total. The stars should build from the right side. The last ‘num' characters should be asterisks; the rest of the 75 should be spaces. 
-// 3) Write a function drawCenteredStars(num) that prints 75 characters total. The stars should be centered in the 75. The middle num characters should be asterisks; the rest spaces.
-function drawLeftStars(num){
-  var stars = '';
-  for (i = 1; i <= num; i++){
-    stars += '*';
-  }
-  return stars;
-}
+          function drawCenteredStars(num){
+            var stars = '';
+            for (var i = 1; i <= 37-(num/2); i++){
+              stars += '-';
+            }
 
-function drawRightStars(num){
-  var stars = '';
-  for (i = 1; i <= 75-num; i++){
-    stars += '-';
-  }
+            for (var i = 1; i <= num; i++){
+              stars += '*';
+            }
 
-  for (var i = stars.length; i <= 75; i++){
-    stars += '*';
-  }
-  return stars;
-}
+            for (var i = stars.length; i <= 75; i++){
+              stars += '-';
+            }
+            console.log(stars);
+          }        
+        </pre>
+        <hr>
+        <label>
+          Enter Number of Stars: <input type="number" id="inp6" autofocus required>
+        </label>              
+        <label class="btnlbl"><button id="b6">Center Stars</button></label>
+        <p id="p6"></p>
+      </div>
+    </div>
+    <div class="challenge" id="c7">
+      <div class="card" id="cd7">
+        <p>"Left Chars"</p>
+      </div>
+      <div class="fullpage">
+        <h2>Character Art - 1</h2>
+        <h3>1) Write a function drawLeftChars(num,char) that accepts a number and character and prints that character that number of time.</h3>
+        <hr>
+        <pre>
 
-function drawCenteredStars(num){
-  var stars = '';
-  for (var i = 1; i <= 37-(num/2); i++){
-    stars += '-';
-  }
+          function drawLeftChars(num, char){
+            var stars = '';
+            for (i = 1; i <= num; i++){
+              stars += char;
+            }
+            console.log(stars);
+          }
+        </pre>
+        <hr>
+        <label>
+          Enter Number of Chars: <input type="number" id="inp71" autofocus required>
+        </label>
+        <label>
+          Enter Char: <input type="text" id="inp72" required>
+        </label>
+        <label class="btnlbl"><button id="b7">Left Chars</button></label>
+        <p id="p7"></p>
+      </div>
+    </div>
+    <div class="challenge" id="c8">
+      <div class="card" id="cd8">
+        <p>"Right Chars"</p>
+      </div>
+      <div class="fullpage">
+        <h2>Character Art - 2</h2>
+        <h3>Write a function drawRightChars(num,symbol) that prints 75 characters total. The symbols should build from the right side. The last ‘num' characters should be symbols; the rest of the 75 should be spaces. </h3>
+        <hr>
+        <pre>
 
-  for (var i = 1; i <= num; i++){
-    stars += '*';
-  }
+          function drawRightChars(num, char){
+            var stars = '';
+            for (i = 1; i <= 75-num; i++){
+              stars += '-';
+            }
 
-  for (var i = stars.length; i <= 75; i++){
-    stars += '-';
-  }
+            for (var i = stars.length; i <= 75; i++){
+              stars += char;
+            }
+            return stars;
+          }
+        </pre>
+        <hr>
+        <label>
+          Enter Number of Chars: <input type="number" id="inp81" autofocus required>
+        </label>
+        <label>
+          Enter Char: <input type="text" id="inp82" required>
+        </label>        
+        <label class="btnlbl"><button id="b8">Right Chars</button></label>
+        <p id="p8"></p>
+      </div>
+    </div>
+    <div class="challenge" id="c9">
+      <div class="card" id="cd9">
+        <p>"Center Chars"</p>
+      </div>
+      <div class="fullpage">
+        <h2>Character Art - 3</h2>
+        <h3>Write a function drawCenteredChars(num, symbol) that prints 75 characters total. The symbol should be centered in the 75. The middle num characters should be 'symbol'; the rest spaces.</h3>
+        <hr>
+        <pre>
 
-  return stars;
-}
+          function drawCenteredChars(num, char){
+            var stars = '';
+            for (var i = 1; i <= 37-(num/2); i++){
+              stars += '-';
+            }
 
-// console.log(drawLeftStars(10));
-// console.log(drawRightStars(10));
-// console.log(drawCenteredStars(23));
+            for (var i = 1; i <= num; i++){
+              stars += char;
+            }
 
-//// Character Art
-// Building on the above, derive the following functions that accept and draw the ​_given character_​, not just asterisks:
-// 4) drawLeftChars(num,char) 
-// 5) drawRightChars(num,char)
-// 6) drawCenteredChars(num,char)
-function drawLeftChars(num, char){
-  var stars = '';
-  for (i = 1; i <= num; i++){
-    stars += char;
-  }
-  return stars;
-}
+            for (var i = stars.length; i <= 75; i++){
+              stars += '-';
+            }
 
-function drawRightChars(num, char){
-  var stars = '';
-  for (i = 1; i <= 75-num; i++){
-    stars += '-';
-  }
-
-  for (var i = stars.length; i <= 75; i++){
-    stars += char;
-  }
-  return stars;
-}
-
-function drawCenteredChars(num, char){
-  var stars = '';
-  for (var i = 1; i <= 37-(num/2); i++){
-    stars += '-';
-  }
-
-  for (var i = 1; i <= num; i++){
-    stars += char;
-  }
-
-  for (var i = stars.length; i <= 75; i++){
-    stars += '-';
-  }
-
-  return stars;
-}
-
-console.log(drawLeftChars(10, '@'));
-console.log(drawRightChars(10, '#'));
-console.log(drawCenteredChars(23, '!'));
-</script>
+            return stars;
+          }
+        </pre>
+        <hr>
+        <label>
+          Enter Number of Chars: <input type="number" id="inp91" autofocus required>
+        </label>
+        <label>
+          Enter Char: <input type="text" id="inp92" required>
+        </label>
+        <label class="btnlbl"><button id="b9">Center Chars</button></label>
+        <p id="p9"></p>
+      </div>
+    </div>
+  </main>
+  <ul class="menu">
+    <li>"Twelve-Bar Blues"</li>
+    <li>"Sigma"</li>
+    <li>"Factorial"</li>
+    <li>"Left Stars"</li>
+    <li>"Right Stars"</li>
+    <li>"Center Stars"</li>
+    <li>"Left Chars"</li>
+    <li>"Right Chars"</li>
+    <li>"Center Chars"</li>
+  </ul>  
 </body>
 </html>
