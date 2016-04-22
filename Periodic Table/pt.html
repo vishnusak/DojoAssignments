@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+  <title>Periodic Table</title>
+  <meta charset="utf-8">
+  <meta name="description" content="a periodic table of elements page. This is built so that I can try JSON parsing, RWD and for learning/understanding jQuery in general">
+  <meta name="author" content="vishnu">
+  <script type="text/javascript" src="scripts/jquery-2.2.3.min.js"></script>
+  <script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="scripts/pt.js"></script>
+  <!-- ptdata.js is the file containing periodic table data stored as javascript string -->
+  <script type="text/javascript" src="data/ptdata.js"></script>
+  <!-- pthistory.js is the file containing periodic table historic data stored as javascript string -->
+  <script type="text/javascript" src="data/pthistory.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="styles/pt.css">
+</head>
+<body>
+  <header>
+    <h1>Periodic Table of Elements</h1>
+    <p>(Click here)</p>
+  </header>
+  <section id="left">
+    <main>
+      <div class="row">
+        <div class="col-data" id="e1">
+        </div>
+        <div class="empty-16"></div>
+        <div class="col-data" id="e2"></div>
+      </div>
+      <div class="row">
+        <div class="col-data" id="e3"></div>
+        <div class="col-data" id="e4"></div>
+        <div class="empty-10"></div>
+        <div class="col-data" id="e5"></div>
+        <div class="col-data" id="e6"></div>
+        <div class="col-data" id="e7"></div>
+        <div class="col-data" id="e8"></div>
+        <div class="col-data" id="e9"></div>
+        <div class="col-data" id="e10"></div>
+      </div>
+      <div class="row">
+        <div class="col-data" id="e11"></div>
+        <div class="col-data" id="e12"></div>
+        <div class="empty-10"></div>
+        <div class="col-data" id="e13"></div>
+        <div class="col-data" id="e14"></div>
+        <div class="col-data" id="e15"></div>
+        <div class="col-data" id="e16"></div>
+        <div class="col-data" id="e17"></div>
+        <div class="col-data" id="e18"></div>
+      </div>
+      <div class="row">
+        <div class="col-data" id="e19"></div>
+        <div class="col-data" id="e20"></div>
+        <div class="col-data" id="e21"></div>
+        <div class="col-data" id="e22"></div>
+        <div class="col-data" id="e23"></div>
+        <div class="col-data" id="e24"></div>
+        <div class="col-data" id="e25"></div>
+        <div class="col-data" id="e26"></div>
+        <div class="col-data" id="e27"></div>
+        <div class="col-data" id="e28"></div>
+        <div class="col-data" id="e29"></div>
+        <div class="col-data" id="e30"></div>
+        <div class="col-data" id="e31"></div>
+        <div class="col-data" id="e32"></div>
+        <div class="col-data" id="e33"></div>
+        <div class="col-data" id="e34"></div>
+        <div class="col-data" id="e35"></div>
+        <div class="col-data" id="e36"></div>
+      </div>
+      <div class="row">
+        <div class="col-data" id="e37"></div>
+        <div class="col-data" id="e38"></div>
+        <div class="col-data" id="e39"></div>
+        <div class="col-data" id="e40"></div>
+        <div class="col-data" id="e41"></div>
+        <div class="col-data" id="e42"></div>
+        <div class="col-data" id="e43"></div>
+        <div class="col-data" id="e44"></div>
+        <div class="col-data" id="e45"></div>
+        <div class="col-data" id="e46"></div>
+        <div class="col-data" id="e47"></div>
+        <div class="col-data" id="e48"></div>
+        <div class="col-data" id="e49"></div>
+        <div class="col-data" id="e50"></div>
+        <div class="col-data" id="e51"></div>
+        <div class="col-data" id="e52"></div>
+        <div class="col-data" id="e53"></div>
+        <div class="col-data" id="e54"></div>
+      </div>
+      <div class="row">
+        <div class="col-data" id="e55"></div>
+        <div class="col-data" id="e56"></div>
+        <div class="empty-1">57 - 71<br />Lanthanide Series</div>
+        <div class="col-data" id="e72"></div>
+        <div class="col-data" id="e73"></div>
+        <div class="col-data" id="e74"></div>
+        <div class="col-data" id="e75"></div>
+        <div class="col-data" id="e76"></div>
+        <div class="col-data" id="e77"></div>
+        <div class="col-data" id="e78"></div>
+        <div class="col-data" id="e79"></div>
+        <div class="col-data" id="e80"></div>
+        <div class="col-data" id="e81"></div>
+        <div class="col-data" id="e82"></div>
+        <div class="col-data" id="e83"></div>
+        <div class="col-data" id="e84"></div>
+        <div class="col-data" id="e85"></div>
+        <div class="col-data" id="e86"></div>
+      </div>
+      <div class="row">
+        <div class="col-data" id="e87"></div>
+        <div class="col-data" id="e88"></div>
+        <div class="empty-1">89 - 103<br />Actinide Series</div>
+        <div class="col-data" id="e104"></div>
+        <div class="col-data" id="e105"></div>
+        <div class="col-data" id="e106"></div>
+        <div class="col-data" id="e107"></div>
+        <div class="col-data" id="e108"></div>
+        <div class="col-data" id="e109"></div>
+        <div class="col-data" id="e110"></div>
+        <div class="col-data" id="e111"></div>
+        <div class="col-data" id="e112"></div>
+        <div class="col-data" id="e113"></div>
+        <div class="col-data" id="e114"></div>
+        <div class="col-data" id="e115"></div>
+        <div class="col-data" id="e116"></div>
+        <div class="col-data" id="e117"></div>
+        <div class="col-data" id="e118"></div>
+      </div>
+      <div class="row" id="row8">
+        <div class="empty-18"></div>
+      </div>
+      <div class="row">
+        <div class="empty-3">Lanthanide Series:</div>
+        <div class="col-data" id="e57"></div>
+        <div class="col-data" id="e58"></div>
+        <div class="col-data" id="e59"></div>
+        <div class="col-data" id="e60"></div>
+        <div class="col-data" id="e61"></div>
+        <div class="col-data" id="e62"></div>
+        <div class="col-data" id="e63"></div>
+        <div class="col-data" id="e64"></div>
+        <div class="col-data" id="e65"></div>
+        <div class="col-data" id="e66"></div>
+        <div class="col-data" id="e67"></div>
+        <div class="col-data" id="e68"></div>
+        <div class="col-data" id="e69"></div>
+        <div class="col-data" id="e70"></div>
+        <div class="col-data" id="e71"></div>
+      </div>
+      <div class="row" id="row10">
+        <div class="empty-18"></div>
+      </div>
+      <div class="row">
+        <div class="empty-3">Actinide Series:</div>
+        <div class="col-data" id="e89"></div>
+        <div class="col-data" id="e90"></div>
+        <div class="col-data" id="e91"></div>
+        <div class="col-data" id="e92"></div>
+        <div class="col-data" id="e93"></div>
+        <div class="col-data" id="e94"></div>
+        <div class="col-data" id="e95"></div>
+        <div class="col-data" id="e96"></div>
+        <div class="col-data" id="e97"></div>
+        <div class="col-data" id="e98"></div>
+        <div class="col-data" id="e99"></div>
+        <div class="col-data" id="e100"></div>
+        <div class="col-data" id="e101"></div>
+        <div class="col-data" id="e102"></div>
+        <div class="col-data" id="e103"></div>
+      </div>
+    </main>
+    <footer>
+      <p>
+<!--       "University of California, Berkeley",In 1969 an American group at Berkeley (California) in the USA reported isotopes of Element 104. Their experiments involved reaction high energy collisions between 249Cf and 12C. The group also indicated that they were unable to reproduce the earlier Russian synthesis from1964. The American group proposed for the new element the name Rutherfordium. " -->
+      </p>
+    </footer>
+  </section>
+  <section id="right">
+    <div>
+      <div id="element"></div>
+      <dl></dl>
+    </div>
+  </section>
+</body>
+</html>
