@@ -1,0 +1,59 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+#theater{
+  width: 780px;
+  height: 500px;
+  border: 1px solid black;
+  background-color: gray;
+  margin: auto;
+}
+
+/* for editing gif images - http://www.online-image-editor.com/*/
+/* http://ezgif.com/  */
+.empty{
+  width: 50px;
+  height: 50px;
+  /*border: 1px solid green;*/
+  display: inline-block;
+}
+
+.guy{
+  width: 50px;
+  height: 50px;
+  background-image: url(../img/plane4.png);
+  background-size: cover;
+  display: inline-block;
+}
+
+.red{
+  width: 50px;
+  height: 50px;
+  background-image: url(../img/plane2.png);
+  transform: rotate(180deg);
+  background-size: cover;  
+  display: inline-block;
+}
+
+.missile{  
+  width: 50px;
+  height: 50px;
+  background-image: url(../img/missile2.gif);
+  transform: rotate(-90deg);
+  background-size: 25px 10px;
+  background-repeat: no-repeat;
+  background-position: left center;  
+  display: inline-block;
+}
+
+.explode{  
+  width: 50px;
+  height: 50px;
+  background-image: url(../img/explode_once2.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+}
