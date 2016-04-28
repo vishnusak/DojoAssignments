@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Online Algorithms - Week 4</title>
+  <script>
+
+
+//// Gaming Fun(damentals)
+// It’s New Year’s Eve, so let’s play some dice games! It’ll be fun. What could go wrong? 
+// Let's end our year right by trying these 6 sequential challenges. 
+// 1)  Create function rollOne() to return a randomly selected integer between
+// 1 and 6 (inclusive). 
+
+
+function rollOne(){
+  return Math.floor(Math.random() * 6) + 1;
+}
+// console.log(rollOne());
+
+// 2)  Second, create a function playFives(num), which should call rollOne() multiple times
+// – ‘num' times, in fact, where 'num' is input parameter to playFives(num). Each time, it
+// should print what rollOne() returns. If return value is 5, also print “That’s good luck!” 
+
+function playFives(num){
+  if (typeof num == 'number'){
+    num = Math.max(1,Math.floor(num));
+  } else {
+    num = 1;
+  }
+
+  for (var i = 1; i <= num; i++){
+    var dice = rollOne();
+    if (dice === 5){
+      console.log(dice + " - That's good luck!");
+    } else {
+      console.log(dice);
+    }
+  }
+}
+// playFives(42);
+
+// 3)  Third, create a new function named playStatistics(), which should call rollOne()
+// eight times (but not print anything after each call). After the last of these eight
+// calls, it should print out the lowest and highest values received from those eight calls. 
+function playStatistics(){
+  var max = 0;
+  var min = 7;
+  var dice = 0;
+  for (var i = 1; i <= 8; i++){
+    dice = rollOne();
+    max = ((max < dice) ? dice : max);
+    min = ((min > dice) ? dice : min);
+  }
+  console.log(`the lowest value is ${min} and the highest value is ${max}`);
+}
+// playStatistics();
+
+
+// 4)  Fourth, copy playStatistics() and add code to make playStatistics2(), where at the end
+// (in addition to printing high/low rolls), it also prints the total sum of all 8 rolls. 
+
+function playStatistics2(){
+  var max = 0;
+  var min = 7;
+  var dice = 0;
+  var sum = 0;
+  for (var i = 1; i <= 8; i++){
+    dice = rollOne();
+    max = ((max < dice) ? dice : max);
+    min = ((min > dice) ? dice : min);
+    sum += dice;
+  }
+  console.log(`the lowest value is ${min} and the highest value is ${max}`);
+  console.log(`the sum is ${sum}`);
+}
+// playStatistics2();
+
+// 5)  Fifth, copy playStatistics2() and add code to it to make playStatistics3(num), so
+// that it will roll as many times as you want, instead of always doing this eight times. 
+
+function playStatistics3(num){
+  if (typeof num == 'number'){
+    num = Math.max(1,Math.floor(num));
+  } else {
+    num = 1;
+  }
+
+  var max = 0;
+  var min = 7;
+  var dice = 0;
+  var sum = 0;
+  for (var i = 1; i <= num; i++){
+    dice = rollOne();
+    max = ((max < dice) ? dice : max);
+    min = ((min > dice) ? dice : min);
+    sum += dice;
+  }
+  console.log(`the lowest value is ${min} and the highest value is ${max}`);
+  console.log(`the sum is ${sum}`);
+}
+// playStatistics3(15);
+
+// 6)  Finally, make a copy of playStatistics3() and change it to create playStatistics4(num),
+// so that at the end instead of the total sum, it prints the average roll. 
+function playStatistics4(num){
+  if (typeof num == 'number'){
+    num = Math.max(1,Math.floor(num));
+  } else {
+    num = 1;
+  }
+
+  var max = 0;
+  var min = 7;
+  var dice = 0;
+  var sum = 0;
+  for (var i = 1; i <= num; i++){
+    dice = rollOne();
+    max = ((max < dice) ? dice : max);
+    min = ((min > dice) ? dice : min);
+    sum += dice;
+  }
+  console.log(`the lowest value is ${min} and the highest value is ${max}`);
+  console.log(`the sum is ${sum}`);
+  console.log(`the average is ${sum / num}`)
+}
+// playStatistics4(15);
+
+//// Statistics Until Doubles
+// Here’s another game for our New Year’s Eve party. Implement a ’20-sided die’ that
+// randomly returns integers between 1 and 20 inclusive. Roll these, tracking statistics
+// until you get a value twice in a row. Display number of rolls, min, max, and average.
+
+function doubles(){
+  var num = 0;
+  var min = 21;
+  var max = 0;
+  var sum = 0;
+  var dice = 0;
+  var prev = 0;
+  var double = false;
+
+  while (!double){
+    dice = Math.floor(Math.random() * 20) + 1;
+    max = ((max < dice) ? dice : max);
+    min = ((min > dice) ? dice : min);
+    num++;
+    sum += dice;
+    if (prev == dice){double = true}
+    prev = dice
+  }
+  console.log(` Number of rolls = ${num}`);
+  console.log(`        Max roll = ${max}`);
+  console.log(`        Min roll = ${min}`);
+  console.log(`    Sum of rolls = ${sum}`);
+  console.log(`Average of rolls = ${sum / num}`);
+}
+// doubles();
+
+//// Claire is Where?
+// On New Year’s Eve, have fun but don’t forget your way home! For this challenge create
+// four functions (reset, moveBy, xLocation and yLocation) to track Claire, a wanderer.
+// Calling reset() moves Claire home to the origin (0,0). The moveBy(xOffset,yOffset)
+// function moves her by those amounts, in those directions. Finally, xLocation() and
+// yLocation()return how far Claire is from home, in X and Y directions respectively. After
+// the calls of reset(), moveBy(1,-2), and moveBy(3,1), subsequently calling xLocation()
+// and yLocation() should return 4 and -1. 
+
+// Second: create a distFromHome() function. Assuming she can move diagonally, return her 
+// total distance from home "as the crow flies".  
+
+var clairePos = {
+  x: 0,
+  y: 0
+}
+
+function reset(){
+  clairePos.x = 0;
+  clairePos.y = 0;
+  console.log(`Claire is Home!`);
+}
+
+function moveBy(xpos, ypos){
+  clairePos.x += xpos;
+  clairePos.y += ypos;
+  console.log(`Claire is at ${clairePos.x} , ${clairePos.y}`);
+}
+
+function xLocation(){
+  console.log(`Claire is ${clairePos.x} away from Home on X`);
+}
+
+function yLocation(){
+  console.log(`Claire is ${clairePos.y} away from Home on Y`);
+}
+
+function distFromHome(){
+  var dist = Math.sqrt(Math.pow(clairePos.x,2) + Math.pow(clairePos.y, 2));
+  console.log (`Claire is ${dist} away from Home`);
+}
+
+// reset();
+// moveBy(1,-2);
+// moveBy(3,1);
+// xLocation();
+// yLocation();
+// distFromHome();
+
+
+
+//// Date, on a Deserted Island
+// After a particularly fabulous New Year’s Eve party to end 2016, Eduardo wakes to find
+// himself stranded on a deserted island. He misses his home in Burbank, but at least now
+// he can spend plenty of time outdoors – and you can’t beat the commute! To pass the time
+// until he is rescued, he counts sunrises.  Help him by completing these 9 challenges.
+// 1)  Help Eduardo track what day of the week it is. Create a weekdayName(weekdayNum)
+// function that, given a number between 1 and 7, will console.log a string containing the
+// day of the week for that number (given 1, log "Sunday"). Use a SWITCH statement. 
+
+function weekDayName(num){
+  var weekDays = {
+    1: 'Sunday',
+    2: 'Monday',
+    3: 'Tuesday',
+    4: 'Wednesday',
+    5: 'Thursday',
+    6: 'Friday',
+    7: 'Saturday'
+  }
+
+  if (!((typeof num == 'number') && (num <=7) && (num >= 1) && (num == Math.floor(num)))){
+    console.log(`${num} is not a valid input. Please provide integer between 1 & 7`);
+    return;
+  }
+
+  console.log(`The number is ${num} and it corresponds to ${weekDays[num]}`);
+}
+// weekDayName(6);
+
+// 2)  Expand weekdayName() to create weekdayName2(dayNum) accepting numbers up to 365.
+// Return weekday as before, given number of days total. "Sunday" still corresponds to 1. 
+
+function weekDayName2(num){
+  var weekDays = {
+    1: 'Sunday',
+    2: 'Monday',
+    3: 'Tuesday',
+    4: 'Wednesday',
+    5: 'Thursday',
+    6: 'Friday',
+    7: 'Saturday'
+  }
+
+  if (!((typeof num == 'number') && (num <=365) && (num >= 1) && (num == Math.floor(num)))){
+    console.log(`${num} is not a valid input. Please provide integer between 1 & 365`);
+    return;
+  }
+
+  var weekDayNum = num % 7;
+  weekDayNum = (weekDayNum == 0) ? 7 : weekDayNum;
+  console.log(`The number is ${num} and it corresponds to ${weekDays[weekDayNum]}`);
+  return weekDays[weekDayNum];
+}
+// weekDayName2(273);
+
+
+// 3)  Create a new function someDays() that calls weekDayName2() seventeen times, with
+// randomly generated integers as high as 365. Log each result string. If it is a weekday,
+// add the phrase "Work hard!", and if it is a weekend day, add "Enjoy your day off!"
+
+function someDays(){
+  for (var i = 1; i <= 17; i++){
+    var day = weekDayName2(Math.floor(Math.random() * 365) + 1);
+    // var disp = `${i} --> ${day} `;
+    switch(day){
+      case 'Monday':
+      case 'Tuesday':
+      case 'Wednesday':
+      case 'Thursday':
+      case 'Friday':
+        var disp = `Work hard!`;
+        break;
+      case 'Saturday':
+      case 'Sunday':
+        var disp = `Enjoy your day off!`;
+        break;
+    }
+    console.log (disp);
+  }
+}
+// someDays();
+
+// 4)  Build function monthName(monthNum) that, given a number from 1 to 12, returns a
+// string containing month for that number ("May" denotes 5). Use an array, without loops. 
+
+function monthName(num){
+  var months = {
+    1: 'January',
+    2: 'February',
+    3: 'March',
+    4: 'April',
+    5: 'May',
+    6: 'June',
+    7: 'July',
+    8: 'August',
+    9: 'September',
+    10: 'October',
+    11: 'November',
+    12: 'December'
+  }
+
+  if (!((typeof num == 'number') && (num <=12) && (num >= 1) && (num == Math.floor(num)))){
+    console.log(`${num} is not a valid input. Please provide integer between 1 & 12`);
+    return;
+  }
+
+  console.log(`the number is ${num} and it corresponds to ${months[num]}`);
+}
+// monthName(2);
+
+// 5)  Now expand monthName() to create monthToDays(monthNum), returning the number of days
+ // in that month, in the year 2017. Hint: use a SWITCH statement for the days in each month. 
+
+function monthToDays(num){
+  if (!((typeof num == 'number') && (num <=12) && (num >= 1) && (num == Math.floor(num)))){
+    console.log(`${num} is not a valid input. Please provide integer between 1 & 12`);
+    return;
+  }
+
+  var months = {
+    1: 'January',
+    2: 'February',
+    3: 'March',
+    4: 'April',
+    5: 'May',
+    6: 'June',
+    7: 'July',
+    8: 'August',
+    9: 'September',
+    10: 'October',
+    11: 'November',
+    12: 'December'
+  }
+
+  var days = 0;
+  switch(num){
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
+      days = 31;
+      break;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
+      days = 30;
+      break;
+    case 2:
+      days = 28;
+      break;
+  }
+  console.log(`the number is ${num} and it corresponds to ${months[num]} which has ${days} days in 2017`);
+}
+// monthToDays(2);
+
+// 6)  Despite using his ember expertise to create a glowing SOS visible from space, the
+// days go by and sadly Eduardo is still not rescued. Is it spring yet? It might as well be.
+// Build on monthName() to create dayToMonth(dayNum). If given a day number since the year
+// began, return the current month (assume it is not a Leap Year). Given 75, return "March".
+
+function dayToMonth(num){
+  if (!((typeof num == 'number') && (num <=365) && (num >= 1) && (num == Math.floor(num)))){
+    console.log(`${num} is not a valid input. Please provide integer between 1 & 365`);
+    return;
+  }
+
+  var months = {
+    1: ['January', 31],
+    2: ['February', 28],
+    3: ['March', 31],
+    4: ['April', 30],
+    5: ['May', 31],
+    6: ['June', 30],
+    7: ['July', 31],
+    8: ['August', 31],
+    9: ['September', 30],
+    10: ['October', 31],
+    11: ['November', 30],
+    12: ['December', 31]
+  }
+
+  var found = false;
+  var monthNum = 1;
+  var compNum = num;
+
+  while (!found){
+    if (months[monthNum][1] >= compNum){
+      found = true;
+      console.log(`${num} corresponds to ${months[monthNum][0]}`);
+    } else {
+      compNum -= months[monthNum][1];
+      monthNum++;
+    }
+  }
+}
+// dayToMonth(59);
+
+// 7)  Eduardo builds a Dojo bootcamp on the island. Initially his students only find Ninja
+// Gold in caves, but eventually even his tree sloths can write code quickly! Dojo classes
+// meet Monday thru Friday, so let’s reincorporate weekday to our calculations. Construct
+// fullDate(dayNum) to accept number of days so far in 2017, and return a full date string.
+// He hardly remembers that fateful New Year’s Eve party, but he knows it was a Saturday.
+// Given 142, return "Monday, May 22, 2017". 
+
+function fullDate(num){
+  // This is building on top of dayToMonth but I am not re-using dayToMonth. Nor am I re-using the weekToDay2 routine above. Ideally, they should be re-used.
+
+  if (!((typeof num == 'number') && (num <=365) && (num >= 1) && (num == Math.floor(num)))){
+    console.log(`${num} is not a valid input. Please provide integer between 1 & 365`);
+    return;
+  }
+
+  var months = {
+    1: ['January', 31],
+    2: ['February', 28],
+    3: ['March', 31],
+    4: ['April', 30],
+    5: ['May', 31],
+    6: ['June', 30],
+    7: ['July', 31],
+    8: ['August', 31],
+    9: ['September', 30],
+    10: ['October', 31],
+    11: ['November', 30],
+    12: ['December', 31]
+  }
+
+  var weekDays = {
+    1: 'Sunday',
+    2: 'Monday',
+    3: 'Tuesday',
+    4: 'Wednesday',
+    5: 'Thursday',
+    6: 'Friday',
+    7: 'Saturday'
+  }
+
+  var day = 0;
+  var month = '';
+  var date = 0;
+  
+  var found = false;
+  var monthNum = 1;
+  var compNum = num;
+
+  while (!found){
+    if (months[monthNum][1] >= compNum){
+      found = true;
+      month = months[monthNum][0];
+      date  = compNum;
+      day   = ((num % 7) == 0) ? 7 : (num % 7);
+      console.log(`${num} corresponds to ${weekDays[day]}, ${month} ${date}, 2017`);
+    } else {
+      compNum -= months[monthNum][1];
+      monthNum++;
+    }
+  }
+}
+// fullDate(142);
+
+// 8)  Times flies when you’re at a Dojo – months in fact. Build fullDate2(dayNum) that will
+// be given a 4-digit integer: the days that have passed since December 31, 2016. This
+// number can stretch into future years! Assume that any year number divisible by four is a
+// leap year and has a 29-day February. Given 8475, return "Thursday, March 15, 2040". 
+
+// 9)  Eduardo hacks the Google Maps API and adds this long-forgotten island back onto the
+// map. Soon he is rescued! News of his Hemingway-like stoicism make him famous for
+// centuries. Build fullDate3() to handle days up to 140,000! Note: years 2100, 2200, and
+// 2300 are actually not leap years (although 2400 is). Given 139947, return "Tuesday,
+// February 29, 2400". 
+
+// fulldate2 is built to handle both question 8 and 9. So I didn't build fulldate3.
+function fullDate2(num){
+  if (!((typeof num == 'number') && (num >= 1) && (num == Math.floor(num)))){
+    console.log(`${num} is not a valid input. Please provide integer input greater than 0`);
+    return;
+  }
+
+  var months = {
+    1: ['January', 31],
+    2: ['February', 28],
+    3: ['March', 31],
+    4: ['April', 30],
+    5: ['May', 31],
+    6: ['June', 30],
+    7: ['July', 31],
+    8: ['August', 31],
+    9: ['September', 30],
+    10: ['October', 31],
+    11: ['November', 30],
+    12: ['December', 31]
+  }
+
+  var weekDays = {
+    1: 'Sunday',
+    2: 'Monday',
+    3: 'Tuesday',
+    4: 'Wednesday',
+    5: 'Thursday',
+    6: 'Friday',
+    7: 'Saturday'
+  }
+
+  var day = 0;
+  var month = '';
+  var date = 0;
+  
+  var found = false;
+  var monthNum = 1;
+  var yearNum = 2017;
+  var compNum = num;
+
+  while (!found){
+    if (months[monthNum][1] >= compNum){
+      found = true;
+      month = months[monthNum][0];
+      date  = compNum;
+      day   = ((num % 7) == 0) ? 7 : (num % 7);
+      console.log(`${num} corresponds to ${weekDays[day]}, ${month} ${date}, ${yearNum}`);
+    } else {
+      compNum -= months[monthNum][1];
+      monthNum++;
+      if (monthNum > 12){
+        monthNum = 1;
+        yearNum++;
+        if (yearNum % 400 == 0){                // years like 2400 but not 1900 & 2300
+          months[2][1] = 29;
+        } else if (yearNum % 100 == 0){         // years like 1900 & 2300. divisible 4 and 100 but not 400
+          months[2][1] = 28;
+        } else if (yearNum % 4 == 0){           // years within the century like 2016
+          months[2][1] = 29;
+        } else {                                // years within the century like 2017
+          months[2][1] = 28;
+        }
+      }
+    }
+  }
+}
+// fullDate2(139947);
+
+  </script>
+</head>
+
+<!-- <body> -->
+<!-- </body> -->
+
+</html>
