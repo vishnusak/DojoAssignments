@@ -11,9 +11,14 @@ users = {
   ]
  }
 
+# for category in users:
+#     print category
+#     i = 0
+#     for vals in users[category]:
+#         i += 1
+#         print "{} - {} {} - {}".format(i, vals['first_name'], vals['last_name'], len(vals['first_name']) + len(vals['last_name']))
+
 for category in users:
     print category
-    i = 0
-    for vals in users[category]:
-        i += 1
-        print "{} - {} {} - {}".format(i, vals['first_name'], vals['last_name'], len(vals['first_name']) + len(vals['last_name']))
+    for idx, vals in enumerate(users[category]):
+        print "{} - {} {} - {}".format((idx + 1), vals['first_name'], vals['last_name'], len(vals['first_name']) + len(vals['last_name']))
