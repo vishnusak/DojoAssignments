@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>4-MAY-2016 Assignment</title>
+    <meta name="description" content="page for providing javascript solutions for the daily algorithm challenges" />
+    <meta name="author" content="vishnu" />
+    <script>
+// Array: Rotate
+// Implement  rotateArr(arr, shiftBy)  that accepts array and offset. Shift arr’s values to the right by that amount. ‘Wrap-around’ any values that shift off array’s end to the other side, so that no data is lost. Operate in-place: given ([1,2,3],1), change the array to [3,1,2]. Don’t use built-in functions.
+// •Second: allow negative shiftBy (shift L, not R).
+// •Third: minimize memory usage. With no new array, handle arrays/shiftBys in the millions.
+// •Fourth: minimize the touches of each element.
+//
+// steps:
+// 1. the shiftby will be the number of times the core logic will return
+// 2. core logic handles shifting items by 1, either to right or left
+// ---since length is not a built-in function but an array attribute in js, I am using it.
+// 3. for shifting:
+// 4. save the value of the left or right most element (depending on a left or right shift)
+// 5. using a for loop move the elements to the right or left by 1.
+// 6. repeat steps 4 & 5 as many times as indicated by shiftBy
+function rotateArr(arr, shiftBy){
+  if ((shiftBy == 0) || (shiftBy == arr.length)){
+    return;
+  }
+
+  switch (true){
+    case (shiftBy > 0):
+      while(shiftBy > arr.length){
+        shiftBy = shiftBy - arr.length;
+      }
+      for (var shift = 1; shift <= shiftBy; shift++){
+        var last = arr[arr.length - 1];
+        for (idx = (arr.length - 1); idx > 0; idx--){
+          arr[idx] = arr[idx - 1];
+        }
+        arr[0] = last;
+      }
+      break;
+    case (shiftBy < 0):
+      shiftBy = (shiftBy * -1);
+      while(shiftBy > arr.length){
+        shiftBy = shiftBy - arr.length;
+      }
+      for (var shift = 1; shift <= shiftBy; shift++){
+        var first = arr[0];
+        for (idx = 0; idx < (arr.length - 1); idx++){
+          arr[idx] = arr[idx + 1];
+        }
+        arr[arr.length - 1] = first;
+      }
+      break;
+  }
+}
+
+// var myArray = [];
+// for (var i = 0; i < 10; i++){
+//   myArray.push(Math.floor((Math.random() * 100) + 1));
+// }
+//
+// var arrShift = 4;
+//
+// console.log(`The original array is ${myArray}`);
+// console.log(`It will be shifted by ${arrShift}`);
+//
+// rotateArr(myArray, arrShift);
+//
+// console.log(`After shifting, the array is ${myArray}`);
+
+// ==========================================================================
+// method-2 for rotateArr:
+// this method decreases the number of touches on each element to 1 but doubles the memory requirement becasue we will use a temp array to handle the process
+
+// steps:
+// ---since length is not a built-in function but an array attribute in js, I am using it.
+// 1. here we simulate the traversal of a linked list.
+// 2. when shiftby is to the right, (e.g., shiftBy = n), it means that the last 'n' elements of the array now become the first three elements. Similarly, when the shift is to the left, the first 'n' elements become the last 'n' elements.
+// 3. find the index of the 'n'th element
+// ------ for right shift, from the end (index = length of array - n)
+// ------ for left shift, from the beginning (index = n)
+// 4. now use this as the starting point and traverse the array
+// 5. when the index reaches the last element, reset it to 0 and traverse the array till index identified in step 3
+// 6. as we are doing steps 4 and 5, read each element and push it into a new array
+// 7. At the end of the step 5, the new array will have the elements in the order we need. Return the new array
+function rotateArr2(arr, shiftBy){
+  if ((shiftBy == 0) || (shiftBy == arr.length)){
+    return;
+  }
+
+  var temp = [];
+  switch (true){
+    case (shiftBy > 0):
+      while(shiftBy > arr.length){
+        shiftBy = shiftBy - arr.length;
+      }
+      idx = arr.length - shiftBy;
+      for (var tIdx = 0; tIdx < arr.length; tIdx++){
+        temp[tIdx] = arr[idx];
+        ((idx == (arr.length - 1)) ? idx = 0 : idx++)
+      }
+      break;
+    case (shiftBy < 0):
+      shiftBy = (shiftBy * -1);
+      while(shiftBy > arr.length){
+        shiftBy = shiftBy - arr.length;
+      }
+      idx = shiftBy;
+      for (var tIdx = 0; tIdx < arr.length; tIdx++){
+        temp[tIdx] = arr[idx];
+        ((idx == (arr.length -1)) ? idx = 0 : idx++)
+      }
+      break;
+  }
+  return temp;
+}
+
+// var myArray = [];
+// for (var i = 0; i < 100; i++){
+//   myArray.push(Math.floor((Math.random() * 100) + 1));
+// }
+//
+// var arrShift = -5;
+//
+// console.log(`The original array is ${myArray}`);
+// console.log(`It will be shifted by ${arrShift}`);
+//
+// myArray = rotateArr2(myArray, arrShift);
+//
+// console.log(`After shifting, the array is ${myArray}`);
+
+// ==========================================================================
+// Array: Filter Range
+//
+// Alan is good at breaking secret codes. One tool is to eliminate numbers he knows are outside a certain specific range. Given  array  and values  min  and  max , remove array values between min and max. Work in-place: return the array you are given, with values in original order. No built-in array functions.
+
+// steps:
+// 1. traverse the array
+// 2. for each element check if it is between min and max
+// 3. if yes, replace with undefined
+// ----- replacing with undefined for two reasons:
+// ----- 1. this makes sure the other values are in the same spot always
+// ----- 2. while processing the array, check we can check for type undefined and ignore the values.
+function filter(arr, min, max){
+  if (min > max){
+    var temp = max;
+    max = min;
+    min = temp;
+  }
+  for (var i = 0; i < arr.length; i++){
+    if((arr[i] >= min) && (arr[i] <= max)){
+      arr[i] = undefined;
+    }
+  }
+}
+
+// var myArray = [];
+// for (var i = 0; i < 20; i++){
+//   myArray.push(Math.floor((Math.random() * 100) + 1));
+// }
+//
+// var rangeMin = 30;
+// var rangeMax = 15;
+//
+// console.log(`The original array is ${myArray} of length ${myArray.length}`);
+// console.log(`The range is between ${rangeMin} and ${rangeMax}`);
+//
+// filter(myArray, rangeMin, rangeMax);
+//
+// console.log(`After filtering ${myArray} of length ${myArray.length}`);
+
+// ==========================================================================
+// Array: Concat
+//
+// Replicate JavaScript’s  concat() . Create a standalone function that accepts two arrays. Return a new array containing the first array’s elements, followed by the second array’s elements. Do not alter the original arrays. Ex.:  arrConcat( ['a','b'], [1,2] )  should return new array  ['a','b',1,2] .
+//
+// steps:
+// 1. find the combined length (arr1.length + arr2.length). This will be the length of the new array
+// 2. set up a loop from 0 to combined length - 1
+// 3. inside the loop, read the first array and push the elements in to the result array (loop counter is the index for result array only.)
+// 4. once the first array is done, read the second array and continue pushing into the result array
+// 5. at the end of the loop, return the result array
+function arrConcat(arr1, arr2){
+  var arrLen = arr1.length + arr2.length;
+  var result = [];
+  for (var resIdx = 0; resIdx < arrLen; resIdx++){
+    if (resIdx < arr1.length){
+      result.push(arr1[resIdx]);
+    } else {
+      result.push(arr2[resIdx - arr1.length]);
+    }
+  }
+  return result;
+}
+
+// var myArray1 = [];
+// for (var i = 0; i < 10; i++){
+//   myArray1.push(Math.floor((Math.random() * 24) + 1));
+// }
+//
+// var myArray2 = [];
+// for (var i = 0; i < 13; i++){
+//   myArray2.push(Math.floor((Math.random() * 56) + 1));
+// }
+//
+// console.log(`The array1 is ${myArray1} of length ${myArray1.length}`);
+// console.log(`The array2 is ${myArray2} of length ${myArray2.length}`);
+//
+// var myArray = arrConcat(myArray1, myArray2);
+//
+// console.log(`After concatenating: ${myArray} of length ${myArray.length}`);
+
+// ==========================================================================
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
