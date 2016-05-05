@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>5-MAY-2016 Assignment</title>
+    <meta name="description" content="page to submit javascript solution to the daily algorithms" />
+    <meta name="author" content="vishnu" />
+    <script>
+// Remove negatives
+// Implement  removeNegatives()  that accepts an array, removes negative values, and returns the same array (not a copy), preserving non-negatives' order. As always, do not use built-in array functions.
+// Additional: Don't use nested loops
+//
+// steps:
+// 1. traverse the array
+// 2. for every element, check if it is negative.
+// 3. if negative, replace with undefined
+function remNeg(arr){
+  for (var i = 0; i < arr.length; i++){
+    ((arr[i] < 0) ? (arr[i] = undefined) : arr[i])
+  }
+}
+
+// myArray = [1, -2, -3, -4, 5, 6, -7, 8, -9, 0];
+//
+// console.log(`The original array is ${myArray}`);
+//
+// remNeg(myArray);
+//
+// console.log(`The array with negatives removed is ${myArray}`);
+
+// ==========================================================================
+// Second-to-last
+// Return the second-to-last element of an array. Given  [42,true,4,"Liam",7] , return  "Liam" . If array is too short, return  null .
+//
+// steps:
+// 1. if length-1 = 0, return null
+// 2. if length-1 = 1 return the first element in the array
+// 3. if length-1 > 1, return the length - 2 element
+function secLast(arr){
+  switch (arr.length){
+    case 1:
+      return null;
+    case 2:
+      return arr[0];
+    default:
+      return arr[arr.length - 2];
+  }
+}
+
+// myArray = [1,2,3,4,45,5,65];
+//
+// console.log(`The original array is ${myArray}`);
+//
+// secondLastVal = secLast(myArray);
+//
+// console.log(`The 2nd to last value in ${myArray} is ${secondLastVal}`);
+
+// ==========================================================================
+// Nth-to-last
+// Return the element that is N-from-array’s-end. Given  ([5,2,3,6,4,9,7],3) , return  4 . If the array is too short, return  null .
+//
+// steps:
+// 1. if length < N, return null
+// 2. if length = N return the first element in the array
+// 3. if length > N, return the length - N element
+function nthLast(arr, pos){
+  i = arr.length - pos
+  switch (true){
+    case (i == 0):
+      return arr[0];
+    case (i < 0):
+      return null;
+    default:
+      return arr[i];
+  }
+}
+
+// myArray = [1,2,45,65];
+// nth = 4;
+//
+// console.log(`The original array is ${myArray}`);
+//
+// nthLastVal = nthLast(myArray, nth);
+//
+// console.log(`The ${nth}th to last value in ${myArray} is ${nthLastVal}`);
+
+// ==========================================================================
+// Second largest
+// Return the second-largest element of an array. Given  [42,1,4,Math.PI,7] , return  7 . If the array is too short, return  null .
+// ==========================================================================
+// Nth largest
+// Given  arr  and  N , return the Nth-largest element, where (N-1) elements are larger. Return  null  if needed.
+
+// steps:
+// -----The above two involve sorting. We can either use the in built array sort function to do it or write our own sort routine to do it (radix sort is already part of our curriculum!!!)
+// -----I am using the built-in sorts for this.
+// -----I am assuming all values are going to be unique (without repetitions). If this assumption is not valid, array traversal will be required to get the correct answer
+// 1. if length of array less than N, return null. otherwise do the below
+// 2. sort the array
+// 2.a. use a compare function inside the sort to get it in descending order
+// 3. if the order is ascending, return arr[length - N]
+// 3.a. if order is descending, return arr[N-1]
+function nthLarge(arr, pos){
+  i = arr.length - pos;
+  switch (true){
+    case (i < 0):
+      return null;
+    default:
+    // using the arr.concat() to create a copy of the original array on which to do the sort. otherwise the original array gets sorted and changed
+
+      // this is the regular sort - in ascending order
+      // return arr.concat().sort()[i];
+
+      // this is the sort with the comapre function for descending order
+      return arr.concat().sort(function(a,b){return b-a})[pos - 1];
+  }
+}
+
+// myArray = [1,2,45,65,85,43,98,76,32,12];
+// nth = 4;
+//
+// console.log(`The original array is ${myArray}`);
+//
+// nthLargeVal = nthLarge(myArray, nth);
+//
+// console.log(`The ${nth}th largest value in ${myArray} is ${nthLargeVal}`);
+
+// ==========================================================================
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
