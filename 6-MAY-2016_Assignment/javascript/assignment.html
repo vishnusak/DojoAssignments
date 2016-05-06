@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>6-MAY-2016 Assignment</title>
+    <meta name="description" content="page to hold the javascript solutions for the daily algo asignment" />
+    <meta name="author" content="vishnu" />
+    <script>
+// Shuffle
+// Recreate the  shuffle(arr)  function built into JavaScript, to efficiently shuffle a given array’s values. Work in-place, of course. Do you need to return anything from your function?
+//
+// steps:
+// ---- make use of the random number generator
+// ---- genrate random numbers less than array length
+// 1. traverse the array in the regular way
+// 2. for each stop in the iteration, generate a random number less than array length.
+// 3. use the random number from step 2 as target index.
+// 4. swap values of current index with target index
+// 5. steps 2 thru 4 happe in place, so no need to return anything. The input array will be shuffled
+function shuffle(arr){
+  for (var idx = 0; idx < arr.length; idx++){
+    var randIdx = Math.floor(Math.random() * arr.length);
+    var temp = arr[idx];
+    arr[idx] = arr[randIdx];
+    arr[randIdx] = temp;
+  }
+}
+
+// myArray = [];
+// for (var i = 1; i <= 10; i++){
+//   myArray.push(Math.floor(Math.random() * 1000) + 1);
+// }
+//
+// console.log(`The input array is ${myArray}`);
+//
+// shuffle(myArray);
+//
+// console.log(`The shuffled array is ${myArray}`);
+// =========================================================================
+// Remove array
+// Given array, and indices start and end, remove vals in that index range, working in-place (hence shortening the array). Given  ([20,30,40,50,60,70],2,4) , change to  [20,30,70]  and return it.
+//
+// steps:
+// ---- this can be done using built-in function:
+// ---- splice(start index, num of elements).
+// for example, given ([20,30,40,50,60,70],2,4), we will do arr.splice(2,3) and we get arr = [20, 30, 70]. There are 3 elements between the indices 2 & 4 (inclusive)
+// 1. Calculate length of index range given as input.(e.g., 2,4 will have length of 4-2+1 = 3; 3,9 will have length of 9-3+1 = 7)
+// 2. check if index end is less than or equal to last array index. if it is equal, do step 3. if it is less, do step 4.
+// 3. set array length = arraylength - length of range. return
+// 4. slice the input array after the input range index (e.g., if input range index is 2,4 slice the input array from 5 till end). store this slice
+// 5. set input array length = length till beginning of input range (e.g., if input range is 2,4 length till input range = 2)
+// 6. push values from sliced array (step 4) into input array
+function slice(arr, idx){
+  var slc = [];
+  for (var i = idx; i < arr.length; i++){
+    slc.push(arr[i]);
+  }
+  return slc;
+}
+
+function remArr(arr, startIdx, stopIdx){
+  if (stopIdx >= arr.length){
+    console.log(`The index range provided: (${startIdx} - ${stopIdx}) :is out of bounds for the array ${arr}`);
+    return;
+  }
+
+  var rangeLen = stopIdx - startIdx + 1;
+
+  if ((arr.length - 1) == stopIdx){
+    arr.length = arr.length - rangeLen;
+  } else {
+    var endSlice = slice(arr, stopIdx+1);
+    arr.length = startIdx;
+    for (var i = 0; i< endSlice.length; i++){
+      arr.push(endSlice[i]);
+    }
+  }
+}
+
+// myArray = [];
+// for (var i = 1; i <= 10; i++){
+//   myArray.push(Math.floor(Math.random() * 1000) + 1);
+// }
+// rangeStart = 1;
+// rangeEnd = 9;
+//
+// console.log(`The input array is ${myArray}`);
+// console.log(`The delete range is (${rangeStart} - ${rangeEnd})`);
+//
+// remArr(myArray, rangeStart, rangeEnd);
+//
+// console.log(`The modified array is ${myArray}`);
+// =========================================================================
+// Intermediate Sums
+// You will be given an array of numbers. After every tenth element, add an additional element containing the sum of those ten values. If the array does not end aligned evenly with ten elements, add one last sum that includes those last elements not yet been included in one of the earlier sums. Given the array  [1,2,1,2,1,2,1,2,1,2,1,2,1,2] , change it to  [1,2,1,2,1,2,1,2,1,2,15,1,2,1,2,6] .
+// steps:
+// 1. traverse array
+// 2. keep adding all the elements being read
+// 3. maintain a counter to identify 10 elements. when counter = 10, insert the sum into array at the index+1 position. reset sum, reset counter and increment the traversal loop counter (this is to avoid the newly inserted sum from being processed in the next iteration)
+// 4. continue steps 2 and 3 till end of array.
+// 5. whatever is the value of sum at this point, insert it into arr (arr.push(sum))
+// ----- I will use the slice function from previous question here also
+function interSum(arr){
+  var sum = 0;
+  var count = 0
+  for (var idx = 0; idx < arr.length; idx++){
+    sum += arr[idx];
+    count += 1
+    if ((count % 10) == 0){
+      var slc = slice(arr, idx + 1);
+      arr.length = idx + 1;
+      arr.push(sum);
+      sum = 0;
+      count = 0;
+      for (var i = 0; i < slc.length; i++){
+        arr.push(slc[i]);
+      }
+      idx++
+    }
+  }
+  arr.push(sum);
+}
+
+// myArray = [1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2];
+//
+// console.log(`The input array is ${myArray}`);
+//
+// interSum(myArray);
+//
+// console.log(`The modified array is ${myArray}`);
+// =========================================================================
+// Double Trouble
+// Create a function that changes a given array to list each existing element twice, retaining original order. Convert  [4,"Ulysses",42,false]  to  [4,4,"Ulysses","Ulysses",42,42,false,false] .
+//
+// steps:
+// 1. traverse the array
+// 2. for every element till last but one element, do steps 3 thru 6:
+// 3. slice the array from index + 1 till end and store the slice
+// 4. change array length to current index + 1
+// 5. push the current element into array (arr.push(arr[idx]))
+// 6. join the slice from step 3 to the array
+// 7. for the last element, just push it into the array
+// ----- I will use the slice function from 2nd question here also
+// ----- can be done using the array.map function if all elements are strings
+function double(arr){
+  for (var idx = 0; idx < arr.length - 1; idx += 2){
+    var slc = slice(arr, idx + 1);
+    arr.length = idx + 1;
+    arr.push(arr[idx]);
+    for (var i = 0; i < slc.length; i++){
+      arr.push(slc[i]);
+    }
+  }
+  arr.push(arr[arr.length - 1]);
+}
+
+// myArray = [4,"Ulysses",42,false,"Because",84,"Groot"];
+//
+// console.log(`The input array is ${myArray}`);
+//
+// double(myArray);
+//
+// console.log(`The modified array is ${myArray}`);
+// =========================================================================
+// Zip it
+// Create a standalone function that accepts two arrays and combines their values sequentially into the first array, at alternating indices starting with the first array. Extra values from either array should be included afterward. Given  [1,2]  and  [10,20,30,40] , change first array to  [1,10,2,20,30,40] .
+//
+function zip(arr1, arr2){
+  var length1 = arr1.length;
+  var length2 = arr2.length;
+
+  if (length1 <= length2){
+    var len = length1 - 1;
+  } else {
+    var len = length2;
+  }
+
+  var idx = 0;
+  var slc = slice(arr1, 1);
+  arr1.length = 1;
+  for (;idx < len; idx++){
+    arr1.push(arr2[idx]);
+    arr1.push(slc[idx]);
+  }
+
+  if (length1 <= length2){
+    for (;idx < length2; idx++){
+      arr1.push(arr2[idx]);
+    }
+  } else {
+    for (;idx < slc.length; idx++){
+      arr1.push(slc[idx]);
+    }
+  }
+}
+
+// myArray1 = [10,20,30,40,50];
+// myArray2 = [10,20,30,40,50];
+//
+// console.log(`The first array is ${myArray1}`);
+// console.log(`The second array is ${myArray2}`);
+//
+// zip(myArray1, myArray2);
+//
+// console.log(`The zipped array is ${myArray1}`);
+// =========================================================================
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
