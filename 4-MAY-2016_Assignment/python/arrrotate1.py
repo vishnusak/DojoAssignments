@@ -37,8 +37,9 @@ def arr_rotate(arr, shiftBy):
         return
 
     if (shiftBy > 0):
-        while (shiftBy > arr_len):
-            shiftBy = shiftBy - arr_len
+        # while (shiftBy > arr_len):
+        #     shiftBy = shiftBy - arr_len
+        shiftBy = shiftBy % arr_len
 
         loop = 1
         while (loop <= shiftBy):
@@ -51,8 +52,9 @@ def arr_rotate(arr, shiftBy):
             loop += 1
     else:
         shiftBy = (-1 * shiftBy)
-        while (shiftBy > arr_len):
-            shiftBy = shiftBy - arr_len
+        # while (shiftBy > arr_len):
+        #     shiftBy = shiftBy - arr_len
+        shiftBy = shiftBy % arr_len
 
         loop = 1
         while (loop <= shiftBy):
