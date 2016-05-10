@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>9-May-2016 Assignment</title>
+    <meta name="description" content="page for submitting the javascript solutions for daily algos" />
+    <meta name="author" content="vishnu" />
+    <script>
+// <!-- Remove blanks
+// Create a function that, given a string, returns a string without blanks. Given " play that Funky Music ", returns a string containing "playthatFunkyMusic".
+//
+// steps:
+// 1. read the string character by character.
+// 2. add the character to another string if it is not blanks
+// 3. return the second string
+function remBlank(str){
+  result = '';
+
+  for (var i = 0; i < str.length; i++){
+    if (str[i] != ' '){
+      result += str[i]
+    }
+  }
+
+  return result;
+}
+
+// myString = " play that funky music white boy!!! ";
+// console.log(`The original string is "${myString}"`);
+//
+// myResult = remBlank(myString);
+// console.log(`The string with no spaces is "${myResult}"`);
+
+// =========================================================================
+// Get digits
+// Create a JavaScript function that, given a string, returns the integer made from the string’s digits. Given  "0s1a3y5w7h9a2t4?6!8?0" , the function should return the number  1,357,924,680
+//
+// steps:
+// 1. traverse the string char by character
+// 2. For each char, Convert it to number and if it is not NaN, add it to second string.
+// 3. finally, convert the second string into number and return
+function getDigits(str){
+  result = '';
+  for (var i = 0; i < str.length; i++){
+    if (! isNaN(Number(str[i]))){
+      result += str[i];
+    }
+  }
+  return Number(result);
+}
+
+// myString = "0s1a3y5w7h9a2t4?6!8?0";
+// console.log(`The string is "${myString}"`);
+//
+// myResult = getDigits(myString);
+// console.log(`The number in the string is "${myResult}"`);
+// console.log(`Type of the result is "${typeof myResult}"`);
+
+// =========================================================================
+// Acronyms
+// Create a function that, given a string, returns the string’s acronym (first letters only, capitalized). Given  " there's no free lunch - gotta pay yer way. " , return  "TNFL-GPYW" . Given  "Live from New York, it's Saturday Night!" , return  "LFNYISN" .
+//
+// steps:
+// 1. strip blanks (as done above)
+// 2. while stripping blanks store every char that comes immediately after a space into second string
+// 3. use the .toUpperCase() on the second string and return
+function acronym(str){
+  result = '';
+  for (var i = 0; i < str.length - 1; i++){
+    if ((i == 0) && (str[i] != ' ')){
+      result += str[i]
+    }
+    if ((str[i] == ' ') && (str[i+1] != ' ')){
+      result += str[i+1];
+    }
+  }
+  return result.toUpperCase();
+}
+
+// myString = " there's no free lunch - gotta pay yer way. ";
+// console.log(`The string is "${myString}"`);
+//
+// myResult = acronym(myString);
+// console.log(`The acronym is "${myResult}"`);
+
+// =========================================================================
+// Integer to Roman Numerals
+// Given a positive integer that is less than 4000, return a string containing that value in Roman numeral representation. In this representation:
+// •I = 1
+// •V = 5
+// •X = 10
+// •L = 50
+// •C = 100
+// •D = 500
+// •M = 1000.
+//
+// Remember that 4 is IV, 349 is CCCIL and 444 is CDXLIV. -->
+//
+// steps:
+// 0. store the above conversion (regular numbers <==> roman numbers) as an object. call this object S0.
+// 1. seperate the numbers in individual digits and store them in an array.
+// ---- The (index+1) will denote the position of the digit in the original number starting from the right
+// 2. Now start processing from the last element of the above digit array
+// 3. Each digit will be converted as follows-(digit * 10 ^(index+1)). This is X.
+// ---- (e.g., for 349, the array will be [9,4,3]. for 483, the array will be[3,8,4]
+// ---- in first array, 3 is at index 2 - will be processed as (3)*10^(3) = 300; X = 300
+// ---- in 2nd array, 4 is at index 2 - will be processed as (4)* 10^(3) = 400; X = 400
+// 4. for every X in step 3, identify where it falls between the numbers in S0. Let these numbers be A(greater than X) and B(less than X)
+// ---- e.g.,in 349, for 300, we see it is between 500 and 100. So A = 500; B=100
+// ---- e.g.,in 483, for 400, we see it is between 500 and 100. So A = 500; B=100
+// 5. if (A - X) is also available in S0, then it will be C. Now step-7
+// ---- if X = 400, then A - X will be 500 - 400 = 100. 100 is in S0, so C = 100.
+// 6. if not step-5, then C will be the power of 10 used in step-3. We will go to step-8.
+// ---- if X = 300, A - X is 500 - 300 = 200 which is not in S0. so C = 100
+// 7. represent X as S0[C]+S0[A] in the result string
+// ---- for X = 400, S0[100] + S0[500] => 'C'+'D'. so 400 = 'CD'
+// 8. Find how many time X is divisible by C. Then represent X by that many Cs
+// ---- X = 300; C = 100. So X is divisble by C 3 times. we know from S0 that 100 = 'C'. so 300 = 'CCC'.
+// 9. repeat steps 3 thru 8 for every digit in the original number. return the result string.
+function getRoman(num, idx){
+  if (num == 0){return -1};
+
+  var result = '';
+
+  var roman = {
+    1000: 'M',
+    500: 'D',
+    100: 'C',
+    50: 'L',
+    10: 'X',
+    5: 'V',
+    1: 'I'
+  };
+
+  var r_k = Object.keys(roman);
+  var r_keys = r_k.map(function(x){return Number(x)}).sort(function(a,b){return (b-a)});
+
+  var done = 0;
+  for (var prv = -1, cur = 0; cur < r_keys.length; prv++, cur++){
+    switch (true){
+      case ((cur == 0) && (num > r_keys[cur])):
+        for (var i = 1; i <= (num / r_keys[cur]); i++){
+          result += roman[r_keys[cur]];
+        }
+        done = 1;
+        break;
+
+      case (num == r_keys[cur]):
+        result += roman[r_keys[cur]];
+        done = 1;
+        break;
+
+      case (num > r_keys[cur]):
+        var diff1 = r_keys[prv] - num;
+        var diff2 = num - r_keys[cur];
+        var r_idx = r_keys.indexOf(diff1);
+        if (r_idx != -1){
+          result += roman[r_keys[r_idx]];
+          result += roman[r_keys[prv]];
+        } else {
+          r_idx = r_keys.indexOf(Math.pow(10, idx));
+          result += roman[r_keys[cur]];
+          for (var i = 1; i <= (diff2 / r_keys[r_idx]); i++){
+            result += roman[r_keys[r_idx]];
+          }
+        }
+        done = 1;
+        break;
+    }
+    if (done){
+      break;
+    }
+  }
+
+  return result;
+}
+
+
+function roman(num){
+  var result = '';
+  var cur_d  = 0;
+
+  var temp  = num;
+  var pos   = 0;
+  var n_obj = [];
+
+  while (temp != 0){
+    n_obj.push(temp % 10);
+    pos += 1;
+    temp = Math.floor(temp / 10);
+  }
+
+  for (var i = (pos - 1); i >= 0; i--){
+
+    cur_d = n_obj[i] * Math.pow(10, i);
+    var rom = getRoman(cur_d, i);
+    if (rom != -1){
+      result += rom;
+    }
+  }
+
+  // console.log(result);
+  return result;
+}
+
+// myNum = 91;
+// console.log(`The number is ${myNum}`);
+//
+// myResult = roman(myNum);
+// console.log(`The roman number is ${myResult}`);
+// =========================================================================
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
