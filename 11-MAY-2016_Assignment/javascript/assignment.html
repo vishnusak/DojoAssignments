@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>11-May-2016 Assignment</title>
+    <meta name="description" content="page for submitting javascript solutions to the daily algo challenges" />
+    <meta name="author" content="vishnu" />
+    <script>
+// Coin Change with Object
+// Given a number of U.S. cents, return the optimal configuration of coins, in an object.
+//
+// steps:
+// ---- assuming that the valid coins are, 25, 10, 5 and 1
+// ---- assuming that the input will be an integer and 1 <= input < 100
+// 1. maintain the valid denoms in an array
+// 2. initialize the result object
+// 3. divide the input consecutively by the valid denoms, starting from the highest and going down.
+// 4. for every valid denom, use the current as the key in the result object and the quotient from the division as its value
+// 5. the dividend of every division op is the mod value from the previous op.
+
+function makeChange(num){
+  var coins = {
+               25: 0,
+               10: 0,
+                5: 0,
+                1: 0
+              };
+  var denom = [25, 10, 5, 1];
+
+  var temp = num;
+  for (idx in denom){
+    coins[denom[idx]] = Math.floor(temp / denom[idx]);
+    temp = temp % denom[idx];
+  }
+
+  return coins;
+}
+
+// myCents = 25;
+// console.log(`The input is ${myCents} cents`);
+//
+// myResult = makeChange(myCents);
+// console.log(`The optimal number of coins for ${myCents} cents is`);
+// console.log(myResult);
+// ==========================================================================
+// Max/Min/Average with Object
+// Given an array, return an object containing the array’s max, min and average values.
+function obj(arr){
+  var sum = 0;
+  var max = arr[0];
+  var min = arr[0];
+  for (idx in arr){
+    sum += arr[idx];
+    max = (arr[idx] > max ? arr[idx] : max);
+    min = (arr[idx] < min ? arr[idx] : min);
+  }
+
+  return {"avg":(sum / arr.length),"max":max, "min":min };
+}
+
+// myArr = [12,-2,1,2,3,4,5,6,7,8,9];
+// console.log(`The array is ${myArr}`);
+//
+// myResult = obj(myArr);
+// console.log(`The object returned is`);
+// console.log(myResult);
+// ==========================================================================
+// Zip Arrays into Map
+// Associative arrays are sometimes called maps because a key (string) maps to a value. Given two arrays, create an associative array (map) containing keys of the first, and values of the second. For arr1 = ["abc", 3, "yo"] and arr2 = [42, "wassup", true], return {"abc": 42, 3: "wassup", "yo": true}.
+//
+// steps:
+// 1. read both arrays in the same loop.
+// 2. for every iteration, combine the two elements and add to the hash
+function zip(arr1, arr2){
+  var result = {};
+
+  for (var i = 0; i < arr1.length; i++){
+    result[arr1[i]] = arr2[i];
+  }
+
+  return result;
+}
+
+// myArr1 = ["abc", 3, "yo"];
+// myArr2 = [42, "wassup", true];
+//
+// console.log(`The arrays are ${myArr1} and ${myArr2}`);
+//
+// myResult = zip(myArr1, myArr2);
+//
+// console.log(`The zipped result is`);
+// console.log (myResult);
+
+// ==========================================================================
+// Invert Hash
+// Associative arrays are also called hashes. Build invertHash(assocArr) to convert hash keys to values, and values to keys. Example: given {"name": "Zaphod", "charm": "high", "morals": "dicey"}, return object {"Zaphod": "name", "high": "charm", "dicey": "morals"}.
+//
+// steps:
+// 1. break the hash into two array and use the zip function from above to put them back together in the order we need
+function invert(hash){
+  var keys = Object.keys(hash);
+  // Object.values() is still experimenal according to MDN docs. So using regular loops to get the values.
+  // var vals = Object.values(hash;
+  var vals = [];
+
+  for (key in hash){
+    vals.push(hash[key]);
+  }
+
+  return zip(vals, keys);
+}
+
+// myHash = {"name": "Zaphod", "charm": "high", "morals": "dicey"};
+//
+// console.log(`The initial hash is`)
+// console.log(myHash);
+//
+// myResult = invert(myHash);
+//
+// console.log(`The inverted hash is`);
+// console.log (myResult);
+
+// ==========================================================================
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
