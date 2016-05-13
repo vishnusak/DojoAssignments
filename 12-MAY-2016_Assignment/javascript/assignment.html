@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>12-MAY-2016 Assignment</title>
+    <meta name="description" content="page for providing javascript solutions for the daily algo challenge" />
+    <meta name="author" content="vishnu" />
+    <script>
+// String.concat
+// string1.concat(str2,str3,...,strX)  - add string(s) to end of existing one. Return new string.
+//
+// steps:
+// ---- concatination in javascript is a simple "+". am using it
+
+// the "...var_name" is how javascript handles variable number of arguments to a function
+function concat(...strings){
+  if (strings.length > 0){
+    var result = '';
+    for (var i = 0; i < strings.length; i++){
+      result += strings[i];
+    }
+    return result;
+  } else {
+    return "Nothing to concatenate";
+  }
+
+}
+
+// myStr1 = "this";
+// myStr2 = "is";
+// myStr3 = "yet";
+// myStr4 = "another";
+// myStr5 = "string";
+//
+// console.log(`The input strings are:`);
+// console.log(`"${myStr1}"`);
+// console.log(`"${myStr2}"`);
+// console.log(`"${myStr3}"`);
+// console.log(`"${myStr4}"`);
+// console.log(`"${myStr5}"`);
+//
+// myResult = concat(myStr1, myStr2, myStr3, myStr4, myStr5);
+//
+// console.log(`The concatinated string is "${myResult}"`);
+// ===========================================================================
+// String.slice
+// string.slice(start,end)  - extract part of a string and return in a new one. Start and end are indices into the string, with the first character at index 0. End param is optional and, if present, refers to one beyond the last character to include.
+// --Bonus: include support for negative indices, representing offsets from string-end. Example:  string.slice(-1)  returns the string’s last character.
+//
+// steps:
+// 1. read the string character by char using the index
+// 2. when the index = start index, start copying it into new string.
+// 3. do this till index = stop index or end of string
+function slice(str, ...idx){
+  switch (idx.length){
+    case 0:
+      var start = 0;
+      var end = str.length;
+      break;
+    case 1:
+      if (idx[0] >= 0){
+        var start = idx[0];
+      } else {
+        var start = str.length + idx[0];
+      }
+      var end = str.length;
+      break;
+    default:
+      if (idx[0] >= 0){
+        var start = idx[0];
+        var end = idx[1];
+      } else {
+        var start = str.length + idx[0];
+        var end = str.length + idx[1] + 1;
+      }
+
+  }
+
+  var result = '';
+
+  for (var i = start; i < end; i++){
+    result += str[i];
+  }
+
+  return result;
+}
+
+// myStr = "thisisyetanotherstring";
+// console.log(`The string is "${myStr}"`);
+//
+// myResult = slice(myStr, -8, -2);
+//
+// console.log(`The sliced string (3, 8) is "${myResult}"`);
+// ===========================================================================
+// String.trim
+// string.trim()  - remove whitespace (spaces, tabs, newlines) from both sides, and return a new string.
+// •Example:  "\n hellogoodbye\t ".trim()  should return  "hellogoodbye" .
+//
+// steps:
+// 1.find the position of first non-white space char and the last non-white space char.
+// 2. then slice the string between these indices.
+// 3. return the slice.
+function trim(str){
+  var start = '';
+  var end = '';
+  for (var i = 0; i < str.length; i++){
+    if ((str[i].charCodeAt(0) > 32) && (str[i].charCodeAt(0) < 133)){
+      start = i;
+      break;
+    }
+  }
+  for (var i = str.length - 1; i >= 0; i--){
+    if ((str[i].charCodeAt(0) > 32) && (str[i].charCodeAt(0) < 133)){
+      end = i + 1;
+      break;
+    }
+  }
+
+  return slice(str, start, end);
+}
+
+// myStr = "     \n hello good bye  \t      ";
+// console.log(`The string is "${myStr}"`);
+//
+// myResult = trim(myStr);
+// console.log(`The trimmed string is "${myResult}"`);
+
+// ===========================================================================
+// String.split
+//
+// string.split(separator,limit)  - split string into array of substrings, returning the new array. Separator specifies where to divide substrings and is not included in any substring. If  ""  is specified, split string on every character. Limit is optional and indicates number of splits; additional post-limit items should be discarded.
+// •Note: existing string is unaffected.
+//
+// steps:
+// 1. read the string char by char
+// 2. if seperator is empty, then push each char into the output array and return output array
+// 3. if seperator is not empty, match each char with the seperator.
+// 4. whenever the char matches the seperator, store the previously read substring into the result array and continue reading from next char
+// 5. repeat 3 and 4 till end of string
+function split(str, sep, limit = 0){
+  var result = [];
+  var push_count = 0;
+
+  if (limit <= 0){
+    limit = str.length;
+  }
+
+  switch (sep.length){
+    case 0:
+      for (var i = 0; i < str.length; i++){
+        result.push(str[i]);
+        push_count += 1;
+        if (push_count == limit){
+          break;
+        }
+      }
+      break;
+    case 1:
+      var start = 0;
+      for (var i = 0; i < str.length; i++){
+        if (str[i] == sep){
+          result.push(str.substring(start, i));
+          push_count += 1;
+          start = i+1;
+          if (push_count == limit){
+            break;
+          }
+        }
+      }
+      if ((push_count != limit) && (start < str.length)){
+        result.push(str.substring(start));
+      }
+      break;
+    default:
+      var start = 0;
+      for (var i = 0; i <= str.length - sep.length; i++){
+        if (str.substr(i, sep.length) == sep){
+          result.push(str.substring(start, i));
+          push_count += 1;
+          start = i + sep.length;
+          i += sep.length - 1;
+          if (push_count == limit){
+            break;
+          }
+        }
+      }
+      if ((push_count != limit) && (start < str.length - sep.length + 1)){
+        result.push(str.substring(start));
+      }
+      break;
+  }
+  return result;
+}
+
+// myStr = "this is yet an other     string";
+// console.log(`The string is "${myStr}"`);
+//
+// myResult = split(myStr, ' ');
+// console.log(`The split result is:`);
+// console.log(myResult);
+// ===========================================================================
+// String.search
+// string.search(val)  - search string for val (another string). Return index position of first match ( -1  if not found).
+// ---- Bonus: Implement regular expression support
+function search(str, val){
+  val += '';  // convert the to-be-searched string into a string type
+
+  switch (val.length){
+    case 0: // if the to-be-searched is an empty string, return 0
+      return 0;
+
+    case 1: // the to-be-searched is a single char.
+      for (var i = 0; i < str.length; i++){
+        if (str[i] == val){
+          return i;
+        }
+      }
+      return -1;
+
+    default: // the to-be-searched is a string on length > 1
+      for (var i = 0; i <= str.length - val.length; i++){
+        if (str.substr(i,val.length) == val){
+          return i;
+        }
+      }
+      return -1;
+  }
+}
+
+// myStr = "this is yet a34n 2other     !str1ng";
+// mySearchStr = '1';
+// console.log(`The string is "${myStr}"`);
+// console.log(`The search string is "${mySearchStr}"`);
+//
+// myResult = search(myStr, mySearchStr);
+//
+// if (myResult == -1){
+//   console.log(`The "${mySearchStr}" is not found in "${myStr}"`);
+// } else {
+//   console.log(`The string "${mySearchStr}" is found at index ${myResult}`);
+// }
+
+// ===========================================================================
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
