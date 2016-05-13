@@ -14,8 +14,9 @@ def main():
         session['m_id']  = ''
         session['form1'] = 'show'
         session['form2'] = 'hide'
+        session['attempts'] = []
 
-    return render_template('number.html', message=session['msg'], m_id=session['m_id'], form1=session['form1'], form2=session['form2'])
+    return render_template('number.html', message=session['msg'], m_id=session['m_id'], form1=session['form1'], form2=session['form2'], guesses=session['attempts'])
 
 @app.route('/check', methods=['POST'])
 def check():
@@ -38,15 +39,13 @@ def check():
         session['msg']  = "Nope! Keep trying!!"
         session['m_id'] = 'nope'
 
+    session['attempts'].append((session['m_id'],guess))
+
     return redirect('/')
 
 @app.route('/reset', methods=['POST'])
 def reset():
     session.pop('number')
     return redirect('/')
-
-
-
-
 
 app.run(debug=True)

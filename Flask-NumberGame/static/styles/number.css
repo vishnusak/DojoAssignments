@@ -29,6 +29,7 @@ form{
 
   input[type="submit"]{
     width: 17%;
+    border-radius: 10px;
   }
 
 #success{
@@ -82,3 +83,36 @@ form{
 #hide{
   display: none;
 }
+
+div{
+  display: flex;
+  width: 75%;
+  margin: 50px auto;
+  flex-wrap: wrap;
+}
+  div p{
+    margin: 1px;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  div .nope{
+    background-color: #FF0000;
+    color: #000000;
+  }
+  div .hot{
+    background-color: #00FF00;
+    color: #000000;
+  }
+  div .close{
+    background-color: #FFFF00;
+    color: #000000;
+  }
+  div .success{
+    background-color: #006900;
+    color: #FFFFFF;
+  }

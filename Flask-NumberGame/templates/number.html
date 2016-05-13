@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Great Number Game</title>
     <link type="text/css" rel="stylesheet" href="{{url_for('static', filename='styles/number.css')}}" />
+    <!-- <link type="text/css" rel="stylesheet" href="..\static\styles\number.css" /> -->
   </head>
   <body>
     <h1>Welcome to the Great Number Game</h1>
@@ -17,5 +18,10 @@
     <form action="/reset" method="post" id={{form2}}>
       <input type="submit" value="Click to Play Again" />
     </form>
+    <div>
+      {% for i in guesses: %}
+        <p class={{i[0]}}>{{i[1]}}</p>
+      {% endfor %}
+    </div>
   </body>
 </html>
