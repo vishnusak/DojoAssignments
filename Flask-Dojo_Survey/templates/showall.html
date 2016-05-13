@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dojo Survey - ShowAll</title>
+    <meta name="description" content="page for displaying all dojo user info" />
+    <meta name="author" content="vishnu" />
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/showall.css')}}" />
+  </head>
+  <body>
+    <h1>All Users</h1>
+    <form action="/showall" method="post" id='form1'>
+      <input type="submit" value="Go Back" />
+    </form>
+    {% for user in info: %}
+      <form class='detail'>
+        <label>Name: <p> {{user['name']}}</p></label>
+        <label>Dojo Location: <p>{{user['location']}}</p></label>
+        <label>Favorite Language: <p>{{user['language']}}</p></label>
+        <label>Comment (optional): <p>{{user['comment']}}</p></label>
+      </form>
+    {% endfor %}
+  </body>
+</html>

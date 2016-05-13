@@ -1,0 +1,42 @@
+body{
+  box-sizing: border-box;
+  background-color: black;
+  width: 70%;
+  margin: auto;
+}
+
+h1{
+  font-size: 45px;
+  text-align: center;
+  color: darkorange;
+  text-decoration: underline;
+}
+
+form{
+  border: 1px solid darkorange;
+  width: 50%;
+  margin: auto;
+  overflow: auto;
+}
+
+  label{
+    color: darkorange;
+    font-size: 18px;
+    display: block;
+    margin: 15px 60px;
+  }
+
+    p{
+      width: 60%;
+      margin: 0;
+      float: right;
+      color: white;
+    }
+
+  input[type="submit"]{
+    width: 30%;
+    height: 32px;
+    background-color: darkorange;
+    float: right;
+    margin: 30px 60px 30px 0;
+  }

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dojo Survey - Result</title>
+    <meta name="description" content="page for displaying dojo user info" />
+    <meta name="author" content="vishnu" />
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/result.css')}}" />
+  </head>
+  <body>
+    <h1>Submitted Info</h1>
+    <form action="/result" method="post">
+      <label>Name: <p> {{name}}</p></label>
+      <label>Dojo Location: <p>{{location}}</p></label>
+      <label>Favorite Language: <p>{{language}}</p></label>
+      <label>Comment (optional): <p>{{comment}}</p></label>
+      <input type="submit" value="Go Back" />
+    </form>
+  </body>
+</html>
