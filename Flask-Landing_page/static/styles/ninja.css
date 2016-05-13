@@ -1,0 +1,27 @@
+html{
+  background-color: black;
+}
+
+body{
+  width: 75%;
+  margin: 50px auto;
+  border: 1px solid black;
+}
+
+img{
+  width: 200px;
+  height: auto;
+  margin: 41px;
+  cursor: pointer;
+}
+
+button{
+  display: block;
+  margin: auto;
+  width: 20%;
+  padding: 20px;
+  border-radius: 35px;
+  font-size: 125%;
+  background-color: darkorange;
+  cursor: pointer;
+}

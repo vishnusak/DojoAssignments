@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <title>Contact cards</title>
+  <meta charset="utf-8">
+  <meta name="description" content="page for the Contact Card assignment in jQuery">
+  <meta name="author" content="vishnu">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/dojos.css')}}">
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script> <!-- This is the jQuery CDN -->
+  <script src="{{url_for('static',filename='scripts/dojos.js')}}"></script>
+</head>
+<body>
+  <form id="fcard">
+    <ul>
+      <li><label>Fist Name:</label></li><li><input type="text" name="fn" autofocus class="finput" id="first"></li>
+    </ul>
+    <ul>
+      <li><label>Last Name:</label></li><li><input type="text" name="ln" class="finput"></li>
+    </ul>
+    <ul><li><label>Description:</label></li></ul>
+    <ul>
+      <li><textarea name="desc" rows="5" class="finput"></textarea></li>
+    </ul>
+    <input type="submit" value="Add User" id="btn">
+  </form>
+  <div id="cards">
+<!--     <div class="ccards">
+      <h1>Vishnu</h1>
+      <p><em>Click for Description</em></p>
+      <p class="desc">Desc</p>
+    </div>
+    <div class="ccards">
+      <h1>Sakina</h1>
+      <p><em>Click for Description</em></p>
+      <p class="desc">Desc</p>
+    </div>
+    <div class="ccards">
+      <h1>Rani</h1>
+      <p><em>Click for Description</em></p>
+      <p class="desc">Desc</p>
+    </div>     -->
+  </div>
+</body>
+</html>

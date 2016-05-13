@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Disappearing Ninja</title>
+  <meta charset="utf-8">
+  <meta name="description" content="page for the disappearing ninja jQuery assignment">
+  <meta name="author" content="vishnu">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/ninja.css')}}">
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script> <!-- This is the jQuery CDN -->
+  <script type="text/javascript" src="{{url_for('static',filename='scripts/ninja.js')}}"></script>
+</head>
+<body>
+  {% for i in range(8): %}
+  <img src="{{url_for('static',filename='img/battosai.png')}}">
+  {% endfor %}
+  <button>Reset</button>
+</body>
+</html>
