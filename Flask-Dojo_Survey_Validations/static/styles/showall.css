@@ -1,0 +1,49 @@
+body{
+  box-sizing: border-box;
+  background-color: black;
+  width: 70%;
+  margin: auto;
+}
+
+h1{
+  font-size: 45px;
+  text-align: center;
+  color: darkorange;
+  text-decoration: underline;
+}
+
+.detail{
+  border: 1px solid darkorange;
+  width: 50%;
+  margin: auto;
+  overflow: auto;
+}
+
+  .detail label{
+    color: darkorange;
+    font-size: 18px;
+    display: block;
+    margin: 15px 60px;
+  }
+
+    .detail label p{
+      width: 60%;
+      margin: 0;
+      float: right;
+      color: white;
+    }
+
+#form1{
+  display: block;
+}
+  #form1 input{
+    display: block;
+    background-color: black;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    width: 25%;
+    margin: auto;
+    text-align: center;
+    cursor: pointer;
+  }
