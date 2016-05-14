@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>13-may-2016 assignment</title>
+    <script>
+// Book Index
+//
+// Martin is writing his opus: a book of algorithm challenges, set as lyrics to a suite of baroque fugues. He knows that some of those fugueing challenges will be less popular than others, so he needs a book index. Given a sorted array of pages, produce a book index string. Consecutive pages should form ranges separated by a dash. For  [1,3,4,5,7,8,10] , return the string  "1, 3-5, 7-8, 10" .
+function index(arr){
+  var pages = ''
+  var start = arr[0]
+  var end = arr[0]
+
+  for (var i = 1; i < arr.length; i++){
+    if (arr[i] == arr[i - 1] + 1){
+      end = arr[i];
+    } else {
+      if (start == end){
+        pages += (`${start}, `);
+      } else {
+        pages += (`${start}-${end}, `);
+      }
+      start = arr[i];
+      end = arr[i];
+    }
+  }
+
+  if (start == end){
+    pages += (`${start}`);
+  } else {
+    pages += (`${start}-${end}`);
+  }
+  return pages;
+}
+
+// myArr = [1,3,4,5,7,8,10,13,14,15,17,18,20];
+// console.log(`The array of pages is ${myArr}`);
+//
+// myStr = index(myArr)
+// console.log(`The index string is '${myStr}'`);
+// ==========================================================================
+// Common Suffix
+//
+// Lance is writing his opus: a tome of beat poetry. Always looking for a good rhyme, he seeks words ending with the same letters. Write a function that, given a word array, returns the largest common suffix (word-end). For inputs  ["deforestation", "citation", "conviction", "incarceration"] , return  "tion"  (not a very creative starting point). If it is  ["nice", "ice", "baby"] , return  "" .
+function suffix(arr){
+  var result = '';
+  var suffix = '';
+  var min    = arr[0].length;
+
+  for (var i = 1; i < arr.length; i++){
+    if (arr[i].length < min){
+      min = arr[i].length;
+    }
+  }
+
+  for (var char = 1; char <= min; char++){
+    for (var i = 0; i < arr.length; i++){
+      if (suffix == ''){
+        suffix += arr[i].slice(arr[i].length - char);
+      } else {
+        if (arr[i].slice(arr[i].length - char) != suffix){
+          return result;
+        }
+      }
+    }
+    result = suffix;
+    suffix = '';
+  }
+  return result;
+}
+
+// // myStr = ["deforestation", "citation", "conviction", "incarceration", "rice"];
+// // myStr = ["deforestation", "citation", "conviction", "incarceration"];
+// // myStr = ["bernice", "mice", "caprice", "thrice", "rice"];
+// myStr = ["there", "here", "where"];
+// console.log(`The array of strings is ${myStr}`);
+//
+// myResult = suffix(myStr);
+// console.log(`The common suffix is '${myResult}'`);
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
