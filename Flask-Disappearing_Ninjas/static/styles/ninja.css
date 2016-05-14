@@ -1,0 +1,54 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: white;
+  width: 50%;
+  margin: auto;
+}
+
+h1, h4{
+  text-align: center;
+  color: black;
+  margin-bottom: 10px;
+}
+
+ul{
+  list-style-type: none;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+ul li{
+  display: inline-block;
+  margin: auto;
+}
+
+a[href*='blue']{
+  color: blue;
+}
+
+a[href*='red']{
+  color: red;
+}
+
+a[href*='orange']{
+  color: orange;
+}
+
+a[href*='purple']{
+  color: purple;
+}
+
+img{
+  display: none;
+  width: 50%;
+  margin: auto;
+}
+
+.show{
+  display: block;
+}
