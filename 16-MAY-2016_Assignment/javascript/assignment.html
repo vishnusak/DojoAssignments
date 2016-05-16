@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>16-May-2016 Assignment</title>
+    <script>
+// Linked List (Single): with functions -
+
+// Making a node
+function makenode(data, link=null){
+  var node_obj = {'data': data, 'link': link};
+  return node_obj;
+}
+
+// Addtolist - will add new node to end of list
+function addtolist(list, node){
+  if (list == null){
+    list = node;
+  } else {
+    var tempnode = list
+    while (tempnode['link'] != null){
+      tempnode = tempnode['link'];
+    }
+    tempnode['link'] = node
+  }
+  return list
+}
+
+// Addtofront - will add new node to front of list
+function addtofront(list, node){
+  if (list == null){
+    list = node;
+  } else {
+    node['link'] = list
+    list = node
+  }
+  return list
+}
+
+// Insertitem - inserts the node based on asc order. Assumes a sorted list
+function insertitem(list, node){
+  if (list == null){
+    list = node
+  } else {
+    var curnode = list
+    var prevnode = null
+    while ((curnode['data'] <= node['data']) && (curnode['link'] != null)){
+      prevnode = curnode;
+      curnode = curnode['link'];
+    }
+    if (curnode['data'] > node['data']){
+      prevnode['link'] = node
+      node['link'] = curnode
+    } else {
+      curnode['link'] = node
+    }
+  }
+  return list
+}
+
+// Displaylist - displays the data held by the list
+function displaylist(list){
+  var temp = list
+
+  console.log(temp['data'])
+  while (temp['link'] != null){
+    temp = temp['link']
+    console.log(temp['data'])
+  }
+}
+
+// Removeitem - removes a node from the list
+// assumption is that this is not an empty list
+function removeitem(list, val){
+  var cur = list
+  var prev = null
+
+  while ((cur['data'] != val) && (cur['link'] != null)){
+    prev = cur
+    cur = cur['link']
+  }
+
+  if (cur['data'] == val){
+    if (prev) {
+      prev['link'] = cur['link']
+    } else {
+      list = cur['link']
+    }
+  }
+
+  return list
+}
+
+var mylist = null;
+var mynode = makenode(16);
+mylist = addtolist(mylist, mynode);
+console.log(`After adding 16:`)
+displaylist(mylist)
+
+var mynode = makenode(32);
+mylist = addtolist(mylist, mynode);
+console.log(`After adding 32:`)
+displaylist(mylist)
+
+var mynode = makenode(8);
+mylist = addtofront(mylist, mynode);
+console.log(`After adding 8 to front:`)
+displaylist(mylist)
+
+var mynode = makenode(24);
+mylist = insertitem(mylist, mynode);
+console.log(`After inserting 24:`)
+displaylist(mylist)
+
+var mynode = makenode(64);
+mylist = insertitem(mylist, mynode);
+console.log(`After inserting 64:`)
+displaylist(mylist)
+
+console.log(`The contents of the list are:`)
+displaylist(mylist)
+
+mylist = removeitem(mylist, 24)
+console.log(`After removing 24:`)
+displaylist(mylist)
+
+mylist = removeitem(mylist, 34)
+console.log(`After removing 34:`)
+displaylist(mylist)
+
+mylist = removeitem(mylist, 8)
+console.log(`After removing 8:`)
+displaylist(mylist)
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
