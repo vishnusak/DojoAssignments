@@ -1,0 +1,117 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: rgb(0, 128, 128);
+  background-color: rgba(0, 128, 128, 0.5);
+}
+
+.show{
+  display: block;
+}
+
+.hide{
+  display: none;
+}
+
+.err{
+  margin: auto;
+  color: #FF0000;
+  background-color: #FFFFFF;
+  /*text-align: center;*/
+  font-style: italic;
+  font-weight: bold;
+}
+
+#login{
+  width: 40vw;
+  border: 1px solid #FFFFFF;
+  margin: 25vh auto 0 auto;
+  background-color: #008181;
+}
+
+  #login label{
+    display: block;
+    width: 80%;
+    margin: calc((3.5vw + 3.5vh) / 2) auto;
+    font-size: calc((3.5vw + 3.5vh) / 2);
+    color: #FFFFFF;
+  }
+
+    #login label input{
+      width: 60%;
+      font-size: calc((3vw + 3vh) / 2);
+      text-align: center;
+      float: right;
+    }
+
+  #login input[type="submit"]{
+    display: block;
+    width: 30%;
+    margin: auto;
+    margin-bottom: calc((2vw + 2vh) / 2);
+    font-size: calc((2.5vw + 2.5vh) / 2);
+    background-color: #FFFFFF;
+    color: #008181;
+    border-width: thick;
+    border-radius: calc((2.5vw + 2.5vh) / 2);
+    cursor: pointer;
+  }
+
+  #login #signup{
+    margin: auto;
+    color: #008181;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    border-top: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    cursor: pointer;
+  }
+
+#register{
+  width: 40vw;
+  border: 1px solid #FFFFFF;
+  margin: 10vh auto 0 auto;
+  background-color: #008181;
+}
+
+  #register label{
+    display: block;
+    width: 80%;
+    margin: calc((3.5vw + 3.5vh) / 2) auto;
+    font-size: calc((3.5vw + 3.5vh) / 2);
+    color: #FFFFFF;
+  }
+
+    #register label:last-of-type{
+      display: block;
+      width: 80%;
+      margin: calc((3.5vw + 3.5vh) / 2) auto;
+      font-size: calc((2vw + 2vh) / 2);
+      line-height: calc((3.5vw + 3.5vh) / 2);
+      color: #FFFFFF;
+    }
+
+    #register label input{
+      width: 60%;
+      font-size: calc((3vw + 3vh) / 2);
+      text-align: center;
+      float: right;
+    }
+
+  #register input[type="submit"]{
+    display: block;
+    width: 30%;
+    margin: calc((5vw + 5vh) / 2) auto calc((2vw + 2vh) / 2) auto;
+    margin-bottom: calc((2vw + 2vh) / 2);
+    font-size: calc((2.5vw + 2.5vh) / 2);
+    background-color: #FFFFFF;
+    color: #008181;
+    border-width: thick;
+    border-radius: calc((2.5vw + 2.5vh) / 2);
+    cursor: pointer;
+  }
