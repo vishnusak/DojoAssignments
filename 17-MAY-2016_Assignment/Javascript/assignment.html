@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>17-May-2016 Assignment</title>
+    <script>
+//  Single Linked List - using prototypes
+
+// Class or prototype for Nodes in the linked list
+// it doesn't need any methods. Only attributes - Data and Next
+function Node(data=null){
+  this.data = data;
+  this.next = null;
+}
+
+// Class or prototype for the linked list.
+// This has attributes - Head -> to track the beginning of the list
+//                       Len -> to track the overall length of the list
+//                       Max -> to track the maximum value
+//                       Min -> to track the minimum value
+//                       Sum -> to track the sum of all values in the list
+// Its up to us to decide what attributes to have and what methods to have
+// We could very well remove the attributes above and add methods to return those same values
+
+function List(){
+  // The below declarations, which start with the keyword 'var' will essentially be private variables and methods to the "class" we are defining
+  // private variables
+  var len = 0;
+  var min = null;
+  var max = null;
+  var sum = null;
+
+  // private method to update the length of the list
+  var updLen = function(val=1){
+    len += val
+  }
+
+  // private method to update the min value the list
+  var updMin = function(data=null){
+    if (data != null){
+      if (min == null){
+        min = data
+      } else {
+        min = ((min > data) ? data : min)
+      }
+    } else {
+      min = ((head == null) ? null : head.data)
+      var temp = ((head == null) ? null : head.next)
+      while (temp != null){
+        min = ((min > temp.data) ? temp.data : min)
+        temp = temp.next
+      }
+    }
+  }
+
+  // private method to update the max value the list
+  var updMax = function(data=null){
+    if (data != null){
+      if (max == null){
+        max = data
+      } else {
+        max = ((max < data) ? data : max)
+      }
+    } else {
+      max = ((head == null) ? null : head.data)
+      var temp = ((head == null) ? null : head.next)
+      while (temp != null){
+        max = ((max < temp.data) ? temp.data : max)
+        temp = temp.next
+      }
+    }
+  }
+
+  // private method to update the sum of values in the list
+  var updSum = function(data){
+    if (sum == null){
+      sum = data
+    } else {
+      sum += data
+    }
+  }
+
+  // attribute list of the class
+  this.len  = len;
+  this.min  = min;
+  this.max  = max;
+  this.sum  = sum;
+
+  // the head pointer for the list. Making this a private variable
+  var head = null;
+
+  // return the contents of the linked list as an array:
+  this.show = function(){
+    if (head == null){
+      return "Empty Linked List"
+    } else {
+      var temp = head
+      var list_data = []
+      while (temp.next != null){
+        list_data.push(temp.data)
+        temp = temp.next
+      }
+      list_data.push(temp.data)
+      return list_data
+    }
+  }
+
+  // Add a new node to the list. Here we
+  // 1. Create a new node
+  // 2. Traverse to the end of the current list
+  // 3. Add the new node to the end of the list
+  this.add = function(data){
+    var node = new Node(data)
+    if (head == null){
+      head = node
+    } else {
+      var temp = head
+      while (temp.next != null){
+        temp = temp.next
+      }
+      temp.next = node
+    }
+    updLen(); this.len = len;
+    updMin(data); this.min = min;
+    updMax(data); this.max = max;
+    updSum(data); this.sum = sum;
+  }
+
+  // Add a new node at the beginning of the list. Here we
+  // 1. Create a new node
+  // 2. Add node to the beginning of the list
+  // 3. Update head to point to new node
+  this.addFront = function(data){
+    var node = new Node(data)
+    if (head == null){
+      head = node
+    } else {
+      node.next = head
+      head = node
+    }
+    updLen(); this.len = len;
+    updMin(data); this.min = min;
+    updMax(data); this.max = max;
+    updSum(data); this.sum = sum;
+  }
+
+  // Insert a node into the list. Here we
+  // ---- assume that list is sorted
+  // 1. Create a new node for data to be inserted
+  // 2. Traverse the list keeping track of cur and prev node
+  // 3. For each node, compare the node data to the data that has to be inserted
+  // 4. When node whose data is greater than 'to-be-inserted' data is identified, connect the prev node to the new node and new node to the current node to effectively insert the new node
+  this.insert = function(data){
+    var node = new Node(data)
+    if (head == null){
+      head = node
+    } else {
+      var cur = head
+      var prev = null
+      while ((cur.data <= data) && (cur.next != null)){
+        prev = cur
+        cur = cur.next
+      }
+      if (cur.data <= data){
+        cur.next = node
+      } else {
+        if (prev == null){
+          node.next = cur
+          head = node
+        } else {
+          node.next = cur
+          prev.next = node
+        }
+      }
+    }
+    updLen(); this.len = len;
+    updMin(data); this.min = min;
+    updMax(data); this.max = max;
+    updSum(data); this.sum = sum;
+  }
+  // Remove a node list. Here we
+  // 1. Traverse the list keeping track of cur and prev node
+  // 2. For each node, compare the node data to the data that has to be removed
+  // 3. When node to be removed is identified, connect the prev node to the next node to effectively remove the current node
+  this.remove = function(data){
+    if (!head){
+      return
+    }
+    
+    var cur = head
+    var prev = null
+    var done = 0
+
+    while ((cur.data != data) && (cur.next != null)){
+      prev = cur
+      cur = cur.next
+    }
+
+    if (cur.data == data){
+      if (cur.next == null){
+        if (prev){
+          prev.next = null
+        } else {
+          head = null
+        }
+        done = 1
+      } else if (prev == null){
+        head = cur.next
+        done = 1
+      } else {
+        prev.next = cur.next
+        done = 1
+      }
+    }
+
+    if (done){
+      updLen(-1); this.len = len;
+      updMin(); this.min = min;
+      updMax(); this.max = max;
+      updSum(-1 * data); this.sum = sum;
+    }
+  }
+
+} // End of List class
+
+var myList = new List();
+
+myList.add(42);
+myList.add(142);
+myList.add(242);
+myList.add(432);
+myList.add(425);
+myList.addFront(0);
+myList.addFront(10);
+myList.addFront(565);
+myList.addFront(13);
+
+console.log(`length is ${myList.len}`)
+console.log(`The linked is: ${myList.show()}`)
+
+myList.remove(0)
+console.log(`removing 0`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.remove(13)
+console.log(`removing 13`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.remove(425)
+console.log(`removing 425`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.remove(565)
+console.log(`removing 565`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.remove(432)
+console.log(`removing 432`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.remove(10)
+console.log(`removing 10`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.remove(42)
+console.log(`removing 42`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.remove(142)
+console.log(`removing 142`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.remove(242)
+console.log(`removing 242`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+
+myList.insert(1)
+console.log(`inserting 1`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.insert(-10)
+console.log(`inserting 10`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.insert(3)
+console.log(`inserting 3`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.insert(8)
+console.log(`inserting 8`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.insert(0)
+console.log(`inserting 0`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+myList.insert(-11)
+console.log(`inserting 11`)
+console.log(`length is ${myList.len} - min is ${myList.min} - max is ${myList.max} - sum is ${myList.sum}`)
+console.log(`The linked is: ${myList.show()}`)
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
