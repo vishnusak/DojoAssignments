@@ -1,5 +1,17 @@
 # Single Linked List
 
-### The assignment asked for Length and Min, Max, Avg of a given linked list.
-### I decided to try the implementation from scratch in both JS and Python using OOP concepts instead of functions.
-### I setup "len", "min", "max" and "sum" as attributes of the list object that is created. So once the list is built, we can just use the attributes to get the values needed
+## What this covers:
+The implementation of SLL from scratch in both JS and Python using OOP instead of functions.
+
+### The linked list class has the following attributes:
+-- **_len_**
+-- **_min_**
+-- **_max_**
+-- **_sum_**
+
+### The class also has the following methods:
+-- **_show()_** : to display the existing data in the list
+-- **_add()_** : to add new node to the end of list
+-- **_addFront()_** : to add new node at the beginning of list
+-- **_insert()_** : to insert a new node based on sort order
+-- **_remove()_** : to remove a node based on the data given
