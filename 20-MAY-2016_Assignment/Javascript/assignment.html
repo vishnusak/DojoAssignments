@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>19-May-2016 Assignment</title>
+    <script>
+//  Single Linked List - using prototypes
+
+// Class or prototype for Nodes in the linked list
+// it doesn't need any methods. Only attributes - Data and Next
+function Node(data=null){
+  this.data = data;
+  this.next = null;
+}
+
+// Class or prototype for the linked list.
+// This has attributes - Head -> to track the beginning of the list
+//                       Len -> to track the overall length of the list
+//                       Max -> to track the maximum value
+//                       Min -> to track the minimum value
+//                       Sum -> to track the sum of all values in the list
+// Its up to us to decide what attributes to have and what methods to have
+// We could very well remove the attributes above and add methods to return those same values
+
+function List(){
+  // The below declarations, which start with the keyword 'var' will essentially be private variables and methods to the "class" we are defining
+  // private variables
+  var len = 0;
+  var min = null;
+  var max = null;
+  var sum = null;
+
+  // private method to keep the list attributes updated
+  var updAttr = function(){
+    min = ((head == null) ? null : head.data)
+    max = ((head == null) ? null : head.data)
+    sum = ((head == null) ? null : head.data)
+    len = ((head == null) ? 0 : 1)
+    var temp = ((head == null) ? null : head.next)
+
+    while (temp != null){
+      len += 1
+      sum += temp.data
+      min = ((min > temp.data) ? temp.data : min)
+      max = ((max < temp.data) ? temp.data : max)
+      temp = temp.next
+    }
+  }
+
+  // attribute list of the class
+  this.len  = len;
+  this.min  = min;
+  this.max  = max;
+  this.sum  = sum;
+
+  // the head pointer for the list. Making this a private variable
+  var head = null;
+
+  // return the contents of the linked list as an array:
+  this.show = function(){
+    if (head == null){
+      return "Empty Linked List"
+    } else {
+      var temp = head
+      var list_data = []
+      while (temp.next != null){
+        list_data.push(temp.data)
+        temp = temp.next
+      }
+      list_data.push(temp.data)
+      return list_data
+    }
+  }
+
+  // Add a new node to the list. Here we
+  // 1. Create a new node if required. If passed a Node, use it.
+  // 2. Traverse to the end of the current list
+  // 3. Add the new node to the end of the list
+  this.add = function(data){
+    if (typeof data == 'object'){
+      var node = data
+    } else {
+      var node = new Node(data)
+    }
+
+    if (head == null){
+      head = node
+    } else {
+      var temp = head
+      while (temp.next != null){
+        temp = temp.next
+      }
+      temp.next = node
+    }
+    updAttr();
+    this.len = len;
+    this.min = min;
+    this.max = max;
+    this.sum = sum;
+  }
+
+  // Add a new node at the beginning of the list. Here we
+  // 1. Create a new node
+  // 2. Add node to the beginning of the list
+  // 3. Update head to point to new node
+  this.addFront = function(data){
+    if (typeof data == 'object'){
+      var node = data
+    } else {
+      var node = new Node(data)
+    }
+
+    if (head == null){
+      head = node
+    } else {
+      node.next = head
+      head = node
+    }
+    updAttr();
+    this.len = len;
+    this.min = min;
+    this.max = max;
+    this.sum = sum;
+  }
+
+  // Insert a node into the list. Here we
+  // ---- assume that list is sorted
+  // 1. Create a new node for data to be inserted
+  // 2. Traverse the list keeping track of cur and prev node
+  // 3. For each node, compare the node data to the data that has to be inserted
+  // 4. When node whose data is greater than 'to-be-inserted' data is identified, connect the prev node to the new node and new node to the current node to effectively insert the new node
+  this.insert = function(data){
+    if (typeof data == 'object'){
+      var node = data
+    } else {
+      var node = new Node(data)
+    }
+
+    if (head == null){
+      head = node
+    } else {
+      var cur = head
+      var prev = null
+      while ((cur.data <= data) && (cur.next != null)){
+        prev = cur
+        cur = cur.next
+      }
+      if (cur.data <= data){
+        cur.next = node
+      } else {
+        if (prev == null){
+          node.next = cur
+          head = node
+        } else {
+          node.next = cur
+          prev.next = node
+        }
+      }
+    }
+    updAttr();
+    this.len = len;
+    this.min = min;
+    this.max = max;
+    this.sum = sum;
+  }
+
+  // Remove a node list. Here we
+  // 1. Traverse the list keeping track of cur and prev node
+  // 2. For each node, compare the node data to the data that has to be removed
+  // 3. When node to be removed is identified, connect the prev node to the next node to effectively remove the current node
+  this.remove = function(data){
+    if (!head){
+      return
+    }
+
+    var cur = head
+    var prev = null
+    var done = 0
+
+    while ((cur.data != data) && (cur.next != null)){
+      prev = cur
+      cur = cur.next
+    }
+
+    if (cur.data == data){
+      if (cur.next == null){
+        if (prev){
+          prev.next = null
+        } else {
+          head = null
+        }
+        done = 1
+      } else if (prev == null){
+        head = cur.next
+        done = 1
+      } else {
+        prev.next = cur.next
+        done = 1
+      }
+    }
+
+    updAttr();
+    this.len = len;
+    this.min = min;
+    this.max = max;
+    this.sum = sum;
+  }
+
+  // Minimum to front. Here we
+  // 1. Traverse the list keeping track of cur and prev node. Start with assuming the head as the min node
+  // 2. For each node, compare the node data to the min data that has been stored.
+  // 3. If node data is less than stored min, make the current node as the new minimum. Make the prev node as the new min_prev
+  // 3. After the list is traversed, use the identified minprev to cut the min node out of its existing position
+  // 4. Insert the min node at the head of the list
+  this.min_to_front = function(){
+    if (!head){
+      return "Empty Linked List"
+    }
+
+    if (!head.next){
+      return "Only 1 node in linked list"
+    }
+
+    var min = head
+    var min_prev = null
+    var cur = head.next
+    var prev = head
+
+    while(cur != null){
+      if (min.data > cur.data){
+        min_prev = prev
+        min = cur
+      }
+      prev = cur
+      cur = cur.next
+    }
+
+    if (min_prev == null){
+      return "Minimum value is already in the front"
+    } else {
+      if (min.next == null){
+        min_prev.next = null
+      } else {
+        min_prev.next = min.next
+      }
+      min.next = head
+      head = min
+    }
+  }
+
+  // Attach (before / after). Here we
+  // 1. Traverse the list keeping track of cur and prev node.
+  // 2. For each node, compare the node data to the exist_data provided
+  // 3. If node data is equal to exist_data, insert new data either before or after the current node depending on pos value.
+  // --- validating that 'pos' is only 'after' or 'before' has to be done
+  this.attach = function(data, exist_data, pos='after'){
+    if (typeof data == 'object'){
+      var node = data
+    } else {
+      var node = new Node(data)
+    }
+
+    if (!head){
+      head = node
+    } else {
+      var cur = head
+      var prev = null
+
+      while ((cur.data != exist_data) && (cur.next != null)){
+        prev = cur
+        cur = cur.next
+      }
+
+      if (cur.data == exist_data){
+        if (pos == 'after'){
+          if (cur.next){
+            node.next = cur.next
+          }
+          cur.next = node
+        } else {
+          if (prev){
+            node.next = cur
+            prev.next = node
+          } else {
+            node.next = head
+            head = node
+          }
+        }
+      } else {
+        cur.next = node
+      }
+    }
+
+    updAttr();
+    this.len = len;
+    this.min = min;
+    this.max = max;
+    this.sum = sum;
+  }
+
+  // Split on Value. Here we:
+  // 1. Traverse the list until the node.data is equal to the number passed keeping track of the previous node
+  // 2. When found, make previous.next = null effectively terminating the existing list
+  // 3. The current node, which equals the number passed, will become the new HEAD node.
+  // 4. Return this new HEAD node
+  this.splitOnVal = function(dataval){
+    var result = null
+
+    if (!head){
+      result = "Empty Linked List"
+    } else {
+      var cur = head
+      var prev = null
+
+      while ((cur.data != dataval) && (cur.next != null)){
+        prev = cur
+        cur = cur.next
+      }
+
+      if (prev == null){
+        head = null
+        result = new List()
+        result.add(cur)
+      } else if ((cur.next == null) && (cur.data != dataval)){
+        result = `${dataval} not in linked list`
+      } else {
+        prev.next = null
+        result = new List()
+        result.add(cur)
+      }
+    }
+    updAttr();
+    this.len = len;
+    this.min = min;
+    this.max = max;
+    this.sum = sum;
+    return result
+  }
+
+  // Partition. Here we:
+  // 1. Traverse the list until we identify the node with the required data item. Say it is X
+  // 2. Move node X to the head of the list.
+  // 3. Start traversing the list from second node onwards. If The node value is less than node X, move it to the head. Otherwise continue traversing
+  this.partition = function(dataval){
+    var result = null
+
+    if (!head){
+      result = "Empty Linked List"
+    } else {
+      var cur = head
+      var prev = null
+
+      while ((cur.data != dataval) && (cur.next != null)){
+        prev = cur
+        cur = cur.next
+      }
+
+      if ((cur.next == null) && (cur.data != dataval)){
+        result = `${dataval} not in linked list`
+      } else if (prev != null){
+        prev.next = cur.next
+        cur.next = head
+        head = cur
+      }
+    }
+
+    if (!result){
+      cur = head.next
+      prev = head
+
+      while (cur != null){
+        if (cur.data <= dataval){
+          prev.next = cur.next
+          cur.next = head
+          head = cur
+          cur = prev.next
+        } else {
+          prev = cur
+          cur = cur.next
+        }
+      }
+    }
+    return result
+  }
+
+  // Second to last value: Here we:
+  // 1. Traverse the list keeping track of current node and previous node.
+  // 2. Traversal stops when cur.next is null
+  // 3. At that point, return the value in previous.
+  this.sec_to_last = function (){
+    var result = null
+
+    if (!head){
+      result = "Empty Linked List"
+    } else {
+      var cur = head
+      var prev = null
+
+      while (cur.next != null){
+        prev = cur
+        cur = cur.next
+      }
+
+      if (prev){
+        result = prev.data
+      } else {
+        result = null
+      }
+    }
+    return result
+  }
+
+  // Filter: Here we:
+  // 1. Traverse the list keeping track of current and previous nodes
+  // 2. For each node, check that it falls within the limits
+  // 3. If it doesn't, remove the current node and update the current node pointer with the next node
+  this.filter = function(low, high){
+    if (!head){
+      return "Empty Linked List"
+    } else {
+      var cur = head
+      var prev = null
+
+      while (cur){
+        if ((cur.data < low) || (cur.data > high)){
+          if (prev){
+            prev.next = cur.next
+            cur.next = null
+            cur = prev.next
+          } else {
+            head = cur.next
+            cur.next = null
+            cur = head
+          }
+        } else {
+          prev = cur
+          cur = cur.next
+        }
+      }
+
+      updAttr();
+      this.len = len;
+      this.min = min;
+      this.max = max;
+      this.sum = sum;
+    }
+  }
+
+  // Remove Single Node. Here we:
+  // ---- This is different from "remove" since this uses only the node and node.next to remove a specific data item from list. It doesn't keep track of previous node.
+  // 1. Traverse the list keeping track of current node. This is done to identify the node we want to remove
+  // 2. Once this is identified, move all further node data 1 spot to the left till end of list
+  this.remNode = function(data){
+    cur = head
+    while ((cur.data != data) && (cur.next != null)){
+      cur = cur.next
+    }
+
+    if ((cur.data == data) && (cur.next)){
+      nxt = cur.next
+
+      while(nxt.next){
+        cur.data = nxt.data
+        cur = nxt
+        nxt = nxt.next
+      }
+      cur.data = nxt.data
+      cur.next = null
+    }
+
+    updAttr();
+    this.len = len;
+    this.min = min;
+    this.max = max;
+    this.sum = sum;
+  }
+
+
+
+} // End of List class
+
+// Create a list
+var myList = new List();
+
+myList.add(452);
+myList.add(142);
+myList.add(242);
+myList.add(432);
+myList.add(425);
+myList.add(510);
+myList.add(565);
+myList.add(313);
+myList.add(333);
+
+myList.attach(3, 142)
+myList.attach(13, 333, 'before')
+myList.attach(0, 510, 'before')
+myList.attach(37, 600, 'before')
+myList.attach(40, 242, 'after')
+
+console.log(`length is ${myList.len}`)
+console.log(`The linked list is: ${myList.show()}`)
+
+myResult = myList.sec_to_last()
+console.log(`The second to last element in the list is ${myResult}`)
+
+myList.filter(0,500)
+console.log(`length is ${myList.len}`)
+console.log(`The linked list is: ${myList.show()}`)
+
+myList.remNode(452)
+console.log(`length is ${myList.len}`)
+console.log(`The linked list is: ${myList.show()}`)
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
