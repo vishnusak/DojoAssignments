@@ -1,0 +1,104 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-image: url('../img/black-slate.jpg');
+  color: #FFFFFF;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 100%;
+}
+
+h1{
+  text-align: center;
+  font-style: italic;
+  margin: 20vh auto 2vh auto;
+}
+
+  h1 span{
+    background-color: lightgray;
+    background-color: rgba(211, 211, 211, 0.7);
+    color: #000000;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: calc((3.5vw + 3.5vh) / 2);
+  }
+
+#log{
+  width: 100%;
+  position: absolute;
+}
+
+#reg{
+  display: none;
+  width: 0;
+  position: absolute;
+  right: 0;
+}
+
+form{
+  width: 30vw;
+  background-color: lightgray;
+  background-color: rgba(211, 211, 211, 0.7);
+  margin: auto;
+  padding: 1vh 1vw;
+}
+
+  .input{
+    display: block;
+    width: 85%;
+    height: 10%;
+    margin: auto;
+    font-size: calc((2.5vw + 2.5vh) / 2);
+    border: 1px solid black;
+    padding-left: 0.5vw;
+  }
+
+  input[type='submit']{
+    display: block;
+    width: 40%;
+    height: 10%;
+    margin: 5vh auto 1vh;
+    font-size: calc((2vw + 2vh) / 2);
+    font-style: italic;
+    color: black;
+    background-color: lightgray;
+    cursor: pointer;
+  }
+
+  .err{
+    width: 85%;
+    height: 1.8vh;
+    font-style: italic;
+  }
+
+    .err span{
+      font-size: calc((1vw + 1vh) / 2);
+      color: darkred;
+    }
+
+  #login, #register{
+    border: 1px solid black;
+  }
+
+  #login p{
+    margin: 4vh auto 1vh;
+  }
+
+  #register p{
+    margin: 1vh auto 1vh;
+  }
+
+  #goto{
+    width: 30vw;
+    margin: auto;
+    padding: 1vh;
+    text-align: center;
+    background-color: black;
+    color: lightgray;
+    font-style: italic;
+    font-size: 80%;
+    cursor: pointer;
+  }

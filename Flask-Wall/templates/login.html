@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A site which allows users to connect with each other by leaving their thoughts on a Wall for others to read and comment" />
+    <meta name="author" content="vishnu" />
+
+    <title>Wall | Login</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css' />
+
+
+    <script type="text/javascript" src="{{url_for('static', filename='scripts/login.js')}}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/login.css')}}" />
+
+    <!-- <script type="text/javascript" src="..\static\scripts\login.js"></script>
+    <link rel="stylesheet" type="text/css" href="..\static\styles\login.css" /> -->
+
+  </head>
+  <body>
+    <h1>Welcome to the <span>WALL</span></h1>
+    <div id="log">
+      <form action="/login" method="post" id="login">
+        <p class="err" id="eml_err"><span>{{session['login_err']['user']}}</span></p>
+        <input type="text" name="email" placeholder="email" class="input" required id="log_1"/>
+        <p class="err" id="pass_err"><span>{{session['login_err']['pwd']}}</span></p>
+        <input type="password" name="password" placeholder="password" class="input" required />
+        <input type="submit" name="login" value="Login" disabled>
+      </form>
+      <p id="goto">Need to Sign Up? This way please &#8594; &#8594; &#8594;</p>
+    </div>
+    <div id="reg">
+      <form action="/register" method="post" id="register">
+        <p class="err" id="fn_err"><span></span></p>
+        <input type="text" name="fname" placeholder="first name" class="input" required id="reg_1"/>
+        <p class="err" id="ln_err"><span></span></p>
+        <input type="text" name="lname" placeholder="last name" class="input" required />
+        <p class="err" id="em_err"><span></span></p>
+        <input type="text" name="email" placeholder="email" class="input" required />
+        <p class="err" id="pwd_err"><span></span></p>
+        <input type="password" name="password" placeholder="password" class="input" required id="reg_pwd"/>
+        <p class="err" id="pwdc_err"><span></span></p>
+        <input type="password" name="password_c" placeholder="re-type password" class="input" required />
+        <input type="submit" name="login" value="Register" disabled>
+      </form>
+    </div>
+  </body>
+</html>

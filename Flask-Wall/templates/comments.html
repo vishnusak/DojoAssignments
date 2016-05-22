@@ -1,0 +1,4 @@
+{% for cmt in session['comments'] %}
+  <p class="comment_user">{{cmt['user']}} - {{cmt['date']}}</p>
+  <p class="each_comment">{{cmt['text']}}</p>
+{% endfor %}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A site which allows users to connect with each other by leaving their thoughts on a Wall for others to read and comment" />
+    <meta name="author" content="vishnu" />
+
+    <title>Your Wall</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css' />
+
+    <script type="text/javascript" src="{{url_for('static', filename='scripts/wall.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/wall.css')}}" />
+
+    <!-- <script type="text/javascript" src="..\static\scripts\wall.js"></script>
+    <link rel="stylesheet" type="text/css" href="..\static\styles\wall.css" /> -->
+  </head>
+  <body>
+    <header>
+      <p id="hd1">Your Wall</p>
+      <p id="hd2">{{session['login_name']}}</p>
+      <p id="hd3"><a href="/logout">LogOut</a></p>
+    </header>
+
+    <main>
+      <h1>Welcome to the WALL</h1>
+
+      <p id="cur_user">Post a message {{session['login_name']}}</p>
+      <!-- <form action="/in_message" method="post" id="in_message"> -->
+      <form id="in_message">
+        <textarea name="in_message_text" placeholder="scribble your thoughts . . ."></textarea>
+        <input type="submit" name="in_submit" value="Post It" />
+      </form>
+
+      <hr />
+
+      <h2>Graffitti</h2>
+
+      <div id="graffitti">
+        {% for msg in session['messages'] %}
+
+        <div class="msg_block">
+
+          <p class="users" id="u{{msg['id']}}">{{msg['user']}} - {{msg['date']}}</p>
+          {% if msg['user'] == session['login_name']: %}
+            {% if msg['del'] %}
+              <input type="button" name="del_msg" value="X" class="del_msg" id="del{{msg['id']}}" />
+              {% endif %}
+          {% endif %}
+          <div id="d{{msg['id']}}">
+            <form class="messages">
+              <p class="msg">{{msg['text']}}</p>
+              <input type="submit" name="show_comments" value="" class="show_cmt" id="sc{{msg['id']}}"/>
+            </form>
+
+            <div class="comments" id="c{{msg['id']}}">
+
+              <div id="clist{{msg['id']}}">
+              </div>
+
+              <hr />
+
+              <p class="comment_user">Post a comment - {{session['login_name']}}</p>
+              <form class="post_comment">
+                <input type="hidden" name="msg_id" value="{{msg['id']}}" />
+                <textarea name="in_comment_text" placeholder="more graffitti . . ."></textarea>
+                <input type="submit" name="in_comment_submit" value="Post Comment" class="send_cmt"/>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+
+        {% endfor %}
+      </div>
+
+    </main>
+
+    <footer>
+      <p>WALL - May-2016</p>
+    </footer>
+  </body>
+</html>

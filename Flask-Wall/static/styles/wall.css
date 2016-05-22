@@ -1,0 +1,301 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-image: url('../img/black-slate.jpg');
+  font-family: 'Libre Baskerville', serif;
+  font-size: 100%;
+  /*overflow: hidden;*/
+}
+
+header{
+  background-color: black;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+  header p{
+    display: inline-block;
+    margin: auto;
+    padding: 0.5vh 0.3vw;
+    line-height: 3vh;
+    color: white;
+    /*background-color: black;*/
+  }
+
+  header #hd1{
+    margin-left: 1vw;
+  }
+
+  header #hd3{
+    margin-right: 1vw;
+  }
+
+  header p a{
+    font-size: calc((1.5vw + 1.2vh) / 2);
+    color: white;
+    text-decoration: none;
+    padding: 0.5vh 0.3vw;
+    vertical-align: baseline;
+  }
+
+    header p a:hover{
+      background-color:  white;
+      color: black;
+    }
+
+main{
+  width: 80vw;
+  max-height: 95vh;
+  overflow-y: auto;
+  margin: 4vh auto auto auto;
+  padding-top: 2vh;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* putting this in to style the scrollbar */
+/* works only in browsers using webkit rendering engine */
+main::-webkit-scrollbar{
+  width: 0.2vw;
+}
+
+main::-webkit-scrollbar-thumb {
+  background-color: rgb(63, 64, 65);
+}
+/* end - scrollbar style */
+
+  main h1{
+    font-style: italic;
+    text-align: center;
+    width: 90%;
+    color: black;
+    text-shadow: 0 0 calc((1vw + 1vh) / 2) rgb(166, 244, 255);
+    text-shadow: 0 0 15px rgb(166, 244, 255); /* putting this in for MS EDGE */
+    box-shadow: 0 0 calc((1vw + 1vh) / 2) black;
+    box-shadow: 0 0 15px black; /* putting this in for MS EDGE */
+    margin: 0 auto 2vh auto;
+    padding: 2vh 0;
+  }
+
+  main #cur_user{
+    color: black;
+    margin: 0 auto 1vh 5%;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  main #in_message{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+    main #in_message textarea{
+      width: 90%;
+      height: 20vh;
+      margin: auto;
+      overflow: auto;
+      padding: 1vh 0.5vw;
+      border-color: white;
+    }
+
+    main #in_message input{
+      width: 10%;
+      margin: auto 5% auto auto;
+      padding: 0.5vh 0.25vw;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+      main #in_message input:hover{
+        background-color: rgb(166, 244, 255);
+        border-color: rgb(38, 160, 218);
+      }
+
+  main hr{
+    margin: 2vh 2vw;
+  }
+
+  main h2{
+    font-style: italic;
+    text-align: center;
+    width: 90%;
+    color: black;
+    text-shadow: 0 0 calc((1vw + 1vh) / 2) rgb(166, 244, 255);
+    text-shadow: 0 0 15px rgb(166, 244, 255); /* putting this in for MS EDGE */
+    box-shadow: 0 0 calc((1vw + 1vh) / 2) black;
+    box-shadow: 0 0 15px  black; /* putting this in for MS EDGE */
+    margin: 2vh auto;
+    padding: 2vh 0;
+  }
+
+  main .users{
+    display: inline-block;
+    color: black;
+    margin: 0 auto 1vh 5%;
+    font-size: 85%;
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  main .del_msg{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    border-radius: calc((1vw + 1vh) / 2);
+    text-align: center;
+    font-size: 70%;
+    font-weight: bold;
+    width: 1.2%;
+    margin: auto 5% auto auto;
+    cursor: pointer;
+  }
+
+    main .del_msg:hover{
+      background-color: white;
+      color: black;
+      border: 1px solid black;
+    }
+
+  main .messages{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+    main .messages textarea{
+      width: 90%;
+      height: 10vh;
+      margin: auto;
+      overflow: auto;
+      padding: 1vh 0.5vw;
+      border-color: white;
+    }
+
+    main .messages .msg{
+      width: 90%;
+      margin: auto;
+      padding: 1vh 0.5vw;
+      font-size: 80%;
+      color: black;
+      text-align: justify;
+      background-color: lightgray;
+      box-shadow: 0 0 calc((1vw + 1vh) / 2) black;
+      box-shadow: 0 0 15px black;
+    }
+
+    main .messages label{
+      display: flex;
+      flex-direction: row-reverse;
+      /*align-items: center;*/
+      /*border: 1px solid red;*/
+    }
+
+    main .messages .show_cmt{
+      width: 2%;
+      margin: 0.2% 5% 10px auto;
+      /*margin: auto 0 10px 0;*/
+      padding: 0.05vh 0.1vw;
+      cursor: pointer;
+      font-weight: bold;
+      background-image: url('../img/comments4.png');
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-color: white;
+      border: 1px solid white;
+      box-shadow: 0 0 calc((1vw + 1vh) / 2) black;
+      box-shadow: 0 0 15px black;
+    }
+
+      main .messages .show_cmt:hover{
+        background-color: rgb(166, 244, 255);
+        border-color: rgb(38, 160, 218);
+        transform: scale(2.0, 2.0);
+      }
+
+  main .comments{
+    display: none;
+    width: 87%;
+    margin: auto 5% 4vh auto;
+    background-color: rgb(90, 90, 90);
+    background-color: rgba(90, 90, 90, 0.7);
+  }
+
+    main .comments .comment_user{
+      font-size: 80%;
+      font-style: italic;
+      /*font-weight: bold;*/
+      color: white;
+      padding: 0.5vh 0.5vw;
+    }
+
+    main .comments .each_comment{
+      width: 97%;
+      margin: auto;
+      font-size: 75%;
+      background-color: lightgray;
+      color: black;
+      padding: 1vh 0.5vw;
+      text-align: justify;
+      border-radius: calc((0.4vw + 0.4vh) / 2);
+      box-shadow: 0 0  calc((1vw + 1vh) / 2) black;
+      box-shadow: 0 0  15px black;
+    }
+
+    main .comments hr{
+      border-color: none;
+      width: 100%;
+      margin: 2vh auto;
+    }
+
+    main .comments .post_comment{
+      display: flex;
+      flex-direction: column;
+      width: 97%;
+      margin: auto;
+    }
+
+      main .comments .post_comment textarea{
+        width: 100%;
+        height: 10vh;
+        margin: auto;
+        overflow: auto;
+        padding: 1vh 0.5vw;
+        border-color: white;
+      }
+
+      main .comments .post_comment input{
+        width: 10%;
+        margin: auto 0 2vh auto;
+        padding: 0.5vh 0.25vw;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+        main .comments .post_comment input:hover{
+          background-color: rgb(166, 244, 255);
+          border-color: rgb(38, 160, 218);
+        }
+
+
+footer{
+  max-height: 1vh;
+  width: 100%;
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 0.85vh;
+  text-align: center;
+  font-style: italic;
+  cursor: none;
+}

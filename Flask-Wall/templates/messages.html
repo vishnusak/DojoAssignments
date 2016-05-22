@@ -1,0 +1,35 @@
+{% for msg in session['messages'] %}
+<div class="msg_block">
+
+  <p class="users" id="u{{msg['id']}}">{{msg['user']}} - {{msg['date']}}</p>
+  {% if msg['user'] == session['login_name']: %}
+    {% if msg['del'] %}
+    <input type="button" name="del_msg" value="X" class="del_msg" id="del{{msg['id']}}" />
+    {% endif %}
+  {% endif %}
+
+  <div id="d{{msg['id']}}">
+    <form class="messages">
+      <p class="msg">{{msg['text']}}</p>
+      <input type="submit" name="show_comments" value="" class="show_cmt" id="sc{{msg['id']}}"/>
+    </form>
+
+    <div class="comments" id="c{{msg['id']}}">
+
+      <div id="clist{{msg['id']}}">
+      </div>
+
+      <hr />
+
+      <p class="comment_user">{{session['login_name']}}</p>
+      <form class="post_comment">
+        <input type="hidden" name="msg_id" value="{{msg['id']}}" />
+        <textarea name="in_comment_text" placeholder="more graffitti . . ."></textarea>
+        <input type="button" name="in_comment_submit" value="Post Comment" class="send_cmt"/>
+      </form>
+
+    </div>
+  </div>
+
+</div>
+{% endfor %}
