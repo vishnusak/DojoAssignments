@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users | Edit</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles/edit.css')}}" />
+    <!-- <link rel="stylesheet" type="text/css" href="..\static\styles\edit.css" /> -->
+  </head>
+  <body>
+    <main>
+      <div id="edit">
+        <h1>Edit User-{{user['id']}}</h1>
+        <form action="/users/{{user['id']}}/update" method="post">
+          <label>First Name:</label>
+          <input type="text" name="fname" value="{{user['fname']}}" required />
+          <label>Last Name:</label>
+          <input type="text" name="lname" value="{{user['lname']}}" required />
+          <label>Email:</label>
+          <input type="text" name="email" value="{{user['email']}}" required />
+          <input type="submit" value="Update" />
+        </form>
+        <p>
+          <a href="/users/{{user['id']}}">Show</a> | <a href="/users">Go Back</a>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>

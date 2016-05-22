@@ -1,0 +1,44 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: navy;
+  width: 75vw;
+  margin: auto;
+  color: lightgray;
+}
+
+#show{
+  /*border: 1px solid red;*/
+}
+
+  #show h1{
+    text-align: center;
+    margin: 2vh auto;
+  }
+
+  #show ul{
+    font-size: 175%;
+    list-style: none;
+    padding: 1vh 1vw;
+    border: 1px solid blue;
+    width: 50%;
+    margin: auto;
+  }
+
+  #show li{
+    margin: 2vh 1vw;
+  }
+
+  #show p{
+    width: 40%;
+    margin: 1vh auto;
+    font-size: 120%;
+  }
+  #show a{
+    color: gold;
+    text-decoration: none;
+  }
