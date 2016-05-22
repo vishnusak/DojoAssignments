@@ -1,7 +1,7 @@
 # The challenge:
 - To build a Message wall where users will be able to post a message and see messages displayed by other users.
 - Allow users to post comments for any message. Show the comments on the wall
-- Allow message and comment edits within 30 minutes of posting
+- Allow message deletes within 30 minutes of posting
 
 # To DO:
 - ~~DB Design~~
