@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>26-May-2016 Assignment</title>
+    <script>
+// Implement Stack using Single Linked List
+
+// Define a Node
+function Node(data){
+  this.data = data
+  this.next = null
+}
+
+// Define the linked list, setup the following methods:
+// push()
+// pop()
+// top()
+// contains()
+// isEmpty()
+// size()
+function Stack(){
+  var head = null
+
+  this.show = function(){
+    if (head){
+      var thisQ = []
+      var cur = head
+      while(cur){
+        thisQ.push(cur.data)
+        cur = cur.next
+      }
+      return thisQ
+    } else {
+      return null
+    }
+  }
+
+  this.top = function(){
+    if (head){
+      return head.data
+    } else {
+      return null
+    }
+  }
+
+  this.contains = function(data){
+    var result = false
+    if (head){
+      if (typeof data == 'object'){
+        var data = data.data
+      }
+
+      var cur = head
+      while (cur){
+        if (cur.data == data){
+          result = true
+          break
+        } else {
+          cur = cur.next
+        }
+      }
+    }
+    return result
+  }
+
+  this.isEmpty = function(){
+    return (!head)
+  }
+
+  this.size = function(){
+    var size = 0
+    if (head){
+      var cur = head
+      var size = 0
+      while (cur){
+        size += 1
+        cur = cur.next
+      }
+    }
+    return size
+  }
+
+  this.push = function(data){
+    if (typeof data == 'object'){
+      var node = data
+    } else {
+      var node = new Node(data)
+    }
+
+    if (head){
+      node.next = head
+    }
+    head = node
+  }
+
+  this.pop = function(){
+    var result = null
+
+    if (head){
+      result = head
+      head = head.next
+    }
+
+    return result
+  }
+} //End of Que Class
+
+var values = [34, 15, 97, 11, 14, 20, 55, 90, 71, 3]
+var myStk = new Stack()
+
+for (var i = 0; i < values.length; i++){
+  myStk.push(values[i])
+}
+
+console.log(`The stack is ${myStk.show()}`)
+console.log(`The top of the stack is ${myStk.top()}`)
+console.log(`The stack contains 20 - ${myStk.contains(20)}`);
+console.log(`The stack contains 85 - ${myStk.contains(85)}`);
+console.log(`The stack is empty - ${myStk.isEmpty()}`);
+console.log(`The size of the stack is - ${myStk.size()}`);
+
+for (var i = 0; i < values.length; i++){
+  console.log(`The popped value is ${myStk.pop().data}`)
+}
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
