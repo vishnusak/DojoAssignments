@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>23-May-2016 Assignment</title>
+    <script>
+// Implement Queues using Single Linked List
+
+// Define a Node
+function Node(data){
+  this.data = data
+  this.next = null
+}
+
+// Define the linked list, setup the enque and deque methods
+function Que(){
+  var head = null
+  var tail = null
+
+  this.show = function(){
+    if (head){
+      var thisQ = []
+      var cur = head
+      while(cur){
+        thisQ.push(cur.data)
+        cur = cur.next
+      }
+      return thisQ
+    } else {
+      return null
+    }
+  }
+
+  this.front = function(){
+    if (head){
+      return head.data
+    } else {
+      return null
+    }
+  }
+
+  this.contains = function(data){
+    var result = false
+    if (head){
+      if (typeof data == 'object'){
+        var data = data.data
+      }
+
+      var cur = head
+      while (cur){
+        if (cur.data == data){
+          result = true
+          break
+        } else {
+          cur = cur.next
+        }
+      }
+    }
+    return result
+  }
+
+  this.isEmpty = function(){
+    return (!head)
+  }
+
+  this.size = function(){
+    var size = 0
+    if (head){
+      var cur = head
+      var size = 0
+      while (cur){
+        size += 1
+        cur = cur.next
+      }
+    }
+    return size
+  }
+
+  this.enque = function(data){
+    if (typeof data == 'object'){
+      var node = data
+    } else {
+      var node = new Node(data)
+    }
+
+    if (!tail){
+      head = node
+    } else {
+      tail.next = node
+    }
+    tail = node
+  }
+
+  this.deque = function(){
+    var result = null
+
+    if (!head){
+
+      result = "Empty List"
+    } else {
+      result = head
+      head = head.next
+      if (!head){
+        tail = null
+      }
+    }
+
+    return result
+  }
+} //End of Que Class
+
+var values1 = [34, 15, 97, 11, 14, 20, 55, 90, 71, 3]
+var values2 = [22, 20, 15, 9, 16, 5, 67, 59, 77, 36]
+
+var myQ1 = new Que()
+var myQ2 = new Que()
+
+for (var i = 1; i < values1.length; i++){
+  myQ1.enque(values1[i])
+}
+
+for (var i = 1; i < values1.length; i++){
+  myQ2.enque(values1[i])
+}
+
+console.log(`Q1 is ${myQ1.show()}`)
+console.log(`Q2 is ${myQ2.show()}`)
+
+function compareQ(q1, q2){
+  var q1data = q1.show()
+  var q2data = q2.show()
+  var result = true
+
+  if (q1data.length != q2data.length){
+    result = false
+  } else {
+    for (var i = 0; i < q1data.length; i++){
+      if (q1data[i] != q2data[i]){
+        result = false
+        break
+      }
+    }
+  }
+  return result
+}
+
+console.log(`Q1 and Q2 are equal - ${compareQ(myQ1, myQ2)}`)
+
+
+var values = [22, 8, 15, 9, 16, 5, 67, 59, 77, 36, 5]
+var myQ = new Que()
+for (var i = 1; i < values.length; i++){
+  myQ.enque(values[i])
+}
+console.log(`Queue is ${myQ.show()}`)
+
+function remMin(q){
+  var qdata = q.show()
+  var min = qdata[0]
+
+  // Empty the queue
+  for (var i = 1; i <= qdata.length; i++){
+    q.deque()
+  }
+
+  // find the minimum among queue values
+  for (var i = 1; i < qdata.length; i++){
+    min = ((min > qdata[i]) ? qdata[i] : min)
+  }
+
+  // remove the minimum from the queue values
+  while(qdata.indexOf(min) != -1){
+    var idx = qdata.indexOf(min)
+    qdata.splice(idx,1)
+  }
+
+  // re-populate the queue
+  for (var i = 0; i < qdata.length; i++){
+    q.enque(qdata[i])
+  }
+}
+
+remMin(myQ)
+console.log(`Queue after removing min is ${myQ.show()}`)
+
+
+function interleave(q){
+  var qdata = q.show()
+  var newq = []
+
+  var mid = Math.round(qdata.length / 2)
+  var qdata1 = qdata.slice(0, mid)
+  var qdata2 = qdata.slice(mid)
+
+  // Empty the queue
+  for (var i = 1; i <= qdata.length; i++){
+    q.deque()
+  }
+
+  for (var i = 0; i < qdata1.length; i++){
+    newq.push(qdata1[i])
+    if (qdata2[i]){
+      newq.push(qdata2[i])
+    }
+  }
+
+  // re-populate the queue
+  for (var i = 0; i < newq.length; i++){
+    q.enque(newq[i])
+  }
+}
+
+interleave(myQ)
+console.log(`Queue after interleaving is ${myQ.show()}`)
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
