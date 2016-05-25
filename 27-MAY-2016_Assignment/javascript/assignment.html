@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>27-May-2016 Assignment</title>
+    <script>
+// 1. Palindrome
+// Define a Node
+function Node(data){
+  this.data = data
+  this.next = null
+}
+
+// Define a Queue
+function Que(){
+  var head = null
+  var tail = null
+
+  this.show = function(){
+    if (head){
+      var thisQ = []
+      var cur = head
+      while(cur){
+        thisQ.push(cur.data)
+        cur = cur.next
+      }
+      return thisQ
+    } else {
+      return null
+    }
+  }
+
+  this.enque = function(data){
+    if (typeof data == 'object'){
+      var node = data
+    } else {
+      var node = new Node(data)
+    }
+
+    if (!tail){
+      head = node
+    } else {
+      tail.next = node
+    }
+    tail = node
+  }
+
+  this.deque = function(){
+    var result = null
+
+    if (!head){
+      result = "Empty List"
+    } else {
+      result = head
+      head = head.next
+    }
+
+    return result
+  }
+} //End of Que Class
+
+
+// Define a Stack
+function Stack(){
+  var head = null
+
+  this.show = function(){
+    if (head){
+      var thisQ = []
+      var cur = head
+      while(cur){
+        thisQ.push(cur.data)
+        cur = cur.next
+      }
+      return thisQ
+    } else {
+      return null
+    }
+  }
+
+  this.push = function(data){
+    if (typeof data == 'object'){
+      var node = data
+    } else {
+      var node = new Node(data)
+    }
+
+    if (head){
+      node.next = head
+    }
+    head = node
+  }
+
+  this.pop = function(){
+    var result = null
+
+    if (head){
+      result = head
+      head = head.next
+    }
+
+    return result
+  }
+} //End of Stack Class
+
+// var values = [34, 15, 97, 11, 14, 20, 55, 90, 71, 3]
+// var values = [34, 15, 97, 11, 14, 11, 97, 15, 34]
+// var myQ = new Que()
+// for (var i = 0; i < values.length; i++){
+//   myQ.enque(values[i])
+// }
+//
+// var qdata = myQ.show()
+// console.log(`The que is ${qdata}`)
+//
+// var myStk = new Stack()
+// for (var i = 0; i < qdata.length; i++){
+//   myStk.push(qdata[i])
+// }
+// var stkdata = myStk.show()
+// console.log(`The stack is ${stkdata}`)
+//
+// var isPalindrome = true
+// for (var i = 0; i < qdata.length; i++){
+//   if (qdata[i] != stkdata[i]){
+//     isPalindrome = false
+//     break
+//   }
+// }
+// console.log(`The que ${qdata} is a Palindrome - ${isPalindrome}`)
+
+// Implement a Deque using Single Linked List
+function DQ(){
+  var head = null
+  var tail = null
+
+  this.show = function(){
+    if (head){
+      var thisQ = []
+      var cur = head
+      while(cur){
+        thisQ.push(cur.data)
+        cur = cur.next
+      }
+      return thisQ
+    } else {
+      return null
+    }
+  }
+
+  this.front = function(){
+    if (head){
+      return head.data
+    } else {
+      return null
+    }
+  }
+
+  this.back = function(){
+    if (tail){
+      return tail.data
+    } else {
+      return null
+    }
+  }
+
+  this.contains = function(data){
+    var result = false
+    if (head){
+      if (typeof data == 'object'){
+        var data = data.data
+      }
+
+      var cur = head
+      while (cur){
+        if (cur.data == data){
+          result = true
+          break
+        } else {
+          cur = cur.next
+        }
+      }
+    }
+    return result
+  }
+
+  this.isEmpty = function(){
+    return (!head)
+  }
+
+  this.size = function(){
+    var size = 0
+    if (head){
+      var cur = head
+      var size = 0
+      while (cur){
+        size += 1
+        cur = cur.next
+      }
+    }
+    return size
+  }
+
+  this.pushFront = function(data){
+    if (typeof data == 'object'){
+      var node = data
+    } else {
+      var node = new Node(data)
+    }
+
+    if (head){
+      node.next = head
+    } else {
+      tail = node
+    }
+    head = node
+  }
+
+  this.pushBack = function(data){
+    if (typeof data == 'object'){
+      var node = data
+    } else {
+      var node = new Node(data)
+    }
+
+    if (tail){
+      tail.next = node
+    } else {
+      head = node
+    }
+    tail = node
+  }
+
+  this.popFront = function(){
+    var result = null
+
+    if (head){
+      result = head
+      head = head.next
+    }
+
+    return result
+  }
+
+  this.popBack = function(){
+    var result = null
+
+    if (head){
+      var cur = head
+      var prev = null
+      while (cur != tail){
+        prev = cur
+        cur = cur.next
+      }
+      result = cur
+      if (prev){
+        prev.next = null
+        tail = prev
+      } else {
+        head = null
+        tail = null
+      }
+    }
+
+    return result
+  }
+} //End of Que Class
+
+// var values = [34, 15, 97, 11, 14, 20, 55, 90, 71, 3]
+// var myQ1 = new DQ()
+// for (var i = 0; i < values.length; i++){
+//   myQ1.pushFront(values[i])
+// }
+//
+// var myQ2 = new DQ()
+// for (var i = 0; i < values.length; i++){
+//   myQ2.pushBack(values[i])
+// }
+//
+// console.log(`Q1 => ${myQ1.show()}`)
+// console.log(`Q2 => ${myQ2.show()}`)
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
