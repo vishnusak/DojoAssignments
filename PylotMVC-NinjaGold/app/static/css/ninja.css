@@ -1,0 +1,100 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  background-color: #1F1F1F;
+}
+body{
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  background-color: gold;
+  color: darkblue;
+}
+
+h1{
+  text-align: center;
+  margin: 20px auto;
+}
+
+.score{
+  margin: 20px auto;
+}
+  .score>p{
+    display: inline-block;
+    font-size: 24px;
+    font-weight: bold;
+  }
+    .score>p>span{
+      display: inline-block;
+      min-width: 100px;
+      background-color: darkblue;
+      color: gold;
+      text-align: center;
+      margin: auto 10px;
+    }
+  .score>a{
+    background-color: #1F1F1F;
+    color: yellow;
+    text-decoration: none;
+    display: inline-block;
+    width: 75px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+hr{
+  margin: 10px auto;
+}
+
+.buildings{
+  margin: 20px auto;
+  display: flex;
+}
+  .buildings>form{
+    width: 22%;
+    margin: auto;
+    box-shadow: 0 0 20px darkblue;
+  }
+    .buildings>form>h2, .buildings>form>h3{
+      text-align: center;
+      margin: 25px;
+    }
+    .buildings>form>input{
+      display: block;
+      margin: 35px auto 15px;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: darkblue;
+      color: gold;
+    }
+
+.activity{
+  margin: 15px auto 30px;
+  width: 100%;
+  height: 300px;
+  overflow-y: auto;
+  background-color: white;
+  padding: 10px;
+  font-size: 18px;
+  box-shadow: 0 0 20px darkblue;
+}
+  .activity>.red{
+    color: red;
+    margin: 10px;
+  }
+  .activity>.green{
+    color: darkgreen;
+    margin: 10px;
+  }
+  .activity>.black{
+    color: black;
+    margin: 10px;
+  }
