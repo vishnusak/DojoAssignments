@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/survey.css')}}" media="screen" charset="utf-8">
+    <!-- <link rel="stylesheet" href="../static/css/survey.css" media="screen" charset="utf-8"> -->
+  </head>
+  <body>
+    <h1>Survey Form</h1>
+    <form action="/survey" method="post">
+      <label>
+        Your Name: <input type="text" name="name" />
+      </label>
+      <label>Dojo Location:
+        <select name="location">
+          <option value="Earth">Earth</option>
+          <option value="Moon">Moon</option>
+          <option value="Sun">Sun</option>
+          <option value="Mars">Mars</option>
+        </select>
+      </label>
+      <label>Language:
+        <select name="language">
+          <option value="English">English</option>
+          <option value="Tagalog">Tagalog</option>
+          <option value="Mandarin">Mandarin</option>
+          <option value="Telugu">Telugu</option>
+        </select>
+      </label>
+      <label>
+        Comment:
+        <textarea name="comment"></textarea>
+      </label>
+      <input type="submit" name="submit" value="Submit">
+    </form>
+  </body>
+</html>

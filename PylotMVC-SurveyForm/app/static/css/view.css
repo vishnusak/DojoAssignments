@@ -1,0 +1,65 @@
+* {
+  font-family: monaco;
+}
+
+body{
+  width: 50%;
+  margin: auto;
+}
+
+h3, h4{
+  width: 60%;
+  margin: 10px auto;
+  text-align: center;
+  background-color: darkgreen;
+  color: yellow;
+  padding: 10px;
+}
+
+h4{
+  text-align: center;
+}
+
+div{
+  width: 50%;
+  margin: auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  border: 5px solid darkgreen;
+}
+
+label{
+  margin: 10px auto;
+  width: 100%;
+  display: flex;
+}
+
+  label>input{
+    width: 68%;
+    margin: auto 0 auto auto;
+    border: none;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  label>textarea{
+    width: 68%;
+    height: 80px;
+    margin: auto 0 auto auto;
+    border: none;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+a{
+  width: 40%;
+  margin: 20px 0 auto auto;
+  border: 1px solid black;
+  text-align: center;
+  background-color: rgb(240, 240, 240);
+  text-decoration: none;
+  color: black;
+  font-size: 12px;
+  padding: 5px 0;
+}

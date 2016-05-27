@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey Form - View</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/view.css')}}" media="screen" charset="utf-8">
+    <!-- <link rel="stylesheet" href="../static/css/view.css" media="screen" charset="utf-8"> -->
+  </head>
+  <body>
+    <h3>Thanks for submitting this form! You have submitted this form {{ session['submit'] }} times now</h3>
+    <div>
+      <h4>Submitted Information</h4>
+      <label>
+        Name: <input type="text" name="name" value="{{ session['name'] }}" readonly />
+      </label>
+      <label>
+        Dojo Location: <input type="text" name="location" value="{{ session['location'] }}" readonly />
+      </label>
+      <label>
+        Language: <input type="text" name="language" value="{{ session['language'] }}" readonly />
+      </label>
+      <label>
+        Comment: <textarea name="comment" readonly >{{ session['comment'] }}</textarea>
+      </label>
+      <a href="/">Go Back</a>
+    </div>
+  </body>
+</html>
