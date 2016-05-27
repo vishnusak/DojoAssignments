@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>NinjaGold - Pylot</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/ninja.js')}}"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='css/ninja.css')}}" media="screen" charset="utf-8">
     <!-- <link rel="stylesheet" href="..\static\css\ninja.css" media="screen" charset="utf-8"> -->
   </head>
@@ -10,28 +12,28 @@
     <h1>Ninja Gold</h1>
     <div class="score">
       <p>
-        Your Gold: <span>{{ session['score'] }}</span>
+        Your Gold: <span id="showscore">0</span>
       </p>
       <a href="/reset">reset</a>
     </div>
     <hr>
     <div class="buildings">
-      <form action="/process_money/farm" method="post">
+      <form id="farm">
         <h2>Farm</h2>
         <h3>(earns 10-20 golds)</h3>
         <input type="submit" value="Find Gold!">
       </form>
-      <form action="/process_money/cave" method="post">
+      <form id="cave">
         <h2>Cave</h2>
         <h3>(earns 5-10 golds)</h3>
         <input type="submit" value="Find Gold!">
       </form>
-      <form action="/process_money/house" method="post">
+      <form id="house">
         <h2>House</h2>
         <h3>(earns 2-5 golds)</h3>
         <input type="submit" value="Find Gold!">
       </form>
-      <form action="/process_money/casino" method="post">
+      <form id="casino">
         <h2>Casino</h2>
         <h3>(earns / loses 0-50 golds)</h3>
         <input type="submit" value="Find Gold!">
@@ -40,9 +42,6 @@
     <hr>
     <h2>Activity:</h2>
     <div class="activity">
-      {% for activity in session['activities'] %}
-        <p class="{{ activity['color'] }}">{{ activity['msg'] }} ({{ activity['time'] }})</p>
-      {% endfor %}
     </div>
   </body>
 </html>

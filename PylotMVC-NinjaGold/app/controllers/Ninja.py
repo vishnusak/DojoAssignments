@@ -1,6 +1,7 @@
 from system.core.controller import Controller, redirect, request, session
 from random import randint
 from time import strftime
+from json import dumps
 
 class Ninja(Controller):
     def __init__(self, action):
@@ -46,6 +47,7 @@ class Ninja(Controller):
 
         activity['time'] = strftime('%Y/%m/%d %I:%M %p')
         session['score'] += score
+        activity['score'] = session['score']
         session['activities'].insert(0, activity)
 
-        return redirect('/')
+        return dumps(activity)

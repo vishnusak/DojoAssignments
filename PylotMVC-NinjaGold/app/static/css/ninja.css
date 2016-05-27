@@ -30,7 +30,7 @@ h1{
   }
     .score>p>span{
       display: inline-block;
-      min-width: 100px;
+      width: 100px;
       background-color: darkblue;
       color: gold;
       text-align: center;
