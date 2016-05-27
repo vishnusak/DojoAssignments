@@ -1,0 +1,30 @@
+* {
+  font-family: monaco;
+}
+
+body{
+  width: 50%;
+  margin: auto;
+}
+
+h3{
+  margin-top: 50px;
+  text-align: center;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+input[type='text']{
+  font-size: 25px;
+  text-align: center;
+  width: 40%;
+  margin: auto;
+}
+
+input[type='submit']{
+  width: 25%;
+  margin: 20px auto;
+}
