@@ -1,0 +1,63 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  background-color: #1F1F1F;
+}
+
+body{
+  width: 75%;
+  margin: auto;
+  background-color: lightyellow;
+}
+
+h2{
+  text-align: center;
+  margin: 20px auto;
+}
+
+.removeCourse{
+  width: 50%;
+  /*font-size: 18px;*/
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+  .removeCourse>*{
+    margin: 10px;
+  }
+  .removeCourse>label{
+    display: flex;
+    flex-direction: row;
+  }
+    .removeCourse>label>*{
+      width: 80%;
+      margin: auto 0 auto auto;
+      padding-left: 10px;
+      text-align: justify;
+    }
+    .removeCourse>label>textarea{
+      height: 80px;
+      overflow-y: auto;
+    }
+    .removeCourse>div{
+      display: flex;
+    }
+      .removeCourse>div>a{
+        margin: auto;
+        text-decoration: none;
+        color: lightyellow;
+      }
+        .removeCourse>div>a:first-of-type{
+          background-color: darkgreen;
+          width: 50px;
+          text-align: center;
+        }
+        .removeCourse>div>a:last-of-type{
+          background-color: red;
+          width: 200px;
+          text-align: center;
+        }

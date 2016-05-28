@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Remove Courses - Pylot+DB</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/remove.css')}}" media="screen" charset="utf-8">
+    <!-- <link rel="stylesheet" href="..\static\css\remove.css" media="screen" charset="utf-8"> -->
+  </head>
+  <body>
+    <h2>Are you sure you want to delete the following course?</h2>
+    <div class="removeCourse">
+      <label>
+        Name: <input type="text" name="title" value="{{ course['title'] }}" readonly>
+      </label>
+      <label>
+        Description: <textarea name="desc" readonly>{{ course['description'] }}</textarea>
+      </label>
+      <div>
+        <a href="/">No</a>
+        <a href="/courses/remove/{{ course['id'] }}" id="confirm">Yes! I want to delete this</a>
+      </div>
+    </div>
+  </body>
+</html>
