@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>30-May-2016 Assignment</title>
+    <script>
+// Array balance point
+// Write a function that returns whether the given array has a balance point between indices, where one side's sum is equal to the other's. Example:  [1,2,3,4,10]  →  true  (between indices 3 & 4), but  [1,2,4,2,1]  →  false
+
+// Steps:
+// 1. Find the sum of all elements in the array. This can be done in a couple of ways:
+// ---- traverse the array using a for loop and add all the elements up
+// ---- use a reduce function on the array (which essentially does the same for loop internally)
+// 2. After the sum of elements is found, set a for loop to traverse the array from beginning to end (this will be the second for loop in the program)
+// 3. For every index,
+// ---- keep track of sum of all elements till that index
+// ---- Multiply that sum by 2. The product must be equal to the total sum identified in step 1.
+// ---- At whichever index this condition is satisfied, we return the result as between index and index+1
+// 4. If condition is not satisfied until end of loop, return false.
+function balance(arr){
+  sum_arr = arr.reduce(function (x, y){return x + y})
+  balanced = false
+  sum = null;
+  for (var i = 0; i < arr.length; i++){
+    sum = ((sum) ? (sum + arr[i]) : arr[i])
+    if (sum * 2 == sum_arr){
+      balanced = `The array is balanced between indices ${i} and ${i+1}`
+      break
+    }
+  }
+  return balanced
+}
+
+// myArr = [6,6]
+// console.log(`The array is ${myArr}`)
+// console.log(`Checking it for balance:`)
+// console.log(`${balance(myArr)}`)
+// ===========================================================================
+// Balance Index
+
+// Here, a balance point is on an index, not between indices. Return the balance index where sums are equal on either side (exclude its own value). Return  -1  if none exist. Ex.:  [- 2,5,7,0,3]  →  2 , but  [9,9]  →  -1 .
+
+// Steps:
+// Very similar to the previous problem. The difference being that the current index being considered shouldn't be used as part of the calculations. So essentially, the condition to check for is
+// (sum of all elements till current index - current index element) * 2 == total sum - current index element
+function balIdx(arr){
+  sum_arr = arr.reduce(function(x, y){return x + y})
+  balanced = -1
+  sum = arr[0]
+  for (var i = 1; i < arr.length; i++){
+    if ((sum * 2) == (sum_arr - arr[i])){
+      balanced = i
+      break
+    } else {
+      sum += arr[i]
+    }
+  }
+  return balanced
+}
+
+myArr = [5,-2,7,3]
+console.log(`The array is ${myArr}`)
+console.log(`Checking it for balance:`)
+console.log(`Balanced on index ${balIdx(myArr)}`)
+// ===========================================================================
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
