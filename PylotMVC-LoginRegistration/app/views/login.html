@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LoginRegistration | Home</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}" media="screen" charset="utf-8">
+    <!-- <link rel="stylesheet" href="..\static\css\login.css" media="screen" charset="utf-8"> -->
+  </head>
+  <body>
+
+    <form class="login" action="/login" method="post">
+      <h2>Login</h2>
+      {% with err_msgs = get_flashed_messages(category_filter = ['login']) %}
+        {% if err_msgs %}
+          {% for err in err_msgs %}
+            <p id="l_err">{{ err }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <label>
+        <span>Email:</span><input type="text" name="email" id="l_email">
+      </label>
+      <label>
+        <span>Password:</span><input type="password" name="pwd" id="l_pwd">
+      </label>
+      <input type="submit" name="submit" value="Login">
+    </form>
+
+    <form class="registration" action="/register" method="post">
+      <h2>Registration</h2>
+      {% with err_msgs = get_flashed_messages(category_filter = ['register']) %}
+        {% if err_msgs %}
+          {% for err in err_msgs %}
+            <p id="r_err">{{ err }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <label>
+        <span>First Name:</span><input type="text" name="fname">
+      </label>
+      <label>
+        <span>Last Name:</span><input type="text" name="lname">
+      </label>
+      <label>
+        <span>Email:</span><input type="text" name="email">
+      </label>
+      <label>
+        <span>Password:</span><input type="password" name="pwd">
+      </label>
+      <label>
+        <span>Confirm Pwd:</span><input type="password" name="pwd_c">
+      </label>
+      <input type="submit" name="submit" value="Register">
+    </form>
+
+  </body>
+</html>

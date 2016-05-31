@@ -1,0 +1,48 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  background-color: lightyellow;
+}
+
+body{
+  width: 80%;
+  margin: auto;
+  display: flex;
+  align-items: flex-start;
+}
+
+.login, .registration{
+  background-color: darkgreen;
+  width: 50%;
+  border: 4px double lightyellow;
+  display: flex;
+  flex-direction: column;
+  color: lightyellow;
+}
+  .login>*, .registration>*{
+    margin: 10px auto;
+  }
+  .login>label, .registration>label{
+    width: 70%;
+  }
+    .login>label>span, .registration>label>span{
+      display: inline-block;
+      width: 30%;
+      text-align: right;
+    }
+    .login>label>input, .registration>label>input{
+      width: 67%;
+      text-align: center;
+      margin-left: 10px;
+    }
+    .login>#l_err, .registration>#r_err{
+      margin: auto auto auto 38%;
+      text-align: left;
+      color: white;
+      background-color: red;
+      font-style: italic;
+    }
