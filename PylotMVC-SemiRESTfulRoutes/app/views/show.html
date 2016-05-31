@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Products | Show Product Info</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/show.css') }}" media="screen" charset="utf-8">
+
+    <link rel="stylesheet" href="..\static\css\show.css" media="screen" charset="utf-8">
+
+  </head>
+  <body>
+    <h1>Product - {{ pdt['id'] }}</h1>
+    <p><span>Name:</span> {{ pdt['name'] }}</p>
+    <p><span>Description:</span> {{ pdt['description'] }}</p>
+    <p><span>Price:</span> {{ pdt['price'] }}</p>
+    <footer>
+      <a href="/products/edit/{{ pdt['id'] }}">Edit</a>
+      <a href="/">Back</a>
+    </footer>
+    <hr />
+  </body>
+</html>

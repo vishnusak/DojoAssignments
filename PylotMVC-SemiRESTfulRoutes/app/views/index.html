@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Products | Index</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" media="screen" charset="utf-8">
+
+    <link rel="stylesheet" href="..\static\css\index.css" media="screen" charset="utf-8">
+
+  </head>
+  <body>
+    <header>
+      <h1>Products</h1>
+      <span>( <a href="/products/new">Add a new Product</a> )</span>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pdt in products %}
+          <tr>
+            <td>{{ pdt['name'] }}</td>
+            <td>{{ pdt['description'] }}</td>
+            <td>${{ pdt['price'] }}</td>
+            <td><a href="/products/show/{{ pdt['id'] }}">Show</a>-<a href="/products/edit/{{ pdt['id'] }}">Edit</a>-<a href="/products/remove/{{ pdt['id'] }}">Remove</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <hr />
+  </body>
+</html>
