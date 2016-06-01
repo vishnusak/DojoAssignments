@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>31-May-2016 Assignment</title>
+    <script>
+// Taco Truck
+//
+// Joe drives a taco truck in the booming town of Squaresburg. He uses an array of  [x,y]  coordinates corresponding to locations of his customers. They walk to his truck, but he is fair-minded so he wants to minimize total distance from truck to customers. City blocks are perfect squares, and every street is two-way, at perfect right angles. He only parks by street corners (coordinates like  [37,-16] ). Customers only travel on streets: coordinate  [2,-2]  is distance  4  from  [0,0] . Joe checks the array before deciding where to park. Given a customer coordinate array, return an optimal taco truck location. Example: given  [ [10,0], [-1,-10], [2,4] ] , return  [2,0] , as total distance is  25  ( 8 + 13 + 4 ).
+
+// steps:
+// 1. seperate the location array into two different arrays - 1 for x coordinates and 1 for y coordinates
+// 2. Identify the max and min for x and y coords
+// 3. For every value between the max and min of X, subtract it from every x coordinate and then sum them up to find distance to be travelled. This will help identify minimum x distance to be travelled
+// 4. Similarly find minimum y distance to be travelled
+// 5. The value of X and Y where the minimum distance was identified will now the truck coords
+function placeTruck(arr){
+  var x = []
+  var y = []
+  var x_max = null
+  var x_min = arr[0][0]
+  var x_sum = null
+  var truck_x = null
+  var y_max = null
+  var y_min = arr[0][1]
+  var y_sum = null
+  var truck_y = null
+
+  for(var i = 0; i < arr.length; i++){
+    x.push(arr[i][0])
+    y.push(arr[i][1])
+    x_max = ((x_max < arr[i][0]) ? arr[i][0] : x_max)
+    x_min = ((x_min > arr[i][0]) ? arr[i][0] : x_min)
+    y_max = ((y_max < arr[i][1]) ? arr[i][1] : y_max)
+    y_min = ((y_min > arr[i][1]) ? arr[i][1] : y_min)
+  }
+
+  x_sum = x.reduce(function(a,b){return a + Math.abs(b)}, null)
+  y_sum = y.reduce(function(a,b){return a + Math.abs(b)}, null)
+
+  for(var i = x_min; i <= x_max; i++){
+    var sum = x.reduce(function (a, b){return a + Math.abs(b-i)}, null)
+    if (x_sum >= sum){
+      x_sum = sum
+      truck_x = i
+    }
+  }
+
+  for(var j = y_min; j <= y_max; j++){
+    var sum = y.reduce(function (a, b){return a + Math.abs(b-j)}, null)
+    if (y_sum >= sum){
+      y_sum = sum
+      truck_y = j
+    }
+  }
+
+  truck_x = ((truck_x) ? truck_x : 0)
+  truck_y = ((truck_y) ? truck_y : 0)
+  
+  return [[truck_x, truck_y], x_sum+y_sum]
+}
+
+var myLocations = [ [-10,0], [-1,-10], [2,4] ]
+var result = placeTruck(myLocations)
+console.log(`The customers locations are ${myLocations}`)
+console.log(`The optimal position for the truck is ${result[0]}`)
+console.log(`The minimum distance to be covered by customers is ${result[1]}`)
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
