@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>1-June-2016 Assignment</title>
+    <script>
+// Binary Search
+
+// steps:
+// ---- assume array is sorted in ascending order
+// 1. Find the mid point (index) of the array
+// 2. Compare the value at mid point with VAL. If value is greater, VAL is in the first half or array, otherwise it is in second half
+// 3. For first half of the array, start index will be 0, end index will be mid point. For second half of array, start index will be mid point, end index will be length-1. Using this, repeat steps 1 and 2 till VAL is found
+function binarySearch(arr, val){
+  var start = 0
+  var end = arr.length - 1
+  var found = false
+  var pos = null
+
+  if (arr[start] == val){
+    pos = start
+  } else if (arr[end] == val){
+    pos = end
+  } else {
+    while((end - start > 1) && (!found)){
+      var mid = start + Math.floor((end - start) / 2)
+      switch (true){
+        case (arr[mid] > val):
+          end = mid
+          break
+        case (arr[mid] < val):
+          start = mid
+          break
+        default:
+          found = true
+      }
+    }
+    if (found){
+      pos = mid
+    }
+  }
+  return pos
+}
+
+// var myArr = [1,2,4,5,6,7,8,9,13,15,23,34,41,58,65,72,83,96,100]
+// var myArr = [1,2,3,4]
+// var myVal = 2
+// var myResult = binarySearch(myArr, myVal)
+// console.log(`The array is ${myArr}`)
+// console.log(`The value searched is ${myVal}`)
+// if (myResult != null){
+//   console.log(`${myVal} is at index ${myResult}`)
+// } else {
+//   console.log(`${myVal} is not in the array`)
+// }
+// ==========================================================================
+
+// Rain Terraces
+
+// The Seattle Coding Dojo wants to send excess water to the Burbank Coding Dojo, so it landscapes its rooftop with a set of unusual elevated terraces. The terraces are all the same width, but have varying heights. When it rains, water gathers in the low terraces that are surrounded by taller ones. For example, if we have terraces with heights  [3,1,1,4,2] , then as much as 4 units of water could be gathered, because water would pool 2-deep on two different terraces (both of the 1-high terraces: between the 3-high and 4-high terraces). Water on the other terraces just runs off the sides. Given an array of terrace heights, return the maximum amount of water that is trapped when rains come.
+
+// This function is used to count the number of values less than 1 in the provided array
+function check(arr){
+  var count = 0
+  for (var i = 0; i < arr.length; i++){
+    if (arr[i] <= 0){
+      count += 1
+    }
+  }
+  return count
+}
+
+function maxWater(arr){
+  // make a copy of the input array so that we can destroy it during the processing
+  var inp = arr.map(function(a){return a})
+
+  // set the first element of the array as the base against which every value is measured
+  var wall = inp[0]
+
+  // This will hold the difference between the wall and every value in the array. Will definitely have atleast one ZERO value
+  var diff_arr = []
+
+  // This will be the sum that is returned
+  var sum = 0
+
+  // Find the difference between WALL and every element and store in the diff_arr
+  diff_arr = inp.map(function(a){return (wall-a)})
+
+  // We loop through the diff_arr till only last element is left which can be discarded
+  while (diff_arr.length > 1){
+    // check that the diff_arr has atleast two elements which are ZERO or NEGATIVE. Two or more ZEROES or NEGATIVE numbers means that high terraces are present in the array which means there is a possibility of water getting collected in low terraces between them
+    if (check(diff_arr) > 1){
+      // Remove the first element in the diff_arr and the corresponding element in the INP array. This is because we are using the first terrace as the WALL/baseline and so it doesn't have to be considered
+      diff_arr.shift()
+      inp.shift()
+
+      // The diff_arr holds differences between terraces and baseline terrace. So if the value is positive, it means water can collect there. So add it to SUM
+      // After adding it, remove it from the diff_arr and remove the corresponding element from the INP array
+      while (diff_arr[0] > 0){
+        sum += diff_arr[0]
+        diff_arr.shift()
+        inp.shift()
+      }
+
+      // At this point, we see that all positive values between two non-positive values have been added. Since we were also removing the elements, the INP array is now left with elements on which we can restart the entire process
+      wall = inp[0]
+      diff_arr = inp.map(function(a){return (wall-a)})
+
+    // The ELSE handles the case where we see that diff_arr has only one ZERO. One ZERO means the baseline terrace is the tallest. With just one tallest, we cannot figure out if water can be collected. Hence we have to find the next tallest and then check for the same possibility of water collection. Subtract 1 from all elements and feed it back into the process to see if it gets processed
+    } else {
+      diff_arr = diff_arr.map(function(a){return a-1})
+    }
+  }
+
+  return sum
+}
+
+// myTerrace = [3,1,1,4,2]
+myTerrace = [4,1,2,3,4,1,3,4]
+myResult = maxWater(myTerrace)
+console.log(`Terraces are ${myTerrace}`)
+console.log(`The maximum water stored is ${myResult} units`)
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
