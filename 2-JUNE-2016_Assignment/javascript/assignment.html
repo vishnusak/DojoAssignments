@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>2-June-2016 Assignment</title>
+    <script type="text/javascript">
+// Missing Value
+//
+// You are given an array of length  N  that contains, in no particular order, integers from  0  to  N . One integer value is missing. Determine and return the missing value. Given  [3,0,1] , return  2 .
+// •What if the lowest value was any integer (including negatives) instead of 0? Given  [2,-4,0,-3,-2,1]  return  -1 . Given  [5,2,7,8,4,9,3] , return  6 .
+function findMissing(arr){
+  var missing = null
+
+  // find the max value in array
+  var max = arr.reduce(function(a,b){return ((a < b) ? b : a)})
+  // find the min value in array
+  var min = arr.reduce(function(a,b){return ((a > b) ? b : a)})
+
+  // now use the min and max to generate the range of numbers and search each one for occurance in the array. Return the missing numbers
+  for (var i = min+1; i < max; i++){
+    if (arr.indexOf(i) == -1){
+      missing = i
+      break
+    }
+  }
+  return missing
+}
+
+myArr = [2,-4,0,-3,-2,1]
+myArr = [5,2,7,8,4,9,3]
+myArr = [3,0,1,2]
+myArr = [3,0,1]
+myResult = findMissing(myArr)
+console.log(`The array is ${myArr}`)
+if (myResult == null){
+  console.log(`There are no values missing in the array`)
+} else {
+  console.log(`The missing value is ${myResult}`)
+}
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
