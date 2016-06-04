@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>3-June-2016 Assignment</title>
+    <script type="text/javascript">
+// MATRIX Search
+
+// find the size of the two matrices. These sizes will be used further down to validate and during the search
+function size(arr){
+  var result = []
+
+  // Check if the array passed is an array. If it is save its length. For a matrix, this will be the first dimension / the number of rows
+  if (arr.length){
+    result.push(arr.length)
+  } else {
+    return null
+  }
+
+  // If we are here, it means the parameter passed is an array and we have stored the number of rows in the matrix. Now count the number of columns
+
+  // Ensure that the array elements are also arrays. Only then it will be a matrix
+  if (arr[0].length){
+    // We also want to ensure that all array elements are arrays and have the same size. Use the reduce function to compare all the element array sizes with the size of the first element array. If they are all same, save the element array length. This will be the second dimension/number of columns in the matrix
+    if (arr[0].length == arr.reduce(function (a,b){return ((a == b.length) ? a : null)}, arr[0].length)){
+      result.push(arr[0].length)
+    } else {
+      return null
+    }
+  } else {
+    return null
+  }
+  return result
+}
+
+// Validate the two matrices to ensure that one matrix is a possible subset of another in terms of size (a 2 x 2 matrix can be a subset of a 4 x 4 matrix but a 3 x 5 matrix cannot be a subset of a 4 x 4 matrix)
+function validate(arr1_size, arr2_size){
+  var result = {
+    'status': '',
+    'msg': ''
+  }
+
+  switch (true){
+    // one matrix is the superset
+    case (arr1_size[0] >= arr2_size[0]) && (arr1_size[1] >= arr2_size[1]):
+      result['status'] = true
+      break
+    // one matrix can't be the subset of the other
+    case (arr1_size[0] >= arr2_size[0]) && (arr1_size[1] < arr2_size[1]):
+    case (arr1_size[0] < arr2_size[0]) && (arr1_size[1] >= arr2_size[1]):
+      result['status'] = false
+      result['msg'] = "The Array2 is not a proper subset of Array1"
+      break
+    // matrices are passed to the function in the reverse order. Function expects matrix 1 to be the superset and matrix 2 to be the subset
+    case (arr1_size[0] < arr2_size[0]) && (arr1_size[1] < arr2_size[1]):
+      result['status'] = true
+      result['msg'] = 'switch'
+      break
+  }
+
+  return result
+}
+
+// Compare the portion of matrix 1 with matrix 2 to see if they are equal. This uses the position of the element in matrix 1 which matches the first element of matrix 2 and starts the comparison from there.
+function compare(arr1, arr2, arr1_start, size){
+  var result = true
+
+  // The outer loop is for going through the rows. i counts rows for matrix 1 and x for matrix 2
+  for (var i = arr1_start[0], x = 0; i < arr1_start[0]+size[0]; i++, x++){
+    // check that we don't run out of rows in matrix1 (the superset)
+    if (i < arr1.length){
+      // the inner loop is for going through the columns in each row. j is for matrix1 and y for matrix 2
+      for (var j = arr1_start[1], y = 0; j < arr1_start[1]+size[1]; j++, y++){
+        // check that we don't run out of columns in matrix1
+        if (j < arr1[i].length){
+          // if any element of matrix2 doesn't match with the element in the corresponding position in matrix1, return false. else true
+          if (arr1[i][j] != arr2[x][y]){
+            result = false
+            break
+          }
+        }
+      }
+      if (result == false){
+        break
+      }
+    }
+  }
+
+  return result
+}
+
+// the main function just orchetrates the other functions above
+function search(arr1, arr2){
+  var isvalid = {}
+  var result = {}
+
+  // get the size of the matrices passed as arguments
+  var arr1_size = size(arr1)
+  var arr2_size = size(arr2)
+
+  // validate that the 2 matrices can be a superset/subset combination
+  if (arr1_size && arr2_size){
+    isvalid = validate(arr1_size, arr2_size)
+    if (isvalid['status']){
+      if (isvalid['msg'] == 'switch'){
+        temp = arr2
+        arr2 = arr1
+        arr1 = temp
+      }
+    } else {
+      result = isvalid
+    }
+  } else {
+    result['status'] = false
+    result['msg'] = "The arrays are not valid matrices"
+  }
+
+  if (result['status'] == false){
+    return result
+  }
+
+  // Search through the super set to see if the first element of the subset occurs in the superset. If the first element is found, compare the rest of the subset
+  for (var i = 0; i < arr1_size[0]; i++){
+    for (var j = 0; j < arr1_size[1]; j++){
+      if (arr1[i][j] == arr2[0][0]){
+        if (compare(arr1, arr2, [i, j], arr2_size)){
+          result['status'] = true
+        }
+      }
+    }
+  }
+
+  // At this point, if the result object has a 'status' key, it has to be true. If it doesn't, then the matrices are not a subset/superset combo. Return false.
+  if ('status' in result){
+    return result
+  } else {
+    result['status'] = false
+    result['msg'] = "Matrix2 is not in Matrix1"
+    return result
+  }
+}
+
+matrix1 = [
+[12,34,45,56],
+[98,87,76,65],
+[56,67,78,89],
+[54,43,32,21]
+]
+
+matrix2 = [
+[76,65],
+[78,89],
+[32,21]
+]
+
+var myResult = search(matrix1, matrix2)
+if (myResult['status']){
+  console.log(`It is there`)
+} else {
+  console.log(`${myResult['msg']}`)
+}
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
