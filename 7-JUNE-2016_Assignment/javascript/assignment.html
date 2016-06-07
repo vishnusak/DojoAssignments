@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>7-June-2016 Assignment</title>
+    <script type="text/javascript">
+// Is Palindrome
+//
+// Return whether a list's node values make up a palindrome. String palindromes read the same front-to-back and back-to-front
+
+function Node(data){
+  this.val = data
+  this.next = null
+}
+
+function List(){
+  var head = null
+  var len = 0
+
+  this.show = function(){
+    if (head){
+      var thisList = []
+      var temp = head
+      while (temp){
+        thisList.push(temp.val)
+        temp = temp.next
+      }
+      return thisList
+    } else {
+      return null
+    }
+  }
+
+  this.valueAt = function(pos){
+    if ((pos > len) || (pos < 1)){
+      return null
+    } else {
+      if (!head){
+        return null
+      } else {
+        var temp = head
+        for (var i = 1; i < pos; i++){
+          temp = temp.next
+        }
+        return temp.val
+      }
+    }
+  }
+
+  this.len = function(){
+    return len
+  }
+
+  this.add = function(val){
+    var newnode = new Node(val)
+    if (!head){
+      head = newnode
+    } else {
+      var temp = head
+      while(temp.next){
+        temp = temp.next
+      }
+      temp.next = newnode
+    }
+    len += 1
+  }
+
+} // End of Class
+
+var isPalindrome = true
+var myList = new List()
+
+myList.add('m')
+myList.add('a')
+myList.add('d')
+myList.add('a')
+myList.add('m')
+myList.add(5)
+// myList.add('e')
+
+console.log(`The list content is "${myList.show().reduce(function (a,b){return a+b})}"`)
+console.log(`The length of the list is ${myList.len()}`)
+
+for(var i = 1, j = myList.len(); i <= Math.floor(myList.len()/2); i++,j--){
+  if (myList.valueAt(i) != myList.valueAt(j)){
+    isPalindrome = false
+    break
+  }
+}
+
+console.log(`The contents of the list make a palindrome - ${isPalindrome}`)
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
