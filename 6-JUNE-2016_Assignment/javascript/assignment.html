@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>6-June-2016 Assignment</title>
+    <script type="text/javascript">
+
+function Node(data){
+  this.val = data
+  this.next = null
+}
+
+function List(){
+  var head = null
+  var len = 0
+
+  this.show = function(){
+    if (head){
+      var thisList = []
+      var temp = head
+      while (temp){
+        thisList.push(temp.val)
+        temp = temp.next
+      }
+      return thisList
+    } else {
+      return null
+    }
+  }
+
+  this.valueAt = function(pos){
+    if ((pos > len) || (pos < 1)){
+      return null
+    } else {
+      if (!head){
+        return null
+      } else {
+        var temp = head
+        for (var i = 1; i < pos; i++){
+          temp = temp.next
+        }
+        return temp.val
+      }
+    }
+  }
+
+  this.len = function(){
+    return len
+  }
+
+  this.add = function(val){
+    var newnode = new Node(val)
+    if (!head){
+      head = newnode
+    } else {
+      var temp = head
+      while(temp.next){
+        temp = temp.next
+      }
+      temp.next = newnode
+    }
+    len += 1
+  }
+
+} // End of Class
+
+// Kth-Last Node
+// Given  k , return the value that is ‘k’ nodes from the list’s end. If given  (list,1) , return the list’s last value. If given  (list,4) , return the value at the node that has exactly 3 nodes following it.
+
+myList = new List()
+
+for (var i = 1; i <= 10; i++){
+  myList.add(Math.floor((Math.random() * 20) + 1))
+}
+
+console.log(`The list is ${myList.show()}`)
+console.log(`The length of the list is ${myList.len()}`)
+
+var k_from_last = 1
+var myResult = myList.valueAt(myList.len() - k_from_last + 1)
+
+if (myResult){
+  console.log(`The value at the "${k_from_last}" position from the end of the list is ${myResult}`)
+} else {
+  console.log(`The position requested  - "${k_from_last}" - is invalid`)
+}
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
