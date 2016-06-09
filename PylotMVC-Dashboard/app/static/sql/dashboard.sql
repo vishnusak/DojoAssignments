@@ -39,14 +39,21 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `dashboard`.`messages` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
+  `for_id` INT NOT NULL,
   `msg_text` TEXT NULL,
   `created_at` DATETIME NULL,
   `modified_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `fk_messages_users_idx` (`user_id` ASC),
+  INDEX `fk_messages_users1_idx` (`for_id` ASC),
   CONSTRAINT `fk_messages_users`
     FOREIGN KEY (`user_id`)
+    REFERENCES `dashboard`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_messages_users1`
+    FOREIGN KEY (`for_id`)
     REFERENCES `dashboard`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -60,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `dashboard`.`comments` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `msg_id` INT NOT NULL,
   `user_id` INT NOT NULL,
+  `for_id` INT NOT NULL,
   `cmt_text` TEXT NULL,
   `created_at` DATETIME NULL,
   `modified_at` DATETIME NULL,
@@ -67,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `dashboard`.`comments` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `fk_comments_messages1_idx` (`msg_id` ASC),
   INDEX `fk_comments_users1_idx` (`user_id` ASC),
+  INDEX `fk_comments_users2_idx` (`for_id` ASC),
   CONSTRAINT `fk_comments_messages1`
     FOREIGN KEY (`msg_id`)
     REFERENCES `dashboard`.`messages` (`id`)
@@ -74,6 +83,11 @@ CREATE TABLE IF NOT EXISTS `dashboard`.`comments` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_comments_users1`
     FOREIGN KEY (`user_id`)
+    REFERENCES `dashboard`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comments_users2`
+    FOREIGN KEY (`for_id`)
     REFERENCES `dashboard`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
