@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>10-June-2016 Assignment</title>
+    <script type="text/javascript">
+
+function Node(data){
+  this.val = data
+  this.next = null
+}
+
+function List(){
+  var head = null
+
+  this.createLoop = function(num_of_nodes, loop_node=0){
+    var loop_head = null
+
+    for (var i = 1; i <= num_of_nodes; i++){
+      var newnode = new Node(10 * i)
+
+      if (!head){
+        head = newnode
+      } else {
+        var temp = head
+        while(temp.next){
+          temp = temp.next
+        }
+        temp.next = newnode
+      }
+
+      if (i == loop_node){
+        loop_head = newnode
+      }
+    }
+
+    newnode.next = loop_head
+    return this.loopShow(num_of_nodes)
+  }
+
+  this.loopShow = function(num){
+    var result = []
+    var temp = head
+
+    for (var i = 1; i <= num*2; i++){
+      if (temp){
+        result.push(temp.val)
+        temp = temp.next
+      } else {
+        break
+      }
+    }
+
+    return result
+  }
+
+  this.isLoop = function(){
+    var result = false
+    var node_list = []
+    var count = 0
+    var temp = null
+
+    if (head){
+      node_list.push(head)
+      count += 1
+      temp = head.next
+      while (temp){
+        for (var i = 0; i < node_list.length; i++){
+          if (node_list[i] == temp){
+            result = [i+1]
+            break
+          }
+        }
+        if (!result){
+          node_list.push(temp)
+          count += 1
+          temp = temp.next
+        } else {
+          result.push(count)
+          break
+        }
+      }
+    }
+    return result
+  }
+
+  this.breakLoop = function(num_of_nodes){
+    var temp = head
+    for (var i = 1; i < num_of_nodes; i++){
+      temp = temp.next
+    }
+    temp.next = null
+    return this.loopShow(num_of_nodes)
+  }
+
+} // End of Class
+
+var myLoop = new List()
+var nodes = 10
+var loop_start = 3
+
+console.log(`The number of nodes is ${nodes}`)
+console.log(`The place where looping starts is ${loop_start}`)
+console.log(`The looped list is ${myLoop.createLoop(nodes, loop_start)}`)
+
+var isLoop = myLoop.isLoop()
+if (isLoop){
+  console.log(`The list has a loop. The last node is ${isLoop[1]} and looping starts at node ${isLoop[0]}`)
+  console.log(`The list after breaking the loop is ${myLoop.breakLoop(isLoop[1])}`)
+} else {
+  console.log(`The list doesn't have a loop`)
+}
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
