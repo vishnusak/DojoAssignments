@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>13-June-2016 Assignment</title>
+    <script type="text/javascript">
+// construct the rest of a basic dList (doubly linked list) class. This would include dList methods  push() ,  pop() ,  front() ,  back() ,  contains() , and  size()
+
+function Node(data){
+  this.val = data
+  this.next = null
+  this.prev = null
+}
+
+function dList(){
+  var head = null
+  var tail = null
+  var len = 0
+
+  this.show = function(){
+    var result = []
+    if (len > 0){
+      for (var node = head; node != tail; node = node.next){
+        result.push(node.val)
+      }
+      // Here the for loop would have ended because node == tail. So we have to capture the value of tail before returning the result
+      result.push(tail.val)
+    }
+    return result
+  }
+
+  this.size = function(){
+    return len
+  }
+
+  this.push = function(data){
+    var newNode = new Node(data)
+
+    if(tail){
+      tail.next = newNode
+      newNode.prev = tail
+      tail = newNode
+    } else {
+      head = newNode
+      tail = newNode
+    }
+    len += 1
+  }
+
+  this.pop = function(){
+    var result = null
+    if (tail){
+      result = tail.val
+      if (tail.prev){
+        tail = tail.prev
+        tail.next = null
+      } else {
+        tail = null
+        head = null
+      }
+      len -= 1
+    } else {
+      result = 'Nothing to pop'
+    }
+    return result
+  }
+
+  this.front = function(){
+    if (head){
+      return head.val
+    } else {
+      return 'Empty List'
+    }
+  }
+
+  this.back = function(){
+    if (tail){
+      return tail.val
+    } else {
+      return 'Empty List'
+    }
+  }
+
+  this.contains = function(data){
+    var result = false
+    for (node = head; node != tail; node = node.next){
+      if (node.val == data){
+        result = true
+        break
+      }
+    }
+    // If here, it means the value was not found in the any node of the list except the last one. Check the last node and then return result
+    if (tail.val == data){
+      result = true
+    }
+
+    return result
+  }
+} //-->End of dList class
+
+var myDList = new dList()
+
+for (var i = 1; i <= 10; i++){
+  // myDList.push(Math.floor(Math.random() * 42))
+  myDList.push(i)
+}
+
+console.log(`The list is ${myDList.show()}`)
+console.log(`The size is ${myDList.size()}`)
+console.log(`The front of the list is ${myDList.front()}`)
+console.log(`The back of the list is ${myDList.back()}`)
+
+
+console.log(`The value popped from list is ${myDList.pop()}`)
+console.log(`The list after popping is ${myDList.show()}`)
+console.log(`The size after popping is ${myDList.size()}`)
+console.log(`The front of the list after popping is ${myDList.front()}`)
+console.log(`The back of the list after popping is ${myDList.back()}`)
+
+var myVal = 10
+console.log(`The list contains ${myVal} - ${myDList.contains(myVal)}`)
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
