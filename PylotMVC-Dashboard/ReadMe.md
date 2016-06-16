@@ -6,6 +6,7 @@
   - [x] Login Page
   - [x] Registration Page
   - [x] Add New User Page
+  - [x] Remove User
   - [x] Admin DashBoard
   - [x] User DashBoard
   - [x] Edit Profile Page (User)
