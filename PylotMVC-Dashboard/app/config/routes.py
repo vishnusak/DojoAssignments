@@ -27,11 +27,15 @@ routes['/users/remove/<id>/yes'] = 'Users#remove_yes'
 routes['/users/remove/no'] = 'Users#remove_no'
 routes['/users/edit/<id>'] = 'Users#profile'
 routes['/users/<id>/edit'] = 'Users#edit'
+routes['/users/show/<id>'] = 'Messages#show_mb'
 routes['POST']['/login'] = 'Login#login'
 routes['POST']['/register'] = 'Login#register'
 routes['POST']['/users/update/detail/<id>'] = 'Users#upd_dtl'
 routes['POST']['/users/update/pwd/<id>'] = 'Users#upd_pwd'
 routes['POST']['/users/update/desc/<id>'] = 'Users#upd_desc'
+routes['POST']['/messages/get_comments/<id>'] = 'Messages#comments_for'
+routes['POST']['/messages/<id>'] = 'Messages#post_msg'
+routes['POST']['/comments/<id>'] = 'Messages#post_cmt'
 """
     You can add routes and specify their handlers as follows:
 

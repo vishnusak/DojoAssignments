@@ -29,7 +29,7 @@
       <div class="top">
         {% if session['page'] == 'edit' %}
           <div>
-            <h3>Edit User - {{session['edit_user']['id']}}</h3>
+            <h3>Edit User - {{ session['edit_user']['fname'] }} {{ session['edit_user']['lname'] }}</h3>
             <h3><a href="/dashboard">Return to Dashboard</a></h3>
           </div>
         {% elif session['page'] == 'profile' %}

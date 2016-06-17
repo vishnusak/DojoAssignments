@@ -26,6 +26,12 @@ class Index(Controller):
             session['popup-id'] = None
         if 'edit_user' not in session:
             session['edit_user'] = {}
+        if 'mb' not in session:
+            session['mb'] = {}
+        if 'messages' not in session:
+            session['messages'] = []
+        if 'comments' not in session:
+            session['comments'] = []
 
         self.__init_func_called = True
 

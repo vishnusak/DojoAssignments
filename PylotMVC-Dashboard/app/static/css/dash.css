@@ -67,15 +67,15 @@ main{
   }
 
 .msg{
-  width: 30vw;
+  width: 40vw;
   margin: auto;
-  border: 1px solid rgb(27, 168, 117);
-  background-color: rgb(27, 168, 117);
-  background-color: rgba(27, 168, 117, 0.85);
+  border: 5px solid rgb(8,7,7);
+  background-color: rgb(8,7,7);
+  background-color: rgba(8, 7, 7, 0.85);
   position: absolute;
-  left: 35vw;
+  left: 30vw;
   top: 30vh;
-  color: rgb(8,7,7);
+  color: ivory;
 }
   .msg h3{
     text-align: center;
@@ -89,11 +89,12 @@ main{
     .msg a{
       text-align: center;
       text-decoration: none;
-      color: ivory;
+      color: rgb(8,7,7);
+      font-weight: bold;
       width: 49%;
       padding: 1vh 2vw;
-      border: 1px solid rgb(8,7,7);
-      background-color: rgb(8,7,7);
-      background-color: rgba(8, 7, 7, 0.8);
+      border: 1px solid rgb(27, 168, 117);
+      background-color: rgb(27, 168, 117);
+      background-color: rgba(27, 168, 117, 0.85);
     }
 /*end of main*/

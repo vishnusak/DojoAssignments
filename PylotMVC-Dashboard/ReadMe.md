@@ -11,14 +11,14 @@
   - [x] User DashBoard
   - [x] Edit Profile Page (User)
   - [x] Edit Profile Page (Admin)
-  - [ ] Message Board
+  - [x] Message Board
 
 + Back-end
   - [x] ERD
   - [x] Schema generation and Setup
 
 + Controllers and Models
-  - [ ] Messages
+  - [x] Messages
   - [x] Users
   - [x] Login
 
@@ -29,6 +29,6 @@
   - [x] Add New User
   - [x] Edit User (Admin)
   - [x] Edit User Profile (User)
-  - [ ] Post Message
-  - [ ] Post Comment
-  - [ ] Delete Message
+  - [x] Post Message
+  - [x] Post Comment
+  - ~~[ ] Delete Message~~

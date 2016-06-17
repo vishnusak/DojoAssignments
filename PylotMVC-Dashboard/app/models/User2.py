@@ -7,10 +7,14 @@ class User2(Login):
         self.__data = {}
 
     def del_user(self, id):
-        self.__query = "DELETE FROM users WHERE id = :id"
         self.__data = {
-            'id': id
+        'id': id
         }
+        self.__query = "DELETE FROM comments WHERE user_id = :id or for_id = :id"
+        self.run_query(self.__query, self.__data)
+        self.__query = "DELETE FROM messages WHERE user_id = :id or for_id = :id"
+        self.run_query(self.__query, self.__data)
+        self.__query = "DELETE FROM users WHERE id = :id"
         return self.run_query(self.__query, self.__data)
 
     def get_id_user(self, id):
