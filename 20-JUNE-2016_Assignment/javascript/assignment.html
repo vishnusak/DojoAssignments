@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>20-June-2016 Assignment</title>
+    <script type="text/javascript">
+// Recursion
+function rSigma(num){
+  num = Math.floor(num)
+  if (num > 1){
+    return num + rSigma(num - 1)
+  } else {
+    return 1
+  }
+}
+
+function rFact(num){
+  num = Math.floor(num)
+  if (num > 1){
+    return num * rFact(num-1)
+  } else {
+    return 1
+  }
+}
+
+var num = 6.5
+console.log(`rSigma(${num}) is ${rSigma(num)}`)
+console.log(`rFact(${num}) is ${rFact(num)}`)
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
