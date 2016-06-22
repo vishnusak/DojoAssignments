@@ -1,5 +1,7 @@
 $(document).ready(function(){
 // ------------------------------------------------------------------
+  showform()
+// ------------------------------------------------------------------
   $('form').submit(function(e){
 
     e.preventDefault()
@@ -27,6 +29,7 @@ $(document).ready(function(){
       url: '/notes/del/'+this.id,
       success: function(resp){
         $('.left').html(resp)
+        showform()
       }
     })
 
@@ -69,5 +72,11 @@ $(document).ready(function(){
   })
 // ------------------------------------------------------------------
 
-
 })
+
+function showform(){
+  if ($('.note').length == 0){
+    $('.right').hide()
+    $('.right').show()
+  }
+}
