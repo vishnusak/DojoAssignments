@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>21-June-2016 Assignmnet</title>
+    <script type="text/javascript">
+
+function floodfill(canvas, origin, val){
+  var origin_val = canvas[origin[0]][origin[1]]
+
+  if (origin_val != val){
+    canvas[origin[0]][origin[1]] = val
+
+    if ((canvas.length > (origin[0] + 1)) && (canvas[origin[0] + 1][origin[1]] == origin_val)){
+      floodfill(canvas, [origin[0] + 1, origin[1]], val)
+    }
+    if ((0 <= (origin[0] - 1)) && (canvas[origin[0] - 1][origin[1]] == origin_val)){
+      floodfill(canvas, [origin[0] - 1, origin[1]], val)
+    }
+    if ((canvas[0].length > (origin[1] + 1)) && (canvas[origin[0]][origin[1] + 1] == origin_val)){
+      floodfill(canvas, [origin[0], origin[1] + 1], val)
+    }
+    if ((0 <= (origin[1] - 1)) && (canvas[origin[0]][origin[1] - 1] == origin_val)){
+      floodfill(canvas, [origin[0], origin[1] - 1], val)
+    }
+  }
+}
+
+var canvas = [
+  [3,3,3,5,3],
+  [2,3,3,4,3],
+  [7,3,3,5,3],
+  [6,5,3,4,3],
+  [1,2,3,3,3]
+]
+console.log(`Canvas before filling:`)
+for (var i = 0; i < canvas.length; i++){
+  console.log(`${canvas[i]}`)
+}
+console.log(`~~~~~~~~~~~~~~~~~~~~~~~`)
+var origin = [0,1]
+var new_value = 2
+console.log(`Origin is [${origin}] and new_value is ${new_value}`)
+console.log(`~~~~~~~~~~~~~~~~~~~~~~~`)
+floodfill(canvas, origin, new_value)
+console.log(`Canvas after filling:`)
+for (var i = 0; i < canvas.length; i++){
+  console.log(`${canvas[i]}`)
+}
+console.log(`~~~~~~~~~~~~~~~~~~~~~~~`)
+var origin = [1,0]
+var new_value = 5
+console.log(`Origin is [${origin}] and new_value is ${new_value}`)
+console.log(`~~~~~~~~~~~~~~~~~~~~~~~`)
+floodfill(canvas, origin, new_value)
+console.log(`Canvas after filling:`)
+for (var i = 0; i < canvas.length; i++){
+  console.log(`${canvas[i]}`)
+}
+console.log(`~~~~~~~~~~~~~~~~~~~~~~~`)
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
