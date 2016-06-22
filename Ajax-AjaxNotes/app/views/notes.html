@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Notes</title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/notes.js') }}"></script>
+    <!-- <script type="text/javascript" src="..\static\js\notes.js"></script> -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/notes.css') }}">
+    <!-- <link rel="stylesheet" href="..\static\css\notes.css"> -->
+  </head>
+  <body>
+    <h1>My Notes</h1>
+    <main>
+
+      <div class="left">
+
+        {% for note in notes %}
+          <div class="note">
+            <header>
+              <span class="add">+</span>
+              <span class="delete" id="{{ note['id'] }}">&#215;</span>
+            </header>
+            <textarea class="text" id="t{{ note['id'] }}" readonly="readonly" name="note">{{ note['note'] }}</textarea>
+          </div>
+        {% endfor %}
+
+      </div>
+
+      <div class="right">
+
+        <form>
+          <label>Add a Note</label>
+          <textarea name="note"></textarea>
+          <input type="submit" value="Post It!">
+        </form>
+
+      </div>
+    </main>
+  </body>
+</html>

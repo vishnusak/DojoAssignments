@@ -1,0 +1,9 @@
+{% for note in notes %}
+  <div class="note">
+    <header>
+      <span class="add">+</span>
+      <span class="delete" id="{{ note['id'] }}">&#215;</span>
+    </header>
+    <textarea class="text" id="t{{ note['id'] }}" readonly="readonly" name='note'>{{ note['note'] }}</textarea>
+  </div>
+{% endfor %}
