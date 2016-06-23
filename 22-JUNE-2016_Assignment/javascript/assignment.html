@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>22-June-2016 Assignment</title>
+    <script type="text/javascript">
+function strSubsets(str){
+  var result = ['']
+  if (str.length <= 1){
+    result.push(str)
+    return result
+  }
+  var str1 = ''
+  var str2 = ''
+
+  for(var i = 0; i < str.length; i++){
+    for(var j = 1; j < str.length - i; j++){
+      str1 = str.substr(i, j)
+      str2 = str.substr(i+j)
+      // console.log(`i = ${i}; j = ${j}; str1 = ${str1}; str2 = ${str2}`)
+      for (var x = 0; x < str2.length; x++){
+        result.push(str1+str2.substr(x,1))
+      }
+    }
+  }
+
+  for(var x = 0; x < str.length; x++){
+    result.push(str.substr(x,1))
+  }
+  // console.log(`result = ${result}`)
+  return result
+
+
+  // return result.concat(strSubsets(str2))
+}
+
+var myStr = "string"
+var myResult = strSubsets(myStr)
+console.log(`String is ""${myStr}""`)
+console.log(`Subsets are: [${myResult}]`)
+console.log(`Number of subsets are: ${myResult.length}`)
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
