@@ -1,0 +1,52 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: black;
+  width: 50%;
+  margin: auto;
+}
+form{
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  margin: 5vh auto;
+}
+  form label{
+    margin: 2vh auto;
+    width: 70%;
+    font-size: calc((3vh + 3vw) / 2);
+  }
+    form label input[type='text']{
+      width: 70%;
+      font-size: calc((2vh + 2vw) / 2);
+      padding: 0.5vh 0.5vw;
+    }
+    form label input[type='submit']{
+      width: 25%;
+      font-size: calc((2vh + 2vw) / 2);
+      padding: 0.5vh 0.5vw;
+    }
+
+div.wait{
+  margin: 5vh auto;
+  display: none;
+}
+  .wait img{
+    display: block;
+    width: calc((5vh + 5vw) / 2);
+    height: calc((5vh + 5vw) / 2);
+    margin: auto;
+  }
+
+div.video{
+  margin: 5vh auto;
+}
+  .video video{
+    width: 100%;
+  }
