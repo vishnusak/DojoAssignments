@@ -1,0 +1,78 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  background-color: ivory;
+}
+
+body{
+  width: 80%;
+  height: 95vh;
+  margin: 2vh auto;
+  padding-top: 3vh;
+  background-color: rgb(40, 42, 46);
+}
+
+  form{
+    display: flex;
+    justify-content: space-around;
+    color: ivory;
+    font-size: calc((3vh + 3vw) / 2);
+  }
+    input[type='text']{
+      width: 30%;
+      padding: 0.5vh 0.5vw;
+      font-size: calc((2vh + 2vw) / 2);
+    }
+    input[type='submit']{
+      border-radius: calc((1vh + 1vw) / 2);
+      padding: 0.5vh 0.5vw;
+      font-size: calc((1.3vh + 1.3vw) / 2);
+    }
+
+  .directions{
+    width: 95%;
+    height: 89%;
+    margin: 2vh auto;
+    padding: 1vh 1vw;
+    border: 1px solid ivory;
+    overflow-y: auto;
+    color: ivory;
+    font-size: calc((1.5vh + 1.5vw) / 2);
+  }
+    .directions h1, h2{
+      text-align: center;
+      margin-bottom: 1vh;
+      margin-top: 1vh;
+    }
+    .directions b{
+      background-color: black;
+      padding: 0 0.2vw;
+    }
+    .directions div{
+      display: inline-block;
+      font-style: oblique;
+    }
+    .directions div:before{
+      content: "(";
+    }
+    .directions div:after{
+      content: ")";
+    }
+    .directions table{
+      width: 100%;
+      border-collapse: collapse;
+    }
+      .directions td{
+        border: 1px solid ivory;
+        padding: 0.5vh 0.5vw;
+      }
+      .directions td:first-of-type{
+        text-align: center;
+      }
+      .directions td:last-of-type{
+        width: 80%;
+      }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Google Driving Directions</title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/directions.js') }}"></script>
+    <!-- <script type="text/javascript" src="..\static\js\directions.js"></script> -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/directions.css') }}">
+    <!-- <link rel="stylesheet" href="..\static\css\directions.css"> -->
+  </head>
+  <body>
+    <form>
+      <label>From:</label>
+      <input type="text" name="origin">
+      <label>To:</label>
+      <input type="text" name="destination">
+      <input type="submit" value="Get Directions">
+    </form>
+    <div class="directions">
+    </div>
+  </body>
+</html>

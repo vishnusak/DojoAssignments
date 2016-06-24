@@ -1,0 +1,24 @@
+{% if 'msg' not in goog %}
+  <h1>Directions from {{ goog['from'] }} to {{ goog['to'] }}</h1>
+  <h2>Distance: {{ goog['dist'] }} - Time: {{ goog['time'] }}</h2>
+  <table>
+    <tbody>
+      {% for step in goog['steps'] %}
+        <tr>
+          {% if 'maneuver' in step %}
+            <td>{{ step['maneuver'] }}</td>
+          {% else %}
+            <td> - </td>
+          {% endif %}
+          <td>
+          {% autoescape false%}
+            {{ step['html_instructions'] }}
+          {% endautoescape %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <h1>{{ goog['msg'] }}</h1>
+{% endif %}
