@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task Manager</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/list.js') }}"></script> -->
+    <script type="text/javascript" src="..\static\js\list.js"></script>
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/list.css') }}"> -->
+    <link rel="stylesheet" href="..\static\css\list.css">
+  </head>
+  <body>
+    <header>
+      <h1>Task Manager</h1>
+    </header>
+    <main>
+      <div class="left">
+
+        <h2>List of Tasks</h2>
+        <div class="list">
+
+          {% for task in tasks %}
+            <form class="tasklist" id="{{ task['id'] }}">
+
+              {% if task['deleted'] %}
+                <input type="submit" value="Done" disabled="disabled">
+              {% else %}
+                <input type="submit" value="Edit">
+              {% endif %}
+
+              {% if task['deleted'] %}
+                <input type="checkbox" id="{{ task['id'] }}" checked="checked" disabled="disabled"><input type="text" name="name" value="{{ task['name'] }}" disabled="disabled">
+
+              {% else %}
+                <input type="checkbox" id="{{ task['id'] }}"><input type="text" name="name" value="{{ task['name'] }}" readonly="readonly">
+
+              {% endif %}
+            </form>
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+      <div class="right">
+
+        <form class="add" action="/tasks/add" method="post">
+          <label>Create a New Task:</label>
+          <input type="text" name="task">
+          <input type="submit" value="Add Task">
+        </form>
+
+      </div>
+    </main>
+  </body>
+</html>

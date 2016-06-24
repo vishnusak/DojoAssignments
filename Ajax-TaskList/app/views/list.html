@@ -1,0 +1,18 @@
+{% for task in tasks %}
+  <form class="tasklist" id="{{ task['id'] }}">
+
+    {% if task['deleted'] %}
+      <input type="submit" value="Done" disabled="disabled">
+    {% else %}
+      <input type="submit" value="Edit">
+    {% endif %}
+
+    {% if task['deleted'] %}
+      <input type="checkbox" id="{{ task['id'] }}" checked="checked" disabled="disabled"><input type="text" name="name" value="{{ task['name'] }}" disabled="disabled">
+
+    {% else %}
+      <input type="checkbox" id="{{ task['id'] }}"><input type="text" name="name" value="{{ task['name'] }}" readonly="readonly">
+
+    {% endif %}
+  </form>
+{% endfor %}
