@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Leads - Search & Pagination</title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/leads.js') }}"></script>
+    <!-- <script type="text/javascript" src="..\static\js\leads.js"></script> -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/leads.css') }}">
+    <!-- <link rel="stylesheet" href="..\static\css\leads.css"> -->
+  </head>
+  <body>
+    <form>
+      <div class="input">
+        <label>Name:<input type="text" name="name" id="name"></label>
+        <label>From:<input type="date" name="from" max='{{ today }}' id="from"></label>
+        <label>To:<input type="date" name="to" max='{{ today }}' id="to"></label>
+      </div>
+    </form>
+    <ul>
+      {% if pg['cur'] > 1 %}
+        <li id="1">First</li>
+        <li id="{{ pg['cur'] - 1 }}"><<</li>
+      {% endif %}
+
+      {% if pg['pages'] <= 7 %}
+
+        {% for page_num in range(pg['pages']) %}
+          {% if pg['cur'] == page_num + 1 %}
+            <li id="{{ page_num + 1 }}" class="cur">{{ page_num + 1 }}</li>
+          {% else %}
+            <li id="{{ page_num + 1 }}">{{ page_num + 1 }}</li>
+          {% endif %}
+        {% endfor %}
+
+      {% else %}
+
+        {% if pg['cur'] <= 7 %}
+
+          {% for page_num in range(1, 8) %}
+            {% if pg['cur'] == page_num %}
+              <li id="{{ page_num }}" class="cur">{{ page_num }}</li>
+            {% else %}
+              <li id="{{ page_num }}">{{ page_num }}</li>
+            {% endif %}
+          {% endfor %}
+
+        {% else %}
+
+          <li id="{{ pg['cur'] - 6 }}">{{ pg['cur'] - 6 }}</li>
+          <li id="{{ pg['cur'] - 5 }}">{{ pg['cur'] - 5 }}</li>
+          <li id="{{ pg['cur'] - 4 }}">{{ pg['cur'] - 4 }}</li>
+          <li id="{{ pg['cur'] - 3 }}">{{ pg['cur'] - 3 }}</li>
+          <li id="{{ pg['cur'] - 2 }}">{{ pg['cur'] - 2 }}</li>
+          <li id="{{ pg['cur'] - 1 }}">{{ pg['cur'] - 1 }}</li>
+          <li id="{{ pg['cur'] }}" class="cur">{{ pg['cur'] }}</li>
+
+        {% endif %}
+
+      {% endif %}
+
+      {% if pg['cur'] < pg['pages'] %}
+        <li id="{{ pg['cur'] + 1 }}">>></li>
+        <li id="{{ pg['pages'] }}">Last</li>
+      {% endif %}
+    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Registered Date</th>
+          <th>Mail ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lead in dtl['leads'] %}
+          <tr>
+            <td>{{ lead['leads_id'] }}</td>
+            <td>{{ lead['first_name'] }}</td>
+            <td>{{ lead['last_name'] }}</td>
+            <td>{{ lead['date'] }}</td>
+            <td>{{ lead['email'] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  width: 70%;
+  margin: auto;
+  background-color: ivory;
+  font-family: sans-serif;
+}
+
+form{
+  margin: 3vh auto 0;
+  font-size: calc((2vh + 2vw) / 2);
+}
+  .input{
+    padding: 1vh 1vw;
+    background-color: rgb(34, 34, 34);
+    color: rgb(47, 192, 112);
+    display: flex;
+    justify-content: space-between;
+  }
+    label{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    label>input{
+      width: 90%;
+      padding: 0.5vh 0.5vw;
+      font-size: calc((1.3vh + 1.3vw) / 2);
+    }
+
+    label:first-of-type{
+      width: 40%;
+    }
+      label:first-of-type>input{
+        width: 80%;
+      }
+
+ul{
+  margin: 1vh auto 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+}
+  li{
+    padding: 0 1vw;
+    width: 5vw;
+    font-size: calc((1.2vh + 1.2vw) / 2);
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    background-color: rgb(34, 34, 34);
+    color: rgb(47, 192, 112);
+    cursor: pointer;
+  }
+  li:not(:last-of-type){
+    border-right: 1px solid rgb(47, 192, 112);
+  }
+  .cur{
+    background-color: rgb(47, 192, 112);
+    color: rgb(34, 34, 34);
+    font-style: normal;
+    cursor: default;
+  }
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: rgb(34, 34, 34);
+}
+  thead{
+    background-color: rgb(47, 192, 112);
+    color: rgb(34, 34, 34);
+  }
+    th{
+      padding: 1vh 1vw;
+      font-size: calc((1.5vh + 1.5vw) / 2);
+    }
+
+  td{
+    border: 1px solid rgb(47, 192, 112);
+    padding: 1vh 1vw;
+    color: ivory;
+    font-size: calc((1.3vh + 1.3vw) / 2);
+  }
+  td:first-child{
+    width: 9%;
+    border-left: none;
+  }
+  td:not(:first-child){
+    width: 17%;
+  }
+  td:last-child{
+    width: 40%;
+    border-right: none;
+  }

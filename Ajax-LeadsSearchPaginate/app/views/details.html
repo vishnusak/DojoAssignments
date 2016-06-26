@@ -1,0 +1,9 @@
+{% for lead in dtl['leads'] %}
+  <tr>
+    <td>{{ lead['leads_id'] }}</td>
+    <td>{{ lead['first_name'] }}</td>
+    <td>{{ lead['last_name'] }}</td>
+    <td>{{ lead['date'] }}</td>
+    <td>{{ lead['email'] }}</td>
+  </tr>
+{% endfor %}
