@@ -348,64 +348,50 @@ function canAutoComplete(){
   }
 }
 
-function finishGame(){
-  var lastInSuitOnBoard = ''
-  var img       = ''
-  var imgSuit   = ''
-  var toId      = ''
-  var toIdIdx   = ''
-  var fromId    = ''
-  var fromIdIdx = ''
-  var fromStack = ''
-  var cardPos   = ''
+function finish(colId){
+  var colId = ((colId < 7) ? colId : 0)
+
+  if (cols[colId].length > 0){
+    var img       = cols[colId][cols[colId].length - 1].slice(1)
+    var imgSuit   = img.slice(0,1)
+    var fromId    = '' + (colId + 1)
+    for (let i = 0; i < 4; i++){
+      if (idList[i].slice(0,1) == imgSuit){
+        var toId = idList[i]
+        break
+      }
+    }
+    var curCard = document.getElementById(img)
+    var dclickEvent = document.createEvent('MouseEvents')
+    dclickEvent.initEvent('dblclick', true, true)
+    curCard.dispatchEvent(dclickEvent)
+  }
+  colId += 1
 
   var cardsRemaining = cols.reduce(function(x, y){
     x += y.length
     return x
   }, 0)
 
-  while (cardsRemaining > 0){
-    for (let i = 0; i < cols.length; i++){
-      if (cols[i].length > 0){
-
-        img       = cols[i][cols[i].length - 1].slice(1)
-        imgSuit   = img.slice(0,1)
-        fromId    = '' + (i + 1)
-        fromIdIdx = idList.indexOf(fromId)
-        fromStack = stacks[fromIdIdx]
-        cardPos   = suitList[imgSuit].indexOf(img)
-
-        for (let i = 0; i < 4; i++){
-          if (idList[i].slice(0,1) == imgSuit){
-            var toId = idList[i]
-            var toIdIdx = i
-            break
-          }
-        }
-
-        if (stacks[toIdIdx].length > 0){
-
-          var lastInSuitOnBoard = stacks[toIdIdx].slice(stacks[toIdIdx].length - 1)[0].slice(1)
-          if (cardPos == suitList[imgSuit].indexOf(lastInSuitOnBoard) + 1){
-            dropCardOnTarget(fromId, fromStack, toId, toIdIdx, img)
-          }
-
-        } else {
-
-          if (cardPos == 0){
-            dropCardOnTarget(fromId, fromStack, toId, toIdIdx, img)
-          }
-
-        }
-
-      }
-    }
-
-    cardsRemaining = cols.reduce(function(x, y){
-      x += y.length
-      return x
-    }, 0)
+  if (cardsRemaining > 0){
+    setTimeout(function(){
+      finish(colId)
+    }, 100)
   }
+}
+
+function finishGame(){
+  finish(0)
+}
+
+function wait(ms){
+  var start = end = new Date().getTime()
+
+  while (end < start + ms){
+    end = new Date().getTime()
+  }
+
+  console.log("wait")
 
 }
 
