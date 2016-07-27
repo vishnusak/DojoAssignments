@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Chat | Login</title>
+    <script type="text/javascript" src='/js/jquery-3.1.0.min.js'></script>
+    <script type="text/javascript" src='/socket.io/socket.io.js'></script>
+    <script type="text/javascript" src='/js/index.js'></script>
+
+    <link rel="stylesheet" href="/css/index.css">
+    <!-- <link rel="stylesheet" href="..\static\css\index.css"> -->
+  </head>
+  <body>
+
+    <form id="login" action="/login" method="post">
+      <label>Your Name:</label>
+      <input type="text" name="name">
+      <div>
+        <input type="button" value="Cancel" id="cancel">
+        <input type="submit" value="Ok" id="ok">
+      </div>
+    </form>
+
+    <main>
+      <div id="main">
+        <div id="history">
+          <!-- <p><em>Vishnu: </em>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>...</p>
+          <p><em>Vishnu: </em>Hello World</p>
+          <p>...</p>
+          <p><em>Vishnu: </em>Hello World</p>
+          <p>...</p>
+          <p><em>Vishnu: </em>Hello World</p>
+          <p>...</p>
+          <p><em>Vishnu: </em>Hello World</p>
+          <p>...</p>
+          <p><em>Vishnu: </em>Hello World</p>
+          <p>...</p>
+          <p><em>Vishnu: </em>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>...</p>
+          <p><em>Vishnu: </em>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p>...</p> -->
+        </div>
+        <div id="users">
+          <h1>Users</h1>
+          <hr>
+        </div>
+      </div>
+      <div id="chat">
+        <form id="text">
+          <label id="cur_user"></label>
+          <label id="textarea">
+            <textarea name="chat_text"></textarea>
+            <input type="submit" value="Post">
+          </label>
+        </form>
+      </div>
+    </main>
+
+  </body>
+</html>

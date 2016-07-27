@@ -1,0 +1,127 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: ivory;
+  width: 80%;
+  margin: auto;
+}
+
+#login{
+  width: 50%;
+  background-color: rgb(34, 34, 34);
+  color: ivory;
+  font-size: calc(2 * (1vh + 1vw) / 2);
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  #login > *{
+    margin: 1vh 0;
+    width: 95%;
+  }
+  #login > input{
+    padding: 0.5vh 0.5vw;
+    font-size: calc(1.4 * (1vh + 1vw) / 2);
+    text-align: center;
+  }
+  #login > label,
+  #login > div{
+    display: flex;
+    justify-content: space-around;
+  }
+    #login > div > input{
+      width: 15%;
+      border-radius: 10px;
+      font-size: calc(1.4 * (1vh + 1vw) / 2);
+      cursor: pointer;
+    }
+
+main{
+  color: rgb(34, 34, 34);
+  display: flex;
+  flex-direction: column;
+  margin-top: 5vh;
+}
+
+#main{
+  display: flex;
+  justify-content: space-between;
+  height: 80vh;
+}
+
+#history{
+  border: calc((1vh + 1vw) / 2) solid rgb(34, 34, 34);
+  background-color: lightgray;
+  width: 80%;
+  padding: 1vh 1vw;
+  overflow-y: auto;
+}
+  #history > p{
+    margin: 0.2vh auto;
+  }
+  #history > p:nth-of-type(even){
+    /*margin: 0.5vh auto;*/
+    text-align: center;
+  }
+    #history > p > em{
+      font-weight: bold;
+      color: darkgreen;
+    }
+
+#users{
+  background-color: rgb(34, 34, 34);
+  color: ivory;
+  border-left: 1px solid ivory;
+  width: 20%;
+  padding: 0.5vh 0.5vw;
+  overflow-y: auto;
+}
+  #users > h1{
+    text-align: center;
+  }
+  #users > hr{
+    margin-bottom: 1vh;
+  }
+  #users > p{
+    background-color: ivory;
+    color: rgb(34, 34, 34);
+    text-align: center;
+    font-size: calc(2 * (1vh + 1vw) / 2);
+    margin: 0.5vh auto;
+  }
+
+#text{
+  border-top: 1px solid ivory;
+  background-color: rgb(34, 34, 34);
+  color: ivory;
+  display: flex;
+  flex-direction: column;
+}
+  #text > *{
+    margin: 1vh 1vw;
+  }
+  #text > label{
+    font-size: calc(1.5 * (1vh + 1vw) / 2);
+    font-weight: bold;
+  }
+  #text > #textarea{
+    display: flex;
+    justify-content: space-between;
+  }
+    #text > #textarea > textarea{
+      width: 89%;
+      height: 6vh;
+      resize: none;
+      padding: 0.5vh 0.5vw;
+    }
+    #text > #textarea > input{
+      width: 10%;
+      background-color: rgb(34, 34, 34);
+      color: ivory;
+      font-size: calc(1.5 * (1vh + 1vw) / 2);
+    }
