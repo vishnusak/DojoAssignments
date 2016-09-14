@@ -1,0 +1,135 @@
+html{
+  font-family: sans-serif;
+  font-size: 1em;
+}
+body{
+  box-sizing: -webkit-border-box;
+  box-sizing: -moz-border-box;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+}
+
+#container{
+  box-sizing: -webkit-border-box;
+  box-sizing: -moz-border-box;
+  box-sizing: border-box;
+  background-color: #EEEEEE;
+  box-shadow: 10px 10px 25px #000000;
+  width: 898px;
+  height: 474px;
+  margin: auto;
+}
+
+#rows{
+  box-sizing: -webkit-border-box;
+  box-sizing: -moz-border-box;
+  box-sizing: border-box;
+  /*border: 1px solid green;*/
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-size: 75%;
+  display: inline-block;
+}
+
+  #rows>li{
+    box-sizing: -webkit-border-box;
+    box-sizing: -moz-border-box;
+    box-sizing: border-box;
+    /*border: 1px solid black;*/
+    display: block;
+    width: 42px;
+    height: 42px;
+    color: #FF0000;
+    text-align: center;
+    padding-top: 15px;
+  }
+
+  #rows>li:first-child{
+    padding-top: 8px; 
+  }
+
+.elements{
+  box-sizing: -webkit-border-box;
+  box-sizing: -moz-border-box;
+  box-sizing: border-box;
+  /*border: 1px solid black;*/
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-size: 50%;
+  display: inline-block;  
+  vertical-align: bottom;
+}
+  .elements>li{
+    box-sizing: -webkit-border-box;
+    box-sizing: -moz-border-box;
+    box-sizing: border-box;
+    border: 1px solid #808080;
+    display: block;
+    width: 40px;
+    height: 41px;
+    margin: 0;
+    margin-top: 1px;
+    text-align: center;
+    color: #1913A2;
+    /*padding-top: 1px;*/
+  }
+
+    .elements>li>em{
+      font-size: 180%;
+      font-weight: bold;
+      font-style: normal;
+      display: block;
+      padding: 0;
+      margin: 0;
+    }
+
+  .elements>li:first-child{
+    box-sizing: -webkit-border-box;
+    box-sizing: -moz-border-box;
+    box-sizing: border-box;
+    /*border: 1px solid red;*/
+    margin: 0;
+    padding: 10px 0;
+    font-size: 160%;
+    color: #FF0000;
+    text-align: center;
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+.gap{
+  margin-right: 10px;
+}
+
+.blue>li{
+  background-color: #689BFF;
+}
+
+.pink>li{
+  background-color: #FD989A;
+}
+
+.yellow>li{
+  background-color: #FECB00;
+}
+
+.elements .green{
+  background-color: #1FCA21;
+}
+
+.elements .transparent{
+  border-color: transparent;
+  background-color: transparent;
+  font-size: 140%;
+  color: #FF0000;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.elements .trans-short, #rows .trans-short{
+  border-color: transparent;
+  background-color: transparent;
+  height: 21px;
+}
