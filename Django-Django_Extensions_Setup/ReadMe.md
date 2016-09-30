@@ -9,7 +9,7 @@
 - inside that, pip install pygraphviz
   - (if this doesn't work because of not finding compiler dependencies, you can download the compiled wheel from http://www.lfd.uci.edu/~gohlke/pythonlibs/#pygraphviz
   - save it in some location on your drive
-  - then do pip install <full path of the downloaded .whl file> - This should install pygraphviz into your venv).
+  - then do pip install *full path of the downloaded .whl file* - This should install pygraphviz into your venv).
 - Then do pip install pydot (dot is the language used to generate the ERD inside graphviz).
 - Finally, pip install django-extensions.
   - Follow the "Installing It" and "Using It" directions from the django-extensions github page (https://github.com/django-extensions/django-extensions)
