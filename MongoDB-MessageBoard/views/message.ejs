@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Message Board</title>
+
+    <script type="text/javascript" src='/js/jquery-3.1.0.js'></script>
+    <script type="text/javascript" src='/socket.io/socket.io.js'></script>
+    <script type="text/javascript" src='/js/message.js'></script>
+
+    <link rel="stylesheet" href="/css/message.css">
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>MEAN Message Board</h1>
+      <h3><%= user %> | <span id="signout" class="button"><a href="/signout">Sign Out</a></span></h3>
+    </header>
+
+    <form id="main-msg-form" action="/message" method="post">
+      <input type="hidden" name="user" value="<%= user %>">
+      <textarea name="message" placeholder="<%= user %>: Your message here"></textarea>
+      <input type="submit" value="Post This" class="button">
+    </form>
+
+    <div class="message-container" id="msg-container">
+      <% for (var msgIdx in messages){ %>
+
+        <div id="<%= messages[msgIdx]._id %>" class="message">
+          <p><%= messages[msgIdx].name %></p>
+          <p class="msg-text"><%= messages[msgIdx].msgText %></p>
+          <span class="show-comment button" id="sc-<%= messages[msgIdx]._id %>" title="Click to toggle comments"> &#8226;&#32;&#8226;&#32;&#8226; </span>
+
+          <div class="comment-container" id="cc-<%= messages[msgIdx]._id %>">
+            <% if (messages[msgIdx].comments.length){ %>
+              <% for (var cmtIdx=0; cmtIdx < messages[msgIdx].comments.length; cmtIdx += 1){ %>
+                <div class="comment">
+                  <p><%= messages[msgIdx].comments[cmtIdx].name %></p>
+                  <p class="cmt-text"><%= messages[msgIdx].comments[cmtIdx].cmtText %></p>
+                </div>
+              <% } %>
+            <% } %>
+
+            <hr class="cmt-div" id="hr-<%= messages[msgIdx]._id %>">
+
+            <form class="comment-form" id="cmt-<%= messages[msgIdx]._id %>">
+              <input type="hidden" name="user" value="<%= user %>">
+              <textarea name="comment" placeholder="<%= user %>: Your comment here"></textarea>
+              <input type="submit" value="Post This" class="button">
+            </form>
+
+          </div>
+        </div>
+        <hr class="msg-div">
+
+      <% } %>
+    </div>
+  </body>
+</html>
